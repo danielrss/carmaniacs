@@ -10,5 +10,11 @@ namespace CarManiacs.WebClient.UnitTests
         {
             Assert.IsTrue(true);
         }
+
+        [Test]
+        public void Test2()
+        {
+            Assert.IsTrue(false);
+        }
     }
 }
