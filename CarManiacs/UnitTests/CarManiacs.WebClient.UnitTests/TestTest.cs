@@ -6,7 +6,7 @@ namespace CarManiacs.WebClient.UnitTests
     public class TestTest
     {
         [Test]
-        public void Test()
+        public void Test1()
         {
             Assert.IsTrue(true);
         }
@@ -14,7 +14,13 @@ namespace CarManiacs.WebClient.UnitTests
         [Test]
         public void Test2()
         {
-            Assert.IsTrue(false);
+            Assert.IsFalse(false);
+        }
+
+        [Test]
+        public void Test3()
+        {
+            Assert.IsNull(null);
         }
     }
 }
