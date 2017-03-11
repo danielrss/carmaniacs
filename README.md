@@ -1,4 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/xb73dcob5548ksps?svg=true)](https://ci.appveyor.com/project/danielrss/carmaniacs)
+[![Coverage Status](https://coveralls.io/repos/github/danielrss/carmaniacs/badge.svg?branch=master)](https://coveralls.io/github/danielrss/carmaniacs?branch=master)
 
 <p align="center">
 <a href="http://academy.telerik.com/">
