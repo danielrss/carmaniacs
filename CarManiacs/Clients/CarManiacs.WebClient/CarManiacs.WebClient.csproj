@@ -180,7 +180,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -191,7 +190,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -264,6 +262,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
+      <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
+      <Name>CarManiacs.Business.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Identity\CarManiacs.Business.Identity.csproj">
+      <Project>{aea12c10-78ff-4556-ac5e-bc5cde0121c3}</Project>
+      <Name>CarManiacs.Business.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
+      <Project>{b3bbdcfc-36da-45a4-981f-505dc23fcec1}</Project>
+      <Name>CarManiacs.Business.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.WebClient.UnitTests", "UnitTests\CarManiacs.WebClient.UnitTests\CarManiacs.WebClient.UnitTests.csproj", "{3495A12C-7381-4A35-ACA6-A569B5EF550D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Identity", "Business\CarManiacs.Business.Identity\CarManiacs.Business.Identity.csproj", "{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Models", "Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj", "{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Data", "Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj", "{27955618-1205-427F-BA56-228C84105298}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{3495A12C-7381-4A35-ACA6-A569B5EF550D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3495A12C-7381-4A35-ACA6-A569B5EF550D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3495A12C-7381-4A35-ACA6-A569B5EF550D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27955618-1205-427F-BA56-228C84105298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27955618-1205-427F-BA56-228C84105298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27955618-1205-427F-BA56-228C84105298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27955618-1205-427F-BA56-228C84105298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,5 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9CEFE230-9524-4DB1-BF10-2FD63E7BDD27} = {2E79B712-0927-484B-926C-3896FD8206AC}
 		{3495A12C-7381-4A35-ACA6-A569B5EF550D} = {AE1C5A4C-53EA-4AD2-85DA-DE52BEA4A2E0}
+		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3} = {DEB7F061-042E-4C52-8099-D564779F4486}
+		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1} = {DEB7F061-042E-4C52-8099-D564779F4486}
+		{27955618-1205-427F-BA56-228C84105298} = {DEB7F061-042E-4C52-8099-D564779F4486}
 	EndGlobalSection
 EndGlobal

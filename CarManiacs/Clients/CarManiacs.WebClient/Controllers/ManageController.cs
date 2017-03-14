@@ -1,4 +1,5 @@
-﻿using CarManiacs.WebClient.Models;
+﻿using CarManiacs.Business.Identity;
+using CarManiacs.WebClient.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
