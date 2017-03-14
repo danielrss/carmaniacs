@@ -12,7 +12,7 @@ namespace CarManiacs.Business.Models.Users
 
         public bool IsDeleted { get; set; }
 
-        public DateTime DateCreated { get; set; }
+        public DateTime? RegisterDate { get; set; }
 
         public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
         {

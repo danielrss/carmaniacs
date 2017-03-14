@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Models"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Data", "Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj", "{27955618-1205-427F-BA56-228C84105298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Common", "Business\CarManiacs.Business.Common\CarManiacs.Business.Common.csproj", "{1096FECE-514D-42AD-8906-12995CB212E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{27955618-1205-427F-BA56-228C84105298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27955618-1205-427F-BA56-228C84105298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27955618-1205-427F-BA56-228C84105298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1096FECE-514D-42AD-8906-12995CB212E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1096FECE-514D-42AD-8906-12995CB212E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1096FECE-514D-42AD-8906-12995CB212E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1096FECE-514D-42AD-8906-12995CB212E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{AEA12C10-78FF-4556-AC5E-BC5CDE0121C3} = {DEB7F061-042E-4C52-8099-D564779F4486}
 		{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1} = {DEB7F061-042E-4C52-8099-D564779F4486}
 		{27955618-1205-427F-BA56-228C84105298} = {DEB7F061-042E-4C52-8099-D564779F4486}
+		{1096FECE-514D-42AD-8906-12995CB212E7} = {DEB7F061-042E-4C52-8099-D564779F4486}
 	EndGlobalSection
 EndGlobal

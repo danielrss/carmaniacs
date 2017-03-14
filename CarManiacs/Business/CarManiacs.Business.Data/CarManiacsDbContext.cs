@@ -1,14 +1,12 @@
-﻿using CarManiacs.Business.Models.Users;
+﻿using CarManiacs.Business.Data.Contracts;
+using CarManiacs.Business.Models.Locations;
+using CarManiacs.Business.Models.Users;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace CarManiacs.Business.Data
 {
-    public class CarManiacsDbContext : IdentityDbContext<User>
+    public class CarManiacsDbContext : IdentityDbContext<User>, ICarManiacsDbContext
     {
         public CarManiacsDbContext()
             : base("CarManiacsDb", throwIfV1Schema: false)
@@ -19,5 +17,23 @@ namespace CarManiacs.Business.Data
         {
             return new CarManiacsDbContext();
         }
+
+        IDbSet<T> ICarManiacsDbContext.Set<T>()
+        {
+            return base.Set<T>();
+        }
+
+        void ICarManiacsDbContext.SaveChanges()
+        {
+            base.SaveChanges();
+        }
+
+        public virtual IDbSet<City> Cities { get; set; }
+
+        public virtual IDbSet<Country> Countries { get; set; }
+
+        public virtual IDbSet<RegularUser> RegularUsers { get; set; }
+
+        public virtual IDbSet<Admin> Admins { get; set; }
     }
 }
