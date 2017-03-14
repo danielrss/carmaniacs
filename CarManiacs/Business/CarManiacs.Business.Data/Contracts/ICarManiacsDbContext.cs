@@ -8,8 +8,8 @@ namespace CarManiacs.Business.Data.Contracts
     {
         IDbSet<T> Set<T>() where T : class;
 
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+        DbEntityEntry<T> Entry<T>(T entity) where T : class;
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }

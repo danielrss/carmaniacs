@@ -4,7 +4,10 @@ using CarManiacs.Business.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Twitter;
 using Owin;
 using System;
 
@@ -52,19 +55,30 @@ namespace CarManiacs.WebClient
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(new TwitterAuthenticationOptions
+            {
+                ConsumerKey = "Vlk4MlfjXTW0ZAm45LinGsM2x",
+                ConsumerSecret = "MvCR832pKyzoBVhP9b8t7NFHeNInXBTHmYjEdLcK76ryBSjCrL",
+                BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
+               {
+                   "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
+                   "0D445C165344C1827E1D20AB25F40163D8BE79A5", // VeriSign Class 3 Secure Server CA - G3
+                   "7FD365A7C2DDECBBF03009F34339FA02AF333133", // VeriSign Class 3 Public Primary Certification Authority - G5
+                   "39A55D933676616E73A761DFA16A7E59CDE66FAD", // Symantec Class 3 Secure Server CA - G4
+                   "5168FF90AF0207753CCCD9656462A212B859723B", //DigiCert SHA2 High Assurance Server C‎A 
+                   "B13EC36903F8BF4701D498261A0802EF63642BC3" //DigiCert High Assurance EV Root CA
+               })
+            });
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "893522627456518",
+               appSecret: "c025c2fa915d6de8b286b8b00aeb4b1d");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "23939504308-ncmlh3t2ncdoarmk7mhftiath0u06cfr.apps.googleusercontent.com",
+                ClientSecret = "lycBhYy74GjUahmMSS1ecUYo"
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CarManiacs.Business.Data.Contracts;
+using CarManiacs.Business.Data.Migrations;
 using CarManiacs.Business.Models.Locations;
 using CarManiacs.Business.Models.Users;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -11,6 +12,7 @@ namespace CarManiacs.Business.Data
         public CarManiacsDbContext()
             : base("CarManiacsDb", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarManiacsDbContext>());
         }
 
         public static CarManiacsDbContext Create()
@@ -23,9 +25,9 @@ namespace CarManiacs.Business.Data
             return base.Set<T>();
         }
 
-        void ICarManiacsDbContext.SaveChanges()
+        int ICarManiacsDbContext.SaveChanges()
         {
-            base.SaveChanges();
+            return base.SaveChanges();
         }
 
         public virtual IDbSet<City> Cities { get; set; }
