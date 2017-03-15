@@ -90,7 +90,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ActionFilters\TransactionAttribute.cs" />
+    <Compile Include="ActionFilters\TransactionAttribute\OnActionExecuted_Should.cs" />
+    <Compile Include="ActionFilters\TransactionAttribute\OnActionExecuting_Should.cs" />
     <Compile Include="Mocks\TransactionAttributeMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
