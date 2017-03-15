@@ -1,4 +1,5 @@
 using CarManiacs.Business.Models.Locations;
+
 using System.Data.Entity.Migrations;
 using System.Linq;
 

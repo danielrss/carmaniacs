@@ -1,6 +1,7 @@
 ﻿using CarManiacs.Business.Data;
 using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;

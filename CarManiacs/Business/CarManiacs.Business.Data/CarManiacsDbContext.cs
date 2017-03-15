@@ -1,6 +1,7 @@
 ﻿using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Locations;
 using CarManiacs.Business.Models.Users;
+
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 

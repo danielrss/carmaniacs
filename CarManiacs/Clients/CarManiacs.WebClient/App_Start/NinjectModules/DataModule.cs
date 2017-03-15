@@ -1,12 +1,9 @@
 ﻿using CarManiacs.Business.Data;
 using CarManiacs.Business.Data.Contracts;
+
 using Ninject.Extensions.Conventions;
 using Ninject.Modules;
 using Ninject.Web.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CarManiacs.WebClient.App_Start.NinjectModules
 {
