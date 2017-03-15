@@ -6,6 +6,7 @@ namespace CarManiacs.WebClient.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using NinjectModules;
     using System;
     using System.Web;
 
@@ -59,6 +60,8 @@ namespace CarManiacs.WebClient.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(
+                new DataModule());
         }        
     }
 }
