@@ -71,8 +71,8 @@ namespace CarManiacs.WebClient
             });
 
             app.UseFacebookAuthentication(
-               appId: "893522627456518",
-               appSecret: "c025c2fa915d6de8b286b8b00aeb4b1d");
+               appId: "1615017295193576",
+               appSecret: "1d9adef79b1f7968e8a4c08a71b9ff8d");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
