@@ -23,7 +23,7 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
         }
 
         [Test]
-        public void CallUnitOfWorkSaveChanges_WhenNoExceptionInContext()
+        public void CallUnitOfWorkSaveChangesOnce_WhenNoExceptionInContext()
         {
             //Arrange
             var filterContextMock = new Mock<ActionExecutedContext>();

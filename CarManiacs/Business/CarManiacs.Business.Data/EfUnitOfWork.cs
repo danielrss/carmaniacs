@@ -5,18 +5,18 @@ namespace CarManiacs.Business.Data
 {
     public class EfUnitOfWork : IUnitOfWork
     {
-        private readonly ICarManiacsDbContext context;
+        protected readonly ICarManiacsDbContext dbContext;
 
         public EfUnitOfWork(ICarManiacsDbContext context)
         {
             Guard.WhenArgument(context, "dbContext").IsNull().Throw();
 
-            this.context = context;
+            this.dbContext = context;
         }
 
         public void SaveChanges()
         {
-            this.context.SaveChanges();
+            this.dbContext.SaveChanges();
         }
     }
 }

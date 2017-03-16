@@ -21,15 +21,12 @@ namespace CarManiacs.Business.Data.Migrations
             {
                 var bulgaria = new Country();
                 bulgaria.Name = "Bulgaria";
-                //context.Countries.Add(bulgaria);
 
                 var germany = new Country();
                 germany.Name = "Germany";
-                //context.Countries.Add(germany);
 
                 var england = new Country();
                 england.Name = "England";
-                //context.Countries.Add(england);
 
                 var vt = new City();
                 vt.Name = "Veliko Tarnovo";
