@@ -1,5 +1,6 @@
 ﻿using CarManiacs.Business.Common;
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,11 +13,12 @@ namespace CarManiacs.Business.Models.Locations
 
         public Country()
         {
+            this.Id = Guid.NewGuid();
             this.cities = new HashSet<City>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]

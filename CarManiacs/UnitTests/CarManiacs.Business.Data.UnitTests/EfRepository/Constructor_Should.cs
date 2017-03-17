@@ -20,28 +20,28 @@ namespace CarManiacs.Business.Data.UnitTests.EfRepository
         [Test]
         public void SetDbContextCorrectly_WhenValidArgumentsPassed()
         {
-            // Arrange
+            //Arrange
             var dbContextMock = new Mock<ICarManiacsDbContext>();
 
-            // Act
+            //Act
             var repository = new EfRepository<object>(dbContextMock.Object);
 
-            // Assert
+            //Assert
             Assert.AreSame(dbContextMock.Object, repository.DbContext);
         }
 
         [Test]
         public void SetDbSetCorrectly_WhenValidArgumentsArePassed()
         {
-            // Arrange
+            //Arrange
             var dbContextMock = new Mock<ICarManiacsDbContext>();
             var dbSetMock = new Mock<IDbSet<object>>();
             dbContextMock.Setup(x => x.Set<object>()).Returns(dbSetMock.Object);
 
-            // Act
+            //Act
             var repository = new EfRepository<object>(dbContextMock.Object);
 
-            // Assert
+            //Assert
             Assert.AreSame(repository.DbSet, dbSetMock.Object);
         }
 

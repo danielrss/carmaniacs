@@ -65,7 +65,10 @@
   <ItemGroup>
     <Compile Include="CarManiacsDbContext\Constructor_Should.cs" />
     <Compile Include="CarManiacsDbContext\Create_Should.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="EfRepository\All_Should.cs" />
     <Compile Include="EfRepository\Constructor_Should.cs" />
+    <Compile Include="EfRepository\GetById_Should.cs" />
     <Compile Include="EfUnitOfWork\Constructor_Should.cs" />
     <Compile Include="EfUnitOfWork\SaveChanges_Should.cs" />
     <Compile Include="Mocks\EfUnitOfWorkMock.cs" />
@@ -75,6 +78,10 @@
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
       <Project>{27955618-1205-427f-ba56-228c84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
+      <Project>{b3bbdcfc-36da-45a4-981f-505dc23fcec1}</Project>
+      <Name>CarManiacs.Business.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

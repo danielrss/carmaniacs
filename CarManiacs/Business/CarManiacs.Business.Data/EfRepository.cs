@@ -1,6 +1,6 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Data.Contracts;
+﻿using CarManiacs.Business.Data.Contracts;
 
+using Bytes2you.Validation;
 using System.Data.Entity;
 using System.Linq;
 
@@ -92,12 +92,6 @@ namespace CarManiacs.Business.Data
             {
                 this.Delete(entity);
             }
-        }
-
-        public virtual void Detach(T entity)
-        {
-            var entry = this.context.Entry(entity);
-            entry.State = EntityState.Detached;
         }
     }
 }

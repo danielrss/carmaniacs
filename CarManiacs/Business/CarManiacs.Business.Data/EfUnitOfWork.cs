@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+
 using CarManiacs.Business.Data.Contracts;
 
 namespace CarManiacs.Business.Data
