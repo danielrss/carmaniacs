@@ -22,7 +22,7 @@ namespace CarManiacs.Business.Models.Locations
         [MaxLength(Constants.NameMaxLength)]
         public string Name { get; set; }
 
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
 
         public virtual Country Country { get; set; }
     }
