@@ -71,6 +71,7 @@
     <Compile Include="EfRepository\GetById_Should.cs" />
     <Compile Include="EfUnitOfWork\Constructor_Should.cs" />
     <Compile Include="EfUnitOfWork\SaveChanges_Should.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mocks\EfUnitOfWorkMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
