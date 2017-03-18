@@ -21,7 +21,7 @@ namespace CarManiacs.Business.Models.UnitTests.Users
 
         [TestCase("rooleeTeest123")]
         [TestCase("someRandomRoleDescription")]
-        public void RoleDescription_ShouldBeSetAndGottenCorrectly(string description)
+        public void Description_ShouldBeSetAndGottenCorrectly(string description)
         {
             //Arrange & Act
             var role = new Models.Users.Role { Description = description };
