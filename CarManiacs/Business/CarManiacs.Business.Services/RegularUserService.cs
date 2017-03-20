@@ -10,26 +10,31 @@ namespace CarManiacs.Business.Services
     {
         private IEfRepository<RegularUser> usersRepo;
 
-        public RegularUserService(IEfRepository<RegularUser> usersRepo)
+        public RegularUserService(IEfRepository<RegularUser> regularUsersRepo)
         {
-            Guard.WhenArgument(usersRepo, "RegularUser repository").IsNull().Throw();
+            Guard.WhenArgument(regularUsersRepo, "RegularUser repository").IsNull().Throw();
 
-            this.usersRepo = usersRepo;
+            this.usersRepo = regularUsersRepo;
         }
 
-        public void Create(string userId)
+        public RegularUser Create(string userId)
         {
             Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
-            
-            this.usersRepo.Add(new RegularUser()
+
+            var user = new RegularUser()
             {
                 Id = userId
-            });
+            };
+            this.usersRepo.Add(user);
+
+            return user;
         }
 
-        public RegularUser GetUserById(string id)
+        public RegularUser GetById(string userId)
         {
-            return this.usersRepo.GetById(id);
+            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+
+            return this.usersRepo.GetById(userId);
         }
     }
 }

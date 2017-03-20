@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Models.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Services", "Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj", "{012C9CAE-A304-4AB4-8EEE-F52539A96995}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManiacs.Business.Services.UnitTests", "UnitTests\CarManiacs.Business.Services.UnitTests\CarManiacs.Business.Services.UnitTests.csproj", "{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{012C9CAE-A304-4AB4-8EEE-F52539A96995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{012C9CAE-A304-4AB4-8EEE-F52539A96995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{012C9CAE-A304-4AB4-8EEE-F52539A96995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,5 +89,6 @@ Global
 		{8BBCF794-FA19-4E07-B113-C3618B72DB7D} = {AE1C5A4C-53EA-4AD2-85DA-DE52BEA4A2E0}
 		{6749BF4A-8CFC-4EF2-B074-0A923753CB87} = {AE1C5A4C-53EA-4AD2-85DA-DE52BEA4A2E0}
 		{012C9CAE-A304-4AB4-8EEE-F52539A96995} = {DEB7F061-042E-4C52-8099-D564779F4486}
+		{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3} = {AE1C5A4C-53EA-4AD2-85DA-DE52BEA4A2E0}
 	EndGlobalSection
 EndGlobal
