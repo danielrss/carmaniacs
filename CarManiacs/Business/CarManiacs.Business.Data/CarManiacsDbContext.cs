@@ -12,7 +12,6 @@ namespace CarManiacs.Business.Data
         public CarManiacsDbContext()
             : base("CarManiacsDb", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarManiacsDbContext>());
         }
 
         public static CarManiacsDbContext Create()
