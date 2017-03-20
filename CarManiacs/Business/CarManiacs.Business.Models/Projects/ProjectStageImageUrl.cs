@@ -14,7 +14,9 @@ namespace CarManiacs.Business.Models.Projects
 
         [Key]
         public Guid Id { get; set; }
-        
+
+        [Required]
+        [MinLength(Constants.UrlMinLength)]
         [MaxLength(Constants.UrlMaxLength)]
         public string Url { get; set; }
 

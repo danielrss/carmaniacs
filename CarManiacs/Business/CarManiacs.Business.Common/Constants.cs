@@ -7,7 +7,8 @@
         
         public const int TitleMinLength = 5;
         public const int TitleMaxLength = 50;
-        
+
+        public const int UrlMinLength = 10;
         public const int UrlMaxLength = 2048;
 
         public const int ProjectDescriptionMinLength = 5;

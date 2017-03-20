@@ -72,7 +72,7 @@ namespace CarManiacs.Business.Models.UnitTests.Locations
 
             //Assert
             Assert.AreSame(country, city.Country);
-            Assert.AreEqual(city.Country.Id, country.Id);
+            Assert.AreEqual(country.Id, city.Country.Id);
         }
 
         [Test]

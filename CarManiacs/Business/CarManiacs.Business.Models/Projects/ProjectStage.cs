@@ -23,17 +23,15 @@ namespace CarManiacs.Business.Models.Projects
         [MaxLength(Constants.TitleMaxLength)]
         public string Title { get; set; }
 
-        [MinLength(Constants.TitleMinLength)]
-        [MaxLength(Constants.TitleMaxLength)]
+        [MinLength(Constants.ProjectDescriptionMinLength)]
+        [MaxLength(Constants.ProjectDescriptionMaxLength)]
         public string Description { get; set; }
-
-        public IEnumerable<string> ImageUrls { get; set; }
 
         public Guid ProjectId { get; set; }
 
         public virtual Project Project { get; set; }
 
-        public virtual ICollection<ProjectStageImageUrl> Images
+        public virtual ICollection<ProjectStageImageUrl> ImageUrls
         {
             get
             {
