@@ -1,6 +1,5 @@
-﻿using CarManiacs.Business.Data.Contracts;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Data.Contracts;
 using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.ActionFilters
@@ -11,7 +10,7 @@ namespace CarManiacs.WebClient.ActionFilters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var uow = DependencyResolver.Current.GetService(typeof(IUnitOfWork)) as IUnitOfWork;
+            IUnitOfWork uow = DependencyResolver.Current.GetService(typeof(IUnitOfWork)) as IUnitOfWork;
             Guard.WhenArgument(uow, "unitOfWork").IsNull().Throw();
             this.unitOfWork = uow;
 

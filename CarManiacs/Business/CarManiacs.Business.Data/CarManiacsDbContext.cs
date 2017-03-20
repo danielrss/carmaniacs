@@ -1,5 +1,6 @@
 ﻿using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Locations;
+using CarManiacs.Business.Models.Projects;
 using CarManiacs.Business.Models.Users;
 
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -36,5 +37,11 @@ namespace CarManiacs.Business.Data
         public virtual IDbSet<RegularUser> RegularUsers { get; set; }
 
         public virtual IDbSet<Admin> Admins { get; set; }
+
+        public virtual IDbSet<Project> Projects { get; set; }
+
+        public virtual IDbSet<ProjectStage> ProjectStages { get; set; }
+
+        public virtual IDbSet<ProjectStageImageUrl> ProjectStageImageUrls { get; set; }
     }
 }

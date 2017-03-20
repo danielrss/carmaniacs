@@ -1,5 +1,8 @@
-﻿using CarManiacs.Business.Identity;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
+using CarManiacs.Business.Services.Contracts;
+using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
 
 using Microsoft.AspNet.Identity;
@@ -17,15 +20,13 @@ namespace CarManiacs.WebClient.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRegularUserService regularUserService;
 
-        public AccountController()
+        public AccountController(IRegularUserService regularUserService)
         {
-        }
+            Guard.WhenArgument(regularUserService, "IRegularUserService").IsNull().Throw();
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.regularUserService = regularUserService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -145,17 +146,20 @@ namespace CarManiacs.WebClient.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
+        [Transaction]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var user = new User { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var createResult = await this.UserManager.CreateAsync(user, model.Password);
+                var addToRoleResult = await this.UserManager.AddToRoleAsync(user.Id, "User");
+                if (createResult.Succeeded && addToRoleResult.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    this.regularUserService.Create(user.Id);
+                    await this.SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -163,13 +167,15 @@ namespace CarManiacs.WebClient.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+
+                this.AddErrors(createResult);
+                this.AddErrors(addToRoleResult);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         //
@@ -350,39 +356,45 @@ namespace CarManiacs.WebClient.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
+        [Transaction]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            if (this.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return this.RedirectToAction("Index", "Manage");
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    return View("ExternalLoginFailure");
+                    return this.View("ExternalLoginFailure");
                 }
+
                 var user = new User { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+                var createResult = await this.UserManager.CreateAsync(user);
+                var addToRoleResult = await this.UserManager.AddToRoleAsync(user.Id, "User");
+                if (createResult.Succeeded && addToRoleResult.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
+                    createResult = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    if (createResult.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        this.regularUserService.Create(user.Id);
+                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return this.RedirectToLocal(returnUrl);
                     }
                 }
-                AddErrors(result);
+
+                this.AddErrors(createResult);
+                this.AddErrors(addToRoleResult);
             }
 
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+            this.ViewBag.ReturnUrl = returnUrl;
+            return this.View(model);
         }
 
         //
@@ -449,6 +461,7 @@ namespace CarManiacs.WebClient.Controllers
             {
                 return Redirect(returnUrl);
             }
+
             return RedirectToAction("Index", "Home");
         }
 

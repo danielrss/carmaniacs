@@ -61,7 +61,8 @@ namespace CarManiacs.WebClient.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(
-                new DataModule());
+                new DataModule(),
+                new ServicesModule());
         }        
     }
 }

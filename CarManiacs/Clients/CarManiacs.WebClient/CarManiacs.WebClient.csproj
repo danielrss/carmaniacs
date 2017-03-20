@@ -191,6 +191,7 @@
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectModules\DataModule.cs" />
+    <Compile Include="App_Start\NinjectModules\ServicesModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -286,6 +287,10 @@
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
       <Project>{b3bbdcfc-36da-45a4-981f-505dc23fcec1}</Project>
       <Name>CarManiacs.Business.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj">
+      <Project>{012C9CAE-A304-4AB4-8EEE-F52539A96995}</Project>
+      <Name>CarManiacs.Business.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
