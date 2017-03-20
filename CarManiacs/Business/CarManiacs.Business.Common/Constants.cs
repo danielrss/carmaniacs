@@ -4,14 +4,20 @@
     {
         public const int NameMinLength = 2;
         public const int NameMaxLength = 20;
+        
+        public const int TitleMinLength = 5;
+        public const int TitleMaxLength = 50;
+        
+        public const int UrlMaxLength = 2048;
 
-        public const int MinAge = 12;
+        public const int ProjectDescriptionMinLength = 5;
+        public const int ProjectDescriptionMaxLength = 1000;
+
+        public const int MinAge = 13;
         public const int MaxAge = 100;
 
         public const int MinAddressLength = 4;
-        public const int MaxAddressLength = 20;
-
-        public const int MaxUploadedImageTitleLength = 50;
+        public const int MaxAddressLength = 30;
 
         public const int MinCommentLength = 5;
         public const int MaxCommentLength = 500;
