@@ -3,7 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>@ViewBag.Title - Car Maniacs</title>
+    @if (string.IsNullOrEmpty(ViewBag.Title))
+    {
+        <title>CarManiacs</title>
+    }
+    else
+    {
+        <title>@ViewBag.Title - CarManiacs</title>
+    }
     <link href="https://fonts.googleapis.com/css?family=Syncopate:700" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @RenderSection("styles", required: false)
@@ -21,18 +28,18 @@
         </div>
     </header>
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-        @RenderBody()
-        <footer id="footer">
-            <ul class="icons">
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            </ul>
-            <div class="copyright">
-                &copy; @DateTime.Now.Year - CarManiacs
-            </div>
-        </footer>
-    
+    @RenderBody()
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+        <div class="copyright">
+            &copy; @DateTime.Now.Year - CarManiacs
+        </div>
+    </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/main")
