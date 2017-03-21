@@ -27,6 +27,10 @@ textarea {
     left: -150px
 }
 
+#contact header {
+    text-align: center
+}
+
 #contact input, #contact textarea {
     max-width: none
 }
