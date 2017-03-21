@@ -28,9 +28,9 @@ namespace CarManiacs.WebClient
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/font-awesome.min.css",
-                      "~/Content/main.css"));
+                      "~/Content/main.css",
+                      "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/my-css").Include(
                       "~/Content/login.css"));

@@ -10,15 +10,15 @@ button[name="provider"] {
 }
 
     button[name="provider"][value="Google"] {
-        background-image:url("./Images/sign-in-with-google.png");
+        background-image:url("./Images/Login/sign-in-with-google.png");
     }
 
     button[name="provider"][value="Facebook"] {
-        background-image: url("./Images/sign-in-with-facebook.png");
+        background-image: url("./Images/Login/sign-in-with-facebook.png");
     }
 
     button[name="provider"][value="Twitter"] {
-        background-image:url("./Images/sign-in-with-twitter.png");
+        background-image:url("./Images/Login/sign-in-with-twitter.png");
     }
 
 button[name="provider"]:hover {
