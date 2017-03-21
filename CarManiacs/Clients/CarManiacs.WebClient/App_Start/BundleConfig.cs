@@ -22,9 +22,18 @@ namespace CarManiacs.WebClient
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Scripts/util.js",
+                      "~/Scripts/main.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/main.css"));
+
+            bundles.Add(new StyleBundle("~/Content/my-css").Include(
+                      "~/Content/login.css"));
         }
     }
 }
