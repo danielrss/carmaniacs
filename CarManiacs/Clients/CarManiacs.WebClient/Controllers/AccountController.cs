@@ -146,9 +146,9 @@ namespace CarManiacs.WebClient.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Transaction]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Transaction]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -356,9 +356,9 @@ namespace CarManiacs.WebClient.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [Transaction]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Transaction]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (this.User.Identity.IsAuthenticated)
