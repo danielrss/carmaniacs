@@ -1,8 +1,10 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Data.Contracts;
+﻿using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
+
+using Bytes2you.Validation;
 using System;
+using System.Linq;
 
 namespace CarManiacs.Business.Services
 {
@@ -36,6 +38,11 @@ namespace CarManiacs.Business.Services
         public RegularUser GetById(string userId)
         {
             return string.IsNullOrEmpty(userId) ? null : this.usersRepo.GetById(userId);
+        }
+
+        public RegularUser GetByEmail(string email)
+        {
+            return string.IsNullOrEmpty(email) ? null : this.usersRepo.All.FirstOrDefault(u => u.Email == email);
         }
     }
 }

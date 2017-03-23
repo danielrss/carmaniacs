@@ -1,9 +1,10 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Identity;
+﻿using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
+
+using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -18,8 +19,6 @@ namespace CarManiacs.WebClient.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
         private IRegularUserService regularUserService;
 
         public AccountController(IRegularUserService regularUserService)
@@ -33,11 +32,7 @@ namespace CarManiacs.WebClient.Controllers
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
+                return HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
         }
 
@@ -45,11 +40,7 @@ namespace CarManiacs.WebClient.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -376,18 +367,14 @@ namespace CarManiacs.WebClient.Controllers
 
                 var user = new User { UserName = model.Email, Email = model.Email };
                 var createResult = await this.UserManager.CreateAsync(user);
-                bool isNewUser = true; // = this.regularUserService.GetByEmail(model.Email) == null
-                if (isNewUser)
-                {
-                    await this.UserManager.AddToRoleAsync(user.Id, "User");
-                    this.regularUserService.Create(user.Id, model.Email, null, null);
-                }
 
                 if (createResult.Succeeded)
                 {
                     createResult = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (createResult.Succeeded)
                     {
+                        await this.UserManager.AddToRoleAsync(user.Id, "User");
+                        this.regularUserService.Create(user.Id, model.Email, null, null);
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return this.RedirectToLocal(returnUrl);
                     }
@@ -416,26 +403,6 @@ namespace CarManiacs.WebClient.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
         }
 
         #region Helpers

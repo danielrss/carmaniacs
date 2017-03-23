@@ -7,5 +7,7 @@ namespace CarManiacs.Business.Services.Contracts
         void Create(string userId, string email, string firstName, string lastName);
 
         RegularUser GetById(string id);
+
+        RegularUser GetByEmail(string email);
     }
 }
