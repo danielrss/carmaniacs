@@ -57,13 +57,13 @@
       <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarManiacs.Business.DTOs\CarManiacs.Business.DTOs.csproj">
+      <Project>{bbe6656a-6038-42e2-97a1-c0d592ec1582}</Project>
+      <Name>CarManiacs.Business.DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
       <Project>{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}</Project>
       <Name>CarManiacs.Business.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CarManiacs.DTOs\CarManiacs.DTOs.csproj">
-      <Project>{fed27709-f184-4910-94d1-387f0a82b294}</Project>
-      <Name>CarManiacs.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

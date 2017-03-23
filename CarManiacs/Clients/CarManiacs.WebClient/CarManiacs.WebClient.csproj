@@ -296,6 +296,10 @@
       <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.DTOs\CarManiacs.Business.DTOs.csproj">
+      <Project>{BBE6656A-6038-42E2-97A1-C0D592EC1582}</Project>
+      <Name>CarManiacs.Business.DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Identity\CarManiacs.Business.Identity.csproj">
       <Project>{aea12c10-78ff-4556-ac5e-bc5cde0121c3}</Project>
       <Name>CarManiacs.Business.Identity</Name>
@@ -307,10 +311,6 @@
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj">
       <Project>{012C9CAE-A304-4AB4-8EEE-F52539A96995}</Project>
       <Name>CarManiacs.Business.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Business\CarManiacs.DTOs\CarManiacs.DTOs.csproj">
-      <Project>{fed27709-f184-4910-94d1-387f0a82b294}</Project>
-      <Name>CarManiacs.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

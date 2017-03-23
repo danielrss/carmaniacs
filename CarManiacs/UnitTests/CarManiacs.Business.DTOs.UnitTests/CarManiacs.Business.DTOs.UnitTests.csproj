@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A53666F-F7E6-4ED0-8BC3-349F69EB9CE3}</ProjectGuid>
+    <ProjectGuid>{3D52EE27-069C-4967-BFDF-2D5EFC54DA88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarManiacs.Business.Services.UnitTests</RootNamespace>
-    <AssemblyName>CarManiacs.Business.Services.UnitTests</AssemblyName>
+    <RootNamespace>CarManiacs.Business.DTOs.UnitTests</RootNamespace>
+    <AssemblyName>CarManiacs.Business.DTOs.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,14 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -55,36 +47,24 @@
         <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
-    <Otherwise />
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RegularUserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularUserService\Constructor_Should.cs" />
-    <Compile Include="RegularUserService\Create_Should.cs" />
-    <Compile Include="RegularUserService\GetByEmail_Should.cs" />
-    <Compile Include="RegularUserService\GetById_Should.cs" />
-    <Compile Include="RegularUserService\Update_Should.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
-      <Project>{27955618-1205-427f-ba56-228c84105298}</Project>
-      <Name>CarManiacs.Business.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Business\CarManiacs.Business.DTOs\CarManiacs.Business.DTOs.csproj">
-      <Project>{BBE6656A-6038-42E2-97A1-C0D592EC1582}</Project>
-      <Name>CarManiacs.Business.DTOs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
-      <Project>{b3bbdcfc-36da-45a4-981f-505dc23fcec1}</Project>
-      <Name>CarManiacs.Business.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj">
-      <Project>{012c9cae-a304-4ab4-8eee-f52539a96995}</Project>
-      <Name>CarManiacs.Business.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.DTOs\CarManiacs.Business.DTOs.csproj">
+      <Project>{bbe6656a-6038-42e2-97a1-c0d592ec1582}</Project>
+      <Name>CarManiacs.Business.DTOs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,6 +1,6 @@
 ﻿using CarManiacs.Business.Data.Contracts;
+using CarManiacs.Business.DTOs;
 using CarManiacs.Business.Models.Users;
-using CarManiacs.DTOs;
 
 using Moq;
 using NUnit.Framework;

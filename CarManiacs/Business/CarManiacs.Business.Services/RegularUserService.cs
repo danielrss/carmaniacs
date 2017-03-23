@@ -2,11 +2,11 @@
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
-using CarManiacs.DTOs;
 
 using Bytes2you.Validation;
 using System;
 using System.Linq;
+using CarManiacs.Business.DTOs;
 
 namespace CarManiacs.Business.Services
 {
