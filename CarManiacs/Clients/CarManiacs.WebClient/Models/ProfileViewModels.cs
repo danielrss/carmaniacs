@@ -12,7 +12,7 @@ namespace CarManiacs.WebClient.Models
 
         public string LastName { get; set; }
 
-        [Display(Name = "Has been a CarManiac for")]
+        [Display(Name = "Has been a CarManiac for:")]
         public int CarManiacForDays { get; set; }
     }
 

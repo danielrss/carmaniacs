@@ -308,6 +308,10 @@
       <Project>{012C9CAE-A304-4AB4-8EEE-F52539A96995}</Project>
       <Name>CarManiacs.Business.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.DTOs\CarManiacs.DTOs.csproj">
+      <Project>{fed27709-f184-4910-94d1-387f0a82b294}</Project>
+      <Name>CarManiacs.DTOs</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

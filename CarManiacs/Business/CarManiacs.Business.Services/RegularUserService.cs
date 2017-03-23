@@ -3,6 +3,7 @@ using CarManiacs.Business.Common;
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
+using CarManiacs.DTOs;
 using System;
 using System.Linq;
 
@@ -44,6 +45,18 @@ namespace CarManiacs.Business.Services
         public RegularUser GetByEmail(string email)
         {
             return string.IsNullOrEmpty(email) ? null : this.usersRepo.All.FirstOrDefault(u => u.Email == email);
+        }
+        
+        public void Update(RegularUserDto updatedUser)
+        {
+            var user = this.usersRepo.GetById(updatedUser.Id);
+            if (user != null)
+            {
+                user.FirstName = updatedUser.FirstName;
+                user.LastName = updatedUser.LastName;
+
+                this.usersRepo.Update(user);
+            }
         }
     }
 }

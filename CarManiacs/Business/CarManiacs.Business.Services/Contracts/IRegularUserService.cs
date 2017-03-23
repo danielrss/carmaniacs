@@ -1,4 +1,5 @@
 ﻿using CarManiacs.Business.Models.Users;
+using CarManiacs.DTOs;
 
 namespace CarManiacs.Business.Services.Contracts
 {
@@ -9,5 +10,7 @@ namespace CarManiacs.Business.Services.Contracts
         RegularUser GetById(string id);
 
         RegularUser GetByEmail(string email);
+
+        void Update(RegularUserDto updatedUser);
     }
 }

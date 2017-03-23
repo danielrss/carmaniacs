@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using CarManiacs.Business.Services.Contracts;
+using CarManiacs.DTOs;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
 using Microsoft.AspNet.Identity;
@@ -56,6 +57,14 @@ namespace CarManiacs.WebClient.Controllers
         [Transaction]
         public ActionResult Edit(ProfileEditViewModel model)
         {
+            var updatedUser = new RegularUserDto()
+            {
+                Id = this.User.Identity.GetUserId(),
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+            this.regularUserService.Update(updatedUser);
+
             return this.RedirectToAction("Details", "Profile", new { id = this.User.Identity.GetUserId() });
         }
     }
