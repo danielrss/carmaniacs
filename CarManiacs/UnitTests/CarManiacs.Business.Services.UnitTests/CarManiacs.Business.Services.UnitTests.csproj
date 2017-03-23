@@ -63,6 +63,7 @@
     <Compile Include="RegularUserService\Create_Should.cs" />
     <Compile Include="RegularUserService\GetByEmail_Should.cs" />
     <Compile Include="RegularUserService\GetById_Should.cs" />
+    <Compile Include="RegularUserService\Update_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
@@ -76,6 +77,10 @@
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj">
       <Project>{012c9cae-a304-4ab4-8eee-f52539a96995}</Project>
       <Name>CarManiacs.Business.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.DTOs\CarManiacs.DTOs.csproj">
+      <Project>{FED27709-F184-4910-94D1-387F0A82B294}</Project>
+      <Name>CarManiacs.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

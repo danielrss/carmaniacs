@@ -11,7 +11,7 @@ namespace CarManiacs.Business.Services.UnitTests.RegularUserService
     public class Create_Should
     {
         [Test]
-        public void CallRegularUserRepoAdd_WhenIdIsValid()
+        public void CallRegularUserRepoAddOnce_WhenIdIsValid()
         {
             //Arrange
             var usersRepoMock = new Mock<IEfRepository<RegularUser>>();

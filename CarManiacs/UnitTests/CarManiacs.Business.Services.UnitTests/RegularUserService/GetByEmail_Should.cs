@@ -11,7 +11,7 @@ namespace CarManiacs.Business.Services.UnitTests.RegularUserService
     public class GetByEmail_Should
     {
         [Test]
-        public void CallRegularUserRepoFind_WhenEmailIsValid()
+        public void CallRegularUserRepoFindOnce_WhenEmailIsValid()
         {
             //Arrange
             var usersRepoMock = new Mock<IEfRepository<RegularUser>>();

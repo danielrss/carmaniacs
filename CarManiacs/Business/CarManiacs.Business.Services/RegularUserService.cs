@@ -1,9 +1,10 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Common;
+﻿using CarManiacs.Business.Common;
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 using CarManiacs.DTOs;
+
+using Bytes2you.Validation;
 using System;
 using System.Linq;
 
@@ -49,6 +50,8 @@ namespace CarManiacs.Business.Services
         
         public void Update(RegularUserDto updatedUser)
         {
+            Guard.WhenArgument(updatedUser, "user").IsNull().Throw();
+
             var user = this.usersRepo.GetById(updatedUser.Id);
             if (user != null)
             {

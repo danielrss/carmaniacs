@@ -32,5 +32,31 @@ namespace CarManiacs.Business.Models.UnitTests.Users
             Assert.AreSame(user, admin.User);
             Assert.AreEqual(user.Id, admin.User.Id);
         }
+
+        [Test]
+        public void IsDeleted_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var isDeleted = true;
+
+            //Act
+            var user = new Models.Users.Admin { IsDeleted = isDeleted };
+
+            //Assert
+            Assert.AreEqual(isDeleted, user.IsDeleted);
+        }
+
+        [Test]
+        public void RegisterDate_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var testDate = DateTime.Now;
+
+            //Act
+            var user = new Models.Users.Admin { RegisterDate = testDate };
+
+            //Assert
+            Assert.AreEqual(testDate, user.RegisterDate);
+        }
     }
 }

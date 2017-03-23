@@ -1,5 +1,6 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Data.Contracts;
+﻿using CarManiacs.Business.Data.Contracts;
+
+using Bytes2you.Validation;
 using System.Data.Entity;
 using System.Linq;
 
@@ -35,7 +36,7 @@ namespace CarManiacs.Business.Data
             }
         }
 
-        public virtual IQueryable<T> All
+        public IQueryable<T> All
         {
             get
             {
@@ -43,12 +44,12 @@ namespace CarManiacs.Business.Data
             }
         }
 
-        public virtual T GetById(object id)
+        public T GetById(object id)
         {
             return this.dbSet.Find(id);
         }
 
-        public virtual void Add(T entity)
+        public void Add(T entity)
         {
             var entry = this.context.Entry(entity);
             if (entry.State != EntityState.Detached)
@@ -61,7 +62,7 @@ namespace CarManiacs.Business.Data
             }
         }
 
-        public virtual void Update(T entity)
+        public void Update(T entity)
         {
             var entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)
@@ -72,7 +73,7 @@ namespace CarManiacs.Business.Data
             entry.State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public void Delete(T entity)
         {
             var entry = this.context.Entry(entity);
             if (entry.State != EntityState.Deleted)
@@ -86,7 +87,7 @@ namespace CarManiacs.Business.Data
             }
         }
 
-        public virtual void Delete(object id)
+        public void Delete(object id)
         {
             var entity = this.GetById(id);
 

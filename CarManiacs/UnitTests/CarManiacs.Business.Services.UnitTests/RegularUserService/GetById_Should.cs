@@ -11,7 +11,7 @@ namespace CarManiacs.Business.Services.UnitTests.RegularUserService
     public class GetById_Should
     {
         [Test]
-        public void CallRegularUserRepoFind_WhenIdIsValid()
+        public void CallRegularUserRepoFindOnce_WhenIdIsValid()
         {
             //Arrange
             var usersRepoMock = new Mock<IEfRepository<RegularUser>>();
