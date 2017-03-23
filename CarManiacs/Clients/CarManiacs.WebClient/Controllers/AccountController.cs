@@ -148,7 +148,7 @@ namespace CarManiacs.WebClient.Controllers
                 if (createResult.Succeeded)
                 {
                     await this.UserManager.AddToRoleAsync(user.Id, "User");
-                    this.regularUserService.Create(user.Id, model.Email, null, null);
+                    this.regularUserService.Create(user.Id, model.Email, model.FirstName, model.LastName);
                     await this.SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -373,7 +373,7 @@ namespace CarManiacs.WebClient.Controllers
                     if (createResult.Succeeded)
                     {
                         await this.UserManager.AddToRoleAsync(user.Id, "User");
-                        this.regularUserService.Create(user.Id, model.Email, null, null);
+                        this.regularUserService.Create(user.Id, model.Email, model.FirstName, model.LastName);
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return this.RedirectToLocal(returnUrl);
                     }

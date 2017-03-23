@@ -1,0 +1,23 @@
+﻿@model CarManiacs.WebClient.Models.ProfileDetailsViewModel
+@{
+    ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s Profile";
+}
+
+<div class="container body-content">
+    <h2 class="inline-block">@ViewBag.Title</h2>
+    @if (Model.IsAllowedToEdit)
+    {
+        <a href="/profile/edit" class="button alt">Edit</a>
+    }
+    <br />
+
+    @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
+    @Html.DisplayFor(m => m.CarManiacForDays) days
+
+
+    @if (Model.IsAllowedToEdit)
+    {
+        <hr />
+        @Html.ActionLink("Manage account settings", "Index", "Manage")
+    }
+</div>

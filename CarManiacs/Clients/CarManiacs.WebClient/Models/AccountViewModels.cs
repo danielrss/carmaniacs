@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using CarManiacs.Business.Common;
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarManiacs.WebClient.Models
@@ -6,6 +8,18 @@ namespace CarManiacs.WebClient.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -65,7 +79,18 @@ namespace CarManiacs.WebClient.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

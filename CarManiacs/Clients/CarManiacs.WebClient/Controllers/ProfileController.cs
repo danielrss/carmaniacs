@@ -1,13 +1,62 @@
-﻿using System.Web.Mvc;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Services.Contracts;
+using CarManiacs.WebClient.ActionFilters;
+using CarManiacs.WebClient.Models;
+using Microsoft.AspNet.Identity;
+using System;
+using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.Controllers
 {
     public class ProfileController : BaseController
     {
-        // GET: Profile
-        public ActionResult Index()
+        private IRegularUserService regularUserService;
+
+        public ProfileController(IRegularUserService userService)
         {
-            return View();
+            Guard.WhenArgument(userService, "regularUserService").IsNull().Throw();
+
+            this.regularUserService = userService;
+        }
+
+        public ActionResult Details(string id)
+        {
+            var user = regularUserService.GetById(id);
+            if (user != null)
+            {
+                var viewModel = new ProfileDetailsViewModel()
+                {
+                    CarManiacForDays = (int)(DateTime.Now - user.RegisterDate).TotalDays,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    IsAllowedToEdit = this.User.Identity.GetUserId() == user.Id
+                };
+                return View(viewModel);
+            }
+
+            return new HttpNotFoundResult();
+        }
+        
+        [Authorize]
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var user = regularUserService.GetById(this.User.Identity.GetUserId());
+
+            var viewModel = new ProfileEditViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+            return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Transaction]
+        public ActionResult Edit(ProfileEditViewModel model)
+        {
+            return this.RedirectToAction("Details", "Profile", new { id = this.User.Identity.GetUserId() });
         }
     }
 }

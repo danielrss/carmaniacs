@@ -48,3 +48,12 @@ textarea {
     #header .profile-avatar:hover {
         opacity: 0.8
     }
+
+#footer {
+    margin-top: 25px
+}
+
+.inline-block {
+    display: inline-block;
+    margin-right: 30px
+}

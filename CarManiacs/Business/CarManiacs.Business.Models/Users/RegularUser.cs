@@ -21,20 +21,29 @@ namespace CarManiacs.Business.Models.Users
 
         public virtual User User { get; set; }
 
+        [Required]
         [MinLength(Constants.NameMinLength)]
         [MaxLength(Constants.NameMaxLength)]
         public string FirstName { get; set; }
         
+        [Required]
         [MinLength(Constants.NameMinLength)]
         [MaxLength(Constants.NameMaxLength)]
         public string LastName { get; set; }
 
+        [Required]
+        [MinLength(Constants.NameMinLength)]
+        [MaxLength(Constants.NameMaxLength)]
         public string Email { get; set; }
         
+        [Required]
+        [MinLength(Constants.UrlMinLength)]
+        [MaxLength(Constants.UrlMaxLength)]
         public string AvatarUrl { get; set; }
 
         public bool IsDeleted { get; set; }
 
+        [Required]
         public DateTime RegisterDate { get; set; }
 
         public virtual ICollection<Project> Projects

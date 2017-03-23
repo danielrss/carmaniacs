@@ -11,6 +11,7 @@ namespace CarManiacs.Business.Models.Users
 
         public virtual User User { get; set; }
 
+        [Required]
         public DateTime RegisterDate { get; set; }
 
         public bool IsDeleted { get; set; }
