@@ -25,26 +25,16 @@ namespace CarManiacs.Business.Services.UnitTests.RegularUserService
             usersRepoMock.Verify(m => m.GetById(id), Times.Once);
         }
 
-        [Test]
-        public void ThrowArgumentNullException_WhenIdIsNull()
+        [TestCase(null)]
+        [TestCase("")]
+        public void ReturnNull_WhenIdIsNullOrEmpty(string testId)
         {
             //Arrange
             var usersRepoMock = new Mock<IEfRepository<RegularUser>>();
             var regularUserService = new Services.RegularUserService(usersRepoMock.Object);
 
             //Act && Assert
-            Assert.Throws<ArgumentNullException>(() => regularUserService.GetById(null));
-        }
-
-        [Test]
-        public void ThrowArgumentException_WhenIdIsEmpty()
-        {
-            //Arrange
-            var usersRepoMock = new Mock<IEfRepository<RegularUser>>();
-            var regularUserService = new Services.RegularUserService(usersRepoMock.Object);
-
-            //Act && Assert
-            Assert.Throws<ArgumentException>(() => regularUserService.GetById(string.Empty));
+            Assert.IsNull(regularUserService.GetById(testId));
         }
     }
 }

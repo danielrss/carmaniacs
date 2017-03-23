@@ -31,7 +31,9 @@
 
         public const string FailedUploadMessage = "Unfortunately, your uploading  has failed.\r\nPlease, try again later.";
 
-        public const string CarManiacsUrl = "http://carmaniacs.com/";
+        public const string CarManiacsUrl = "https://www.carmaniacs.com/";
+
+        public const string DefaultAvatarUrl = "/Content/Images/avatar.png";
         //public const string ContentUploadedTakeABreakThumbnailsRelPath = "Content/Uploaded/TakeABreak/Thumbnails/";
         //public const string ContentUploadedTakeABreakOriginalsRelPath = "Content/Uploaded/TakeABreak/Originals/";
         //public const string ContentUploadedProfilesRelPath = "Content/Uploaded/Profiles/";

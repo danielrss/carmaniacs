@@ -1,5 +1,4 @@
 ﻿using CarManiacs.Business.Data;
-using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
 
 using Microsoft.AspNet.Identity;
@@ -12,10 +11,16 @@ using Microsoft.Owin.Security.Twitter;
 using Owin;
 using System;
 
-namespace CarManiacs.WebClient
+[assembly: OwinStartupAttribute(typeof(CarManiacs.Business.Identity.Startup))]
+namespace CarManiacs.Business.Identity
 {
     public partial class Startup
     {
+        public void Configuration(IAppBuilder app)
+        {
+            ConfigureAuth(app);
+        }
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -40,7 +45,7 @@ namespace CarManiacs.WebClient
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

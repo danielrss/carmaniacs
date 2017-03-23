@@ -11,16 +11,6 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
     public class Project
     {
         [Test]
-        public void Constructor_IdShouldBeSetCorrectly()
-        {
-            //Arrange & Act
-            var project = new Models.Projects.Project();
-
-            //Assert
-            Assert.AreNotEqual(Guid.Empty, project.Id);
-        }
-
-        [Test]
         public void Constructor_ShouldInitializeStagesCollection()
         {
             //Arrange && Act
@@ -30,6 +20,17 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
             Assert.That(
                 project.Stages,
                 Is.Not.Null.And.InstanceOf<ICollection<Models.Projects.ProjectStage>>());
+        }
+
+        [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]
+        [TestCase("a707a20e-fb2b-40db-a47b-2292e720b248")]
+        public void Id_ShouldBeSetAndGottenCorrectly(string testId)
+        {
+            //Arrange && Act
+            var project = new Models.Projects.Project { Id = Guid.Parse(testId) };
+
+            //Assert
+            Assert.AreEqual(testId, project.Id.ToString());
         }
 
         [TestCase("projectTest123")]

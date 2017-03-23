@@ -5,7 +5,7 @@ namespace CarManiacs.WebClient.UnitTests.Mocks
 {
     public class TransactionAttributeMock : TransactionAttribute
     {
-        public IUnitOfWork UnitOfWork
+        public IEfUnitOfWork UnitOfWork
         {
             get
             {

@@ -44,7 +44,7 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
             var filter = new WebClient.ActionFilters.TransactionAttribute();
 
             var dependencyResolverMock = new Mock<IDependencyResolver>();
-            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IUnitOfWork))).Returns(null);
+            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IEfUnitOfWork))).Returns(null);
             DependencyResolver.SetResolver(dependencyResolverMock.Object);
 
             //Act && Assert
@@ -59,7 +59,7 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
             var filter = new WebClient.ActionFilters.TransactionAttribute();
 
             var dependencyResolverMock = new Mock<IDependencyResolver>();
-            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IUnitOfWork))).Returns(new object());
+            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IEfUnitOfWork))).Returns(new object());
             DependencyResolver.SetResolver(dependencyResolverMock.Object);
 
             //Act && Assert
@@ -71,18 +71,18 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
         {
             //Arrange
             var filterContextMock = new Mock<ActionExecutingContext>();
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var unitOfWorkMock = new Mock<IEfUnitOfWork>();
             var filter = new TransactionAttributeMock();
 
             var dependencyResolverMock = new Mock<IDependencyResolver>();
-            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IUnitOfWork))).Returns(unitOfWorkMock.Object);
+            dependencyResolverMock.Setup(dR => dR.GetService(typeof(IEfUnitOfWork))).Returns(unitOfWorkMock.Object);
             DependencyResolver.SetResolver(dependencyResolverMock.Object);
 
             //Act
             filter.OnActionExecuting(filterContextMock.Object);
 
             //Assert
-            dependencyResolverMock.Verify(dR => dR.GetService(typeof(IUnitOfWork)), Times.Once);
+            dependencyResolverMock.Verify(dR => dR.GetService(typeof(IEfUnitOfWork)), Times.Once);
             Assert.AreSame(unitOfWorkMock.Object, filter.UnitOfWork);
         }
     }

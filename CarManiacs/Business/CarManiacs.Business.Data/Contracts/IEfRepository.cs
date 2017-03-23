@@ -4,8 +4,7 @@ namespace CarManiacs.Business.Data.Contracts
 {
     public interface IEfRepository<T> where T : class
     {
-
-        IQueryable<T> All();
+        IQueryable<T> All { get; }
 
         T GetById(object id);
 

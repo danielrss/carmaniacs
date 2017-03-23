@@ -13,7 +13,6 @@ namespace CarManiacs.Business.Models.Locations
 
         public Country()
         {
-            this.Id = Guid.NewGuid();
             this.cities = new HashSet<City>();
         }
 

@@ -40,7 +40,7 @@ namespace CarManiacs.Business.Data.UnitTests.EfUnitOfWork
             var uow = new Data.EfUnitOfWork(dbContextMock.Object);
             
             //Assert
-            Assert.IsInstanceOf<IUnitOfWork>(uow);
+            Assert.IsInstanceOf<IEfUnitOfWork>(uow);
         }
     }
 }

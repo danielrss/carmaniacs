@@ -27,7 +27,7 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
         {
             //Arrange
             var filterContextMock = new Mock<ActionExecutedContext>();
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var unitOfWorkMock = new Mock<IEfUnitOfWork>();
             var filter = new TransactionAttributeMock();
             filter.UnitOfWork = unitOfWorkMock.Object;
 
@@ -44,7 +44,7 @@ namespace CarManiacs.WebClient.UnitTests.ActionFilters.TransactionAttribute
             //Arrange
             var filterContextMock = new Mock<ActionExecutedContext>();
             filterContextMock.Setup(f => f.Exception).Returns(new Exception());
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var unitOfWorkMock = new Mock<IEfUnitOfWork>();
             var filter = new TransactionAttributeMock();
             filter.UnitOfWork = unitOfWorkMock.Object;
 

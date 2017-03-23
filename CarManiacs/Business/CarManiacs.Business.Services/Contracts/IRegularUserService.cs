@@ -4,7 +4,7 @@ namespace CarManiacs.Business.Services.Contracts
 {
     public interface IRegularUserService
     {
-        RegularUser Create(string userId);
+        void Create(string userId, string email, string firstName, string lastName);
 
         RegularUser GetById(string id);
     }

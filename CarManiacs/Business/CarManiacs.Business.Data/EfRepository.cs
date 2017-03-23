@@ -1,6 +1,5 @@
-﻿using CarManiacs.Business.Data.Contracts;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Data.Contracts;
 using System.Data.Entity;
 using System.Linq;
 
@@ -36,9 +35,12 @@ namespace CarManiacs.Business.Data
             }
         }
 
-        public virtual IQueryable<T> All()
+        public virtual IQueryable<T> All
         {
-            return this.dbSet;
+            get
+            {
+                return this.dbSet;
+            }
         }
 
         public virtual T GetById(object id)

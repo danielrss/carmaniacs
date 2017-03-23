@@ -27,7 +27,7 @@ namespace CarManiacs.Business.Data.UnitTests.EfRepository
             var repository = new EfRepository<object>(dbContextMock.Object);
 
             //Act && Assert
-            Assert.AreEqual(objectsInDbSet, repository.All().Count());
+            Assert.AreEqual(objectsInDbSet, repository.All.Count());
         }
     }
 }

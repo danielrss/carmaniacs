@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -8,21 +7,7 @@ namespace CarManiacs.Business.Models.Users
 {
     public class User : IdentityUser
     {
-        public User() : base()
-        {
-            this.RegisterDate = DateTime.Now;
-        }
-
-        public User(string username) : base(username)
-        {
-            this.RegisterDate = DateTime.Now;
-        }
-
         public string AvatarUrl { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime RegisterDate { get; set; }
 
         public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
         {

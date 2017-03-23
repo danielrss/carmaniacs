@@ -1,8 +1,8 @@
 ﻿using Bytes2you.Validation;
-
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
+using System;
 
 namespace CarManiacs.Business.Services
 {
@@ -17,24 +17,25 @@ namespace CarManiacs.Business.Services
             this.usersRepo = regularUsersRepo;
         }
 
-        public RegularUser Create(string userId)
+        public void Create(string userId, string email, string firstName, string lastName)
         {
             Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(email, "email").IsNullOrEmpty().Throw();
 
             var user = new RegularUser()
             {
-                Id = userId
+                Id = userId,
+                Email = email,
+                FirstName = firstName,
+                LastName = lastName,
+                RegisterDate = DateTime.Now
             };
             this.usersRepo.Add(user);
-
-            return user;
         }
 
         public RegularUser GetById(string userId)
         {
-            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
-
-            return this.usersRepo.GetById(userId);
+            return string.IsNullOrEmpty(userId) ? null : this.usersRepo.GetById(userId);
         }
     }
 }

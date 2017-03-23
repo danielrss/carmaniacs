@@ -15,7 +15,7 @@ namespace CarManiacs.WebClient.App_Start.NinjectModules
 
             this.Bind<ICarManiacsDbContext>().To<CarManiacsDbContext>().InRequestScope();
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
-            this.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+            this.Bind<IEfUnitOfWork>().To<EfUnitOfWork>();
         }
     }
 }

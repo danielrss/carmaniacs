@@ -4,10 +4,10 @@ using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -155,10 +155,10 @@ namespace CarManiacs.WebClient.Controllers
             {
                 var user = new User { UserName = model.Email, Email = model.Email };
                 var createResult = await this.UserManager.CreateAsync(user, model.Password);
-                var addToRoleResult = await this.UserManager.AddToRoleAsync(user.Id, "User");
-                if (createResult.Succeeded && addToRoleResult.Succeeded)
+                if (createResult.Succeeded)
                 {
-                    this.regularUserService.Create(user.Id);
+                    await this.UserManager.AddToRoleAsync(user.Id, "User");
+                    this.regularUserService.Create(user.Id, model.Email, null, null);
                     await this.SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -170,8 +170,7 @@ namespace CarManiacs.WebClient.Controllers
                     return this.RedirectToAction("Index", "Home");
                 }
 
-                this.AddErrors(createResult);
-                this.AddErrors(addToRoleResult);
+                this.AddErrors(createResult.Errors);
             }
 
             // If we got this far, something failed, redisplay form
@@ -265,7 +264,7 @@ namespace CarManiacs.WebClient.Controllers
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            AddErrors(result);
+            AddErrors(result.Errors);
             return View();
         }
 
@@ -377,20 +376,24 @@ namespace CarManiacs.WebClient.Controllers
 
                 var user = new User { UserName = model.Email, Email = model.Email };
                 var createResult = await this.UserManager.CreateAsync(user);
-                var addToRoleResult = await this.UserManager.AddToRoleAsync(user.Id, "User");
-                if (createResult.Succeeded && addToRoleResult.Succeeded)
+                bool isNewUser = true; // = this.regularUserService.GetByEmail(model.Email) == null
+                if (isNewUser)
+                {
+                    await this.UserManager.AddToRoleAsync(user.Id, "User");
+                    this.regularUserService.Create(user.Id, model.Email, null, null);
+                }
+
+                if (createResult.Succeeded)
                 {
                     createResult = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (createResult.Succeeded)
                     {
-                        this.regularUserService.Create(user.Id);
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return this.RedirectToLocal(returnUrl);
                     }
                 }
 
-                this.AddErrors(createResult);
-                this.AddErrors(addToRoleResult);
+                this.AddErrors(createResult.Errors);
             }
 
             this.ViewBag.ReturnUrl = returnUrl;
@@ -447,9 +450,9 @@ namespace CarManiacs.WebClient.Controllers
             }
         }
 
-        private void AddErrors(IdentityResult result)
+        private void AddErrors(IEnumerable<string> errors)
         {
-            foreach (var error in result.Errors)
+            foreach (var error in errors)
             {
                 ModelState.AddModelError("", error);
             }

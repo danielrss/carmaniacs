@@ -1,6 +1,6 @@
 ﻿namespace CarManiacs.Business.Data.Contracts
 {
-    public interface IUnitOfWork
+    public interface IEfUnitOfWork
     {
         void SaveChanges();
     }

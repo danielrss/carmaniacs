@@ -8,11 +8,6 @@ namespace CarManiacs.Business.Models.Locations
 {
     public class City
     {
-        public City()
-        {
-            this.Id = Guid.NewGuid();
-        }
-
         [Key]
         public Guid Id { get; set; }
 

@@ -12,7 +12,6 @@ namespace CarManiacs.Business.Models.Projects
 
         public ProjectStage()
         {
-            this.Id = Guid.NewGuid();
             this.images = new HashSet<ProjectStageImageUrl>();
         }
 

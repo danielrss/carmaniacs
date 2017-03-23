@@ -9,14 +9,16 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
     [TestFixture]
     public class ProjectStageImageUrl
     {
-        [Test]
-        public void Constructor_IdShouldBeSetCorrectly()
+
+        [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]
+        [TestCase("a707a20e-fb2b-40db-a47b-2292e720b248")]
+        public void Id_ShouldBeSetAndGottenCorrectly(string testId)
         {
-            //Arrange & Act
-            var imageUrl = new Models.Projects.ProjectStageImageUrl();
+            //Arrange && Act
+            var imageUrl = new Models.Projects.ProjectStageImageUrl { Id = Guid.Parse(testId) };
 
             //Assert
-            Assert.AreNotEqual(Guid.Empty, imageUrl.Id);
+            Assert.AreEqual(testId, imageUrl.Id.ToString());
         }
 
         [TestCase("imageUrlTest123")]

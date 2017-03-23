@@ -7,11 +7,6 @@ namespace CarManiacs.Business.Models.Projects
 {
     public class ProjectStageImageUrl
     {
-        public ProjectStageImageUrl()
-        {
-            this.Id = Guid.NewGuid();
-        }
-
         [Key]
         public Guid Id { get; set; }
 

@@ -10,14 +10,15 @@ namespace CarManiacs.Business.Models.UnitTests.Locations
     [TestFixture]
     public class Country
     {
-        [Test]
-        public void Constructor_IdShouldBeSetCorrectly()
+        [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]
+        [TestCase("a707a20e-fb2b-40db-a47b-2292e720b248")]
+        public void Id_ShouldBeSetAndGottenCorrectly(string testId)
         {
-            //Arrange & Act
-            var country = new Models.Locations.Country();
+            //Arrange && Act
+            var country = new Models.Locations.Country { Id = Guid.Parse(testId) };
 
             //Assert
-            Assert.AreNotEqual(Guid.Empty, country.Id);
+            Assert.AreEqual(testId, country.Id.ToString());
         }
 
         [Test]

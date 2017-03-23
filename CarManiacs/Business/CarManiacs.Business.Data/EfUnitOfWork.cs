@@ -4,7 +4,7 @@ using CarManiacs.Business.Data.Contracts;
 
 namespace CarManiacs.Business.Data
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IEfUnitOfWork
     {
         protected readonly ICarManiacsDbContext dbContext;
 
