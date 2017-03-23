@@ -186,6 +186,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\avatar.png" />
     <Content Include="Content\Images\banner.jpg" />
     <Content Include="Content\Images\Login\sign-in-with-facebook.png" />
     <Content Include="Content\Images\Login\sign-in-with-google.png" />
@@ -274,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -283,6 +286,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Common\CarManiacs.Business.Common.csproj">
+      <Project>{1096fece-514d-42ad-8906-12995cb212e7}</Project>
+      <Name>CarManiacs.Business.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
       <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>

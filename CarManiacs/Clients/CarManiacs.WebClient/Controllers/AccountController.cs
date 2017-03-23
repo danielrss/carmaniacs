@@ -1,10 +1,9 @@
-﻿using CarManiacs.Business.Identity;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
-
-using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -17,7 +16,7 @@ using System.Web.Mvc;
 namespace CarManiacs.WebClient.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private IRegularUserService regularUserService;
 
@@ -144,7 +143,7 @@ namespace CarManiacs.WebClient.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, AvatarUrl = Business.Common.Constants.DefaultAvatarUrl };
                 var createResult = await this.UserManager.CreateAsync(user, model.Password);
                 if (createResult.Succeeded)
                 {
@@ -365,7 +364,7 @@ namespace CarManiacs.WebClient.Controllers
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, AvatarUrl = Business.Common.Constants.DefaultAvatarUrl };
                 var createResult = await this.UserManager.CreateAsync(user);
 
                 if (createResult.Succeeded)
@@ -393,7 +392,9 @@ namespace CarManiacs.WebClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.HttpContext.Cache.Remove("AvatarUrl");
+
             return RedirectToAction("Index", "Home");
         }
 

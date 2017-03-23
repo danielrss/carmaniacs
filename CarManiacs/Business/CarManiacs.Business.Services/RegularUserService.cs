@@ -5,6 +5,7 @@ using CarManiacs.Business.Services.Contracts;
 using Bytes2you.Validation;
 using System;
 using System.Linq;
+using CarManiacs.Business.Common;
 
 namespace CarManiacs.Business.Services
 {
@@ -30,6 +31,7 @@ namespace CarManiacs.Business.Services
                 Email = email,
                 FirstName = firstName,
                 LastName = lastName,
+                AvatarUrl = Constants.DefaultAvatarUrl,
                 RegisterDate = DateTime.Now
             };
             this.usersRepo.Add(user);

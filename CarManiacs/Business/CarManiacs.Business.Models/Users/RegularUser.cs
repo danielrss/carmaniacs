@@ -30,6 +30,8 @@ namespace CarManiacs.Business.Models.Users
         public string LastName { get; set; }
 
         public string Email { get; set; }
+        
+        public string AvatarUrl { get; set; }
 
         public bool IsDeleted { get; set; }
 
