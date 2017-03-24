@@ -3,16 +3,27 @@
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s Profile";
 }
 
+@section Styles {
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
+}
+
 <div class="container body-content">
     <h2 class="inline-block">@ViewBag.Title</h2>
     @if (Model.IsAllowedToEdit)
     {
         <a href="/profile/edit" class="button alt">Edit</a>
     }
-
     <br />
 
     <img class="avatar" src="@Model.AvatarUrl" />
+
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
     <div class="k-content upload">
         <h4>Change your profile avatar</h4>
         @using Kendo.Mvc.UI

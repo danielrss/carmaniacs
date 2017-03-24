@@ -14,18 +14,9 @@
     <link href="https://fonts.googleapis.com/css?family=Syncopate:700" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @RenderSection("styles", required: false)
+
 	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
 	@Scripts.Render("~/bundles/jquery")
-	<link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2017.1.223/js/jszip.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
-	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 </head>
 <body>
     <header id="header">
@@ -53,7 +44,6 @@
         </div>
     </footer>
 
-    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/main")
     @RenderSection("scripts", required: false)
