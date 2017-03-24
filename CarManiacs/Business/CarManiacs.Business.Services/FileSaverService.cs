@@ -1,10 +1,8 @@
-﻿using CarManiacs.Business.Services.Contracts;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Services.Contracts;
+
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarManiacs.Business.Services
 {
@@ -12,6 +10,10 @@ namespace CarManiacs.Business.Services
     {
         public string SaveFile(MemoryStream fileToSave, string dirToSaveIn, string fileName, bool shouldReplaceFile = false)
         {
+            Guard.WhenArgument(fileToSave, "fileToSave").IsNull().Throw();
+            Guard.WhenArgument(dirToSaveIn, "dirToSaveIn").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(fileName, "fileName").IsNullOrEmpty().Throw();
+
             Directory.CreateDirectory(dirToSaveIn);
             string filePath = Path.Combine(dirToSaveIn, fileName);
             if (!shouldReplaceFile && File.Exists(filePath))

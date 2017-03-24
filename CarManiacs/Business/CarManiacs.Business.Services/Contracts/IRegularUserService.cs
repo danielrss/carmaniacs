@@ -1,5 +1,5 @@
-﻿using CarManiacs.Business.Models.Users;
-using CarManiacs.Business.DTOs;
+﻿using CarManiacs.Business.DTOs;
+using CarManiacs.Business.Models.Users;
 
 namespace CarManiacs.Business.Services.Contracts
 {

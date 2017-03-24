@@ -39,6 +39,10 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ImageProcessor, Version=2.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageProcessor.2.5.2\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -58,11 +62,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FileSaverService\SaveFile_Should.cs" />
+    <Compile Include="ImageProcessorService\Constructor_Should.cs" />
+    <Compile Include="ImageProcessorService\ProcessImage_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegularUserService\Constructor_Should.cs" />
     <Compile Include="RegularUserService\Create_Should.cs" />
     <Compile Include="RegularUserService\GetByEmail_Should.cs" />
     <Compile Include="RegularUserService\GetById_Should.cs" />
+    <Compile Include="RegularUserService\UpdateAvatarUrl_Should.cs" />
     <Compile Include="RegularUserService\Update_Should.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +114,7 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
