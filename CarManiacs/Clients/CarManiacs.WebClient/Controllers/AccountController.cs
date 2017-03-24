@@ -143,7 +143,7 @@ namespace CarManiacs.WebClient.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, AvatarUrl = Business.Common.Constants.DefaultAvatarUrl };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var createResult = await this.UserManager.CreateAsync(user, model.Password);
                 if (createResult.Succeeded)
                 {
@@ -364,7 +364,7 @@ namespace CarManiacs.WebClient.Controllers
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new User { UserName = model.Email, Email = model.Email, AvatarUrl = Business.Common.Constants.DefaultAvatarUrl };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var createResult = await this.UserManager.CreateAsync(user);
 
                 if (createResult.Succeeded)

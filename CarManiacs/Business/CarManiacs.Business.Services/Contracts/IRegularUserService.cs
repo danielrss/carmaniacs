@@ -7,10 +7,12 @@ namespace CarManiacs.Business.Services.Contracts
     {
         void Create(string userId, string email, string firstName, string lastName);
 
-        RegularUser GetById(string id);
+        RegularUser GetById(string userId);
 
-        RegularUser GetByEmail(string email);
+        RegularUser GetByEmail(string userEmail);
 
         void Update(RegularUserDto updatedUser);
+
+        void UpdateAvatarUrl(string userId, string avatarUrl);
     }
 }

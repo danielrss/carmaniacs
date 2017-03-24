@@ -24,7 +24,7 @@ textarea {
     width: 120px;
     height: 64px;
     top: 12px;
-    left: -150px
+    left: -150px;
 }
 
 #contact header {
@@ -43,6 +43,7 @@ textarea {
     height: 55px;
     position: absolute;
     top: 14px;
+    border-radius: 5px
 }
 
     #header .profile-avatar:hover {

@@ -1,12 +1,12 @@
 ﻿using CarManiacs.Business.Common;
 using CarManiacs.Business.Data.Contracts;
+using CarManiacs.Business.DTOs;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 
 using Bytes2you.Validation;
 using System;
 using System.Linq;
-using CarManiacs.Business.DTOs;
 
 namespace CarManiacs.Business.Services
 {
@@ -60,6 +60,13 @@ namespace CarManiacs.Business.Services
 
                 this.usersRepo.Update(user);
             }
+        }
+
+        public void UpdateAvatarUrl(string userId, string avatarUrl)
+        {
+            var user = this.usersRepo.GetById(userId);
+            user.AvatarUrl = avatarUrl;
+            this.usersRepo.Update(user);
         }
     }
 }

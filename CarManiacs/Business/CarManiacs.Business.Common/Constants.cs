@@ -23,19 +23,23 @@
         public const int MinCommentLength = 5;
         public const int MaxCommentLength = 500;
 
+        public const int UploadFileMaxSizeInBytes = 5 * 1024 * 1024;
+
+        public const int ProfileAvatarImageSize = 150;
+
         public const int ThumbnailImageSize = 500;
         public const int LargeImageSize = 700;
 
         public const int ThumbnailImageQualityPercentage = 80;
-        public const int OriginalImageQualityPercentage = 100;
+        public const int MaxImageQualityPercentage = 100;
 
         public const string FailedUploadMessage = "Unfortunately, your uploading  has failed.\r\nPlease, try again later.";
 
-        public const string CarManiacsUrl = "https://www.carmaniacs.com/";
-
+        public const string AvatarFileNameWithoutExtension = "avatar";
         public const string DefaultAvatarUrl = "/Content/Images/avatar.png";
         //public const string ContentUploadedTakeABreakThumbnailsRelPath = "Content/Uploaded/TakeABreak/Thumbnails/";
         //public const string ContentUploadedTakeABreakOriginalsRelPath = "Content/Uploaded/TakeABreak/Originals/";
-        //public const string ContentUploadedProfilesRelPath = "Content/Uploaded/Profiles/";
+
+        public const string ContentUploadedProfilesRelPath = "/Content/Uploaded/Profiles/";
     }
 }

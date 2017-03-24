@@ -30,10 +30,9 @@ namespace CarManiacs.WebClient
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/main.css",
-                      "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/my-css").Include(
-                      "~/Content/login.css"));
+                      "~/Content/site.css",
+                      "~/Content/login.css",
+                      "~/Content/profile.css"));
         }
     }
 }

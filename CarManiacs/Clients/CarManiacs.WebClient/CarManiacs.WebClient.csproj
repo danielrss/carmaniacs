@@ -48,6 +48,10 @@
       <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\..\lib\KENDOUIMVC\2017.1.223.545.Trial\Kendo.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +217,7 @@
     <Content Include="Content\Images\Logos\logo_white.png" />
     <Content Include="Content\login.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -233,6 +239,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -275,10 +282,23 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -339,6 +359,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties UseCdnSupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

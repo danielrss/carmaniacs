@@ -7,6 +7,8 @@ namespace CarManiacs.WebClient.Models
     public class ProfileDetailsViewModel
     {
         public bool IsAllowedToEdit { get; set; }
+        
+        public string AvatarUrl { get; set; }
 
         public string FirstName { get; set; }
 

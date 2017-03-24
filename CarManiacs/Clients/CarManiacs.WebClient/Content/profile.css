@@ -1,0 +1,13 @@
+﻿img.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px
+}
+
+.profile-info {
+    margin-top: 20px
+}
+
+div.upload {
+    display: inline-block;
+}

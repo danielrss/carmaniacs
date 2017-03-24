@@ -76,7 +76,6 @@
     <Compile Include="Users\Admin.cs" />
     <Compile Include="Users\RegularUser.cs" />
     <Compile Include="Users\Role.cs" />
-    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Common\CarManiacs.Business.Common.csproj">

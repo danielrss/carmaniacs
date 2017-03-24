@@ -1,7 +1,7 @@
-﻿using CarManiacs.Business.Identity;
+﻿using CarManiacs.Business.Services.Contracts;
+
+using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.Controllers
@@ -14,8 +14,10 @@ namespace CarManiacs.WebClient.Controllers
             {
                 if (this.HttpContext.Cache["AvatarUrl"] == null)
                 {
-                    var usermanager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                    string avatarUrl = usermanager.FindById(User.Identity.GetUserId()).AvatarUrl;
+                    IRegularUserService regularUserService = DependencyResolver.Current.GetService(typeof(IRegularUserService)) as IRegularUserService;
+                    Guard.WhenArgument(regularUserService, "regularUserService").IsNull().Throw();
+
+                    string avatarUrl = regularUserService.GetById(this.User.Identity.GetUserId()).AvatarUrl;
                     this.HttpContext.Cache["AvatarUrl"] = avatarUrl;
                     this.ViewBag.AvatarUrl = avatarUrl;
                 }

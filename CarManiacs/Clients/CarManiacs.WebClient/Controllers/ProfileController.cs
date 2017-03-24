@@ -1,12 +1,12 @@
 ﻿using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
+using CarManiacs.Business.DTOs;
 
 using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Web.Mvc;
-using CarManiacs.Business.DTOs;
 
 namespace CarManiacs.WebClient.Controllers
 {
@@ -29,6 +29,7 @@ namespace CarManiacs.WebClient.Controllers
                 var viewModel = new ProfileDetailsViewModel()
                 {
                     CarManiacForDays = (int)(DateTime.Now - user.RegisterDate).TotalDays,
+                    AvatarUrl = user.AvatarUrl,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     IsAllowedToEdit = this.User.Identity.GetUserId() == user.Id

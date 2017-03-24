@@ -9,11 +9,37 @@
     {
         <a href="/profile/edit" class="button alt">Edit</a>
     }
+
     <br />
 
-    @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
-    @Html.DisplayFor(m => m.CarManiacForDays) days
+    <img class="avatar" src="@Model.AvatarUrl" />
+    <div class="k-content upload">
+        <h4>Change your profile avatar</h4>
+        @using Kendo.Mvc.UI
+        @(Html.Kendo().Upload()
+        .Name("avatar")
+        .Async(a => a
+            .Save("Avatar", "Upload")
+            .AutoUpload(true)
+        )
+        .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
+        .Validation(v => v.MaxFileSize(5 * 1024 * 1024))
+        .Multiple(false)
+        .Events(e => e
+            .Success("onAvatarUploadSuccess")
+            .Error("onAvatarUploadError")
+        ))
+        <div id="upload-hint">
+            You can only upload <strong>JPG</strong>, <strong>JPEG</strong>, <strong>PNG</strong> files.
+            Maximum file size is 4MB.
+        </div>
+    </div>
+    <br />
 
+    <div class="profile-info">
+        @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
+        @Html.DisplayFor(m => m.CarManiacForDays) days
+    </div>
 
     @if (Model.IsAllowedToEdit)
     {
@@ -21,3 +47,14 @@
         @Html.ActionLink("Manage account settings", "Index", "Manage")
     }
 </div>
+
+<script>
+    function onAvatarUploadSuccess(e) {
+        location.reload();
+    }
+    
+    function onAvatarUploadError(e) {
+        var response = e.XMLHttpRequest.response;
+        $('#upload-hint').html('<strong>' + response + '</strong>');
+    }
+</script>
