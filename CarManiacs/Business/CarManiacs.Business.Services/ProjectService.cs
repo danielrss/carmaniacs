@@ -1,12 +1,11 @@
-﻿using CarManiacs.Business.Data.Contracts;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Data.Contracts;
+using CarManiacs.Business.DTOs;
 using CarManiacs.Business.Models.Projects;
 using CarManiacs.Business.Services.Contracts;
-
-using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using CarManiacs.Business.DTOs;
 
 namespace CarManiacs.Business.Services
 {

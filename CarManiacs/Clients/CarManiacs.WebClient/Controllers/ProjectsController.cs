@@ -1,14 +1,13 @@
-﻿using CarManiacs.Business.Services.Contracts;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.DTOs;
+using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
-
-using Bytes2you.Validation;
-using System.Web.Mvc;
-using System;
 using Microsoft.AspNet.Identity;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using CarManiacs.Business.DTOs;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.Controllers
 {

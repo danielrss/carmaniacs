@@ -46,7 +46,7 @@ namespace CarManiacs.Business.Services.UnitTests.RegularUserService
         }
 
         [Test]
-        public void ThrowArgumentNullException_WhenUpdatedUserIsNull()
+        public void ThrowArgumentNullException_WhenUserDtoIsNull()
         {
             //Arrange
             var usersRepoMock = new Mock<IEfRepository<RegularUser>>();
