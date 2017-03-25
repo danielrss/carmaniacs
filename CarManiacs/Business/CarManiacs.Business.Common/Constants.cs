@@ -37,10 +37,11 @@
         public const string FailedUploadMessage = "Unfortunately, your uploading  has failed.\r\nPlease, try again later.";
 
         public const string AvatarFileNameWithoutExtension = "avatar";
-        public const string ProjectMainImageFileNameWithoutExtension = "main";
+        public const string MainImageFileNameWithoutExtension = "main";
 
         public const string UploadForProfileAvatarName = "avatar";
         public const string UploadForProjectName = "project";
+        public const string UploadForStoryName = "story";
 
         public const string DefaultAvatarUrl = "/Content/Images/avatar.png";
         public const string DefaultProjectImageUrl = "/Content/Images/project.png";
@@ -48,5 +49,6 @@
 
         public const string ContentUploadedProfilesRelPath = "/Content/Uploaded/Profiles/";
         public const string ContentUploadedProjectsRelPath = "/Content/Uploaded/Projects/";
+        public const string ContentUploadedStoriesRelPath = "/Content/Uploaded/Stories/";
     }
 }

@@ -15,22 +15,26 @@ namespace CarManiacs.WebClient.Controllers
         private IFileSaverService fileSaverService;
         private IRegularUserService regularUserService;
         private IProjectService projectService;
+        private IStoryService storyService;
 
         public UploadController(
             IImageProcessorService imgProcessorService,
             IFileSaverService fileSaverService,
             IRegularUserService userService,
-            IProjectService projectService)
+            IProjectService projectService,
+            IStoryService storyService)
         {
             Guard.WhenArgument(imgProcessorService, "imageProcessorService").IsNull().Throw();
             Guard.WhenArgument(fileSaverService, "fileSaverService").IsNull().Throw();
             Guard.WhenArgument(userService, "regularUserService").IsNull().Throw();
             Guard.WhenArgument(projectService, "projectService").IsNull().Throw();
+            Guard.WhenArgument(storyService, "storyService").IsNull().Throw();
 
             this.fileSaverService = fileSaverService;
             this.imageProcessorService = imgProcessorService;
             this.regularUserService = userService;
             this.projectService = projectService;
+            this.storyService = storyService;
         }
 
         [Authorize]
@@ -47,9 +51,10 @@ namespace CarManiacs.WebClient.Controllers
                 {
                     fileName = Business.Common.Constants.AvatarFileNameWithoutExtension + fileExtension;
                 }
-                else if(uploadFor == Business.Common.Constants.UploadForProjectName)
+                else if(uploadFor == Business.Common.Constants.UploadForProjectName ||
+                    uploadFor == Business.Common.Constants.UploadForStoryName)
                 {
-                    fileName = Business.Common.Constants.ProjectMainImageFileNameWithoutExtension + fileExtension;
+                    fileName = Business.Common.Constants.MainImageFileNameWithoutExtension + fileExtension;
                 }
 
                 bool isFileValid = (fileSize <= Business.Common.Constants.UploadFileMaxSizeInBytes) &&
@@ -84,6 +89,12 @@ namespace CarManiacs.WebClient.Controllers
                                 Server.MapPath("~" + Business.Common.Constants.ContentUploadedProjectsRelPath),
                                 id.ToString());
                         }
+                        else if (uploadFor == Business.Common.Constants.UploadForStoryName)
+                        {
+                            dirToSaveIn = Path.Combine(
+                                Server.MapPath("~" + Business.Common.Constants.ContentUploadedStoriesRelPath),
+                                id.ToString());
+                        }
 
                         this.fileSaverService.SaveFile(processedImg, dirToSaveIn, fileName, true);
                     }
@@ -106,6 +117,11 @@ namespace CarManiacs.WebClient.Controllers
                     {
                         var imageUrl = Business.Common.Constants.ContentUploadedProjectsRelPath + id.ToString() + "/" + fileName;
                         this.projectService.UpdateImageUrl((Guid)id, imageUrl);
+                    }
+                    else if (uploadFor == Business.Common.Constants.UploadForStoryName)
+                    {
+                        var imageUrl = Business.Common.Constants.ContentUploadedStoriesRelPath + id.ToString() + "/" + fileName;
+                        this.storyService.UpdateMainImageUrl((Guid)id, imageUrl);
                     }
 
                     // Empty string signifies success

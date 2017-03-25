@@ -55,17 +55,17 @@ namespace CarManiacs.Business.Services
             }
         }
 
-        //public void UpdateImageUrl(Guid projectId, string imageUrl)
-        //{
-        //    Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+        public void UpdateMainImageUrl(Guid storyId, string imageUrl)
+        {
+            Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
 
-        //    var project = this.projectsRepo.GetById(projectId);
-        //    if (project != null)
-        //    {
-        //        project.ImageUrl = imageUrl;
-        //        this.projectsRepo.Update(project);
-        //    }
-        //}
+            var story = this.storiesRepo.GetById(storyId);
+            if (story != null)
+            {
+                story.MainImageUrl = imageUrl;
+                this.storiesRepo.Update(story);
+            }
+        }
 
         public IEnumerable<Story> GetAll()
         {
