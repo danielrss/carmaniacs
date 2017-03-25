@@ -25,7 +25,7 @@
 
         public const int UploadFileMaxSizeInBytes = 5 * 1024 * 1024;
 
-        public const int ProfileAvatarImageSize = 150;
+        public const int ProfileAvatarImageSize = 200;
 
         public const int ThumbnailImageSize = 500;
         public const int LargeImageSize = 700;

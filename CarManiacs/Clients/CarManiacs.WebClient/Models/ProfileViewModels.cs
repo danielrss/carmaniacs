@@ -40,13 +40,11 @@ namespace CarManiacs.WebClient.Models
         public int? Age { get; set; }
 
         [Display(Name = "Current car")]
-        [MinLength(Constants.NameMinLength)]
-        [MaxLength(Constants.NameMaxLength)]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         public string CurrentCar { get; set; }
 
         [Display(Name = "Favorite car")]
-        [MinLength(Constants.NameMinLength)]
-        [MaxLength(Constants.NameMaxLength)]
+        [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         public string FavoriteCar { get; set; }
     }
 }

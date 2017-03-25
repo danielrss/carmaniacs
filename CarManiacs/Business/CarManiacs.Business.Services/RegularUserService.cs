@@ -49,7 +49,7 @@ namespace CarManiacs.Business.Services
         
         public void Update(RegularUserDto updatedUser)
         {
-            Guard.WhenArgument(updatedUser, "user").IsNull().Throw();
+            Guard.WhenArgument(updatedUser, "regularUserDto").IsNull().Throw();
 
             var user = this.usersRepo.GetById(updatedUser.Id);
             if (user != null)

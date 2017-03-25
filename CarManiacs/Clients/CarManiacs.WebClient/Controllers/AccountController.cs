@@ -46,8 +46,14 @@ namespace CarManiacs.WebClient.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -128,8 +134,14 @@ namespace CarManiacs.WebClient.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Register()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
