@@ -1,0 +1,14 @@
+﻿@model CarManiacs.WebClient.Models.ProjectDetailsViewModel
+
+<div class="container body-content">
+    <h2 class="inline-block">@Model.Title</h2>
+    @if (Model.IsUserAllowedToEdit)
+    {
+        @Html.ActionLink("Edit", "Edit", "Projects", new { id = Model.Id }, new { @class = "button alt" })
+    }
+    <br />
+
+    <div class="project-info">
+    </div>
+</div>
+

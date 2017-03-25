@@ -31,6 +31,17 @@ namespace CarManiacs.Business.Models.Users
         [MinLength(Constants.NameMinLength)]
         [MaxLength(Constants.NameMaxLength)]
         public string LastName { get; set; }
+        
+        [Range(Constants.MinAge, Constants.MaxAge)]
+        public int? Age { get; set; }
+        
+        [MinLength(Constants.NameMinLength)]
+        [MaxLength(Constants.NameMaxLength)]
+        public string CurrentCar { get; set; }
+        
+        [MinLength(Constants.NameMinLength)]
+        [MaxLength(Constants.NameMaxLength)]
+        public string FavoriteCar { get; set; }
 
         [Required]
         [MinLength(Constants.NameMinLength)]

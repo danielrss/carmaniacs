@@ -3,17 +3,9 @@
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s Profile";
 }
 
-@section Styles {
-    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
-}
-
 <div class="container body-content">
     <h2 class="inline-block">@ViewBag.Title</h2>
-    @if (Model.IsAllowedToEdit)
+    @if (Model.IsUserAllowedToEdit)
     {
         <a href="/profile/edit" class="button alt">Edit</a>
     }
@@ -21,51 +13,85 @@
 
     <img class="avatar" src="@Model.AvatarUrl" />
 
-    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
-    <div class="k-content upload">
-        <h4>Change your profile avatar</h4>
-        @using Kendo.Mvc.UI
-        @(Html.Kendo().Upload()
-        .Name("avatar")
-        .Async(a => a
-            .Save("Avatar", "Upload")
-            .AutoUpload(true)
-        )
-        .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
-        .Validation(v => v.MaxFileSize(5 * 1024 * 1024))
-        .Multiple(false)
-        .Events(e => e
-            .Success("onAvatarUploadSuccess")
-            .Error("onAvatarUploadError")
-        ))
-        <div id="upload-hint">
-            You can only upload <strong>JPG</strong>, <strong>JPEG</strong>, <strong>PNG</strong> files.
-            Maximum file size is 4MB.
+    @if (Model.IsUserAllowedToEdit)
+    {
+        @section Styles {
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
+        }
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
+
+        <div class="k-content upload">
+            <h4>Change your profile avatar</h4>
+            @(Html.Kendo().Upload()
+                .Name("avatar")
+                .Async(a => a
+                    .Save("Avatar", "Upload")
+                    .AutoUpload(true)
+                )
+                .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
+                .Validation(v => v.MaxFileSize(5 * 1024 * 1024))
+                .Multiple(false)
+                .Events(e => e
+                    .Success("onAvatarUploadSuccess")
+                    .Error("onAvatarUploadError")
+                ))
+            <div id="upload-hint">
+                You can only upload <strong>JPG</strong>, <strong>JPEG</strong>, <strong>PNG</strong> files.
+                Maximum file size is 4MB.
+            </div>
         </div>
-    </div>
+
+        <script>
+            function onAvatarUploadSuccess(e) {
+                location.reload();
+            }
+
+            function onAvatarUploadError(e) {
+                var response = e.XMLHttpRequest.response;
+                $('#upload-hint').html('<strong>' + response + '</strong>');
+            }
+        </script>
+    }
+
     <br />
 
     <div class="profile-info">
-        @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
-        @Html.DisplayFor(m => m.CarManiacForDays) days
+        @if (Model.Age != null)
+        {
+            <div>
+                @Html.LabelFor(m => m.Age, new { @class = "inline-block" })
+                @Html.DisplayFor(m => m.Age)
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.CurrentCar))
+        {
+            <div>
+                @Html.LabelFor(m => m.CurrentCar, new { @class = "inline-block" })
+                @Html.DisplayFor(m => m.CurrentCar)
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.FavoriteCar))
+        {
+            <div>
+                @Html.LabelFor(m => m.FavoriteCar, new { @class = "inline-block" })
+                @Html.DisplayFor(m => m.FavoriteCar)
+            </div>
+        }
+        <div>
+            @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
+            @Html.DisplayFor(m => m.CarManiacForDays) days
+        </div>
     </div>
 
-    @if (Model.IsAllowedToEdit)
+    @if (Model.IsUserAllowedToEdit)
     {
         <hr />
         @Html.ActionLink("Manage account settings", "Index", "Manage")
     }
 </div>
-
-<script>
-    function onAvatarUploadSuccess(e) {
-        location.reload();
-    }
-    
-    function onAvatarUploadError(e) {
-        var response = e.XMLHttpRequest.response;
-        $('#upload-hint').html('<strong>' + response + '</strong>');
-    }
-</script>

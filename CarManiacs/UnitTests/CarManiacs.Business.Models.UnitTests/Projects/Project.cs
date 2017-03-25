@@ -1,4 +1,5 @@
 ﻿using CarManiacs.Business.Common;
+using CarManiacs.Business.Models.Users;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,74 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
 
             //Assert
             Assert.AreEqual(Constants.TitleMaxLength, maxLengthAttribute.Length);
+        }
+
+        [TestCase("projectDescriptionTest123")]
+        [TestCase("projectTeestDeescriiptiioon")]
+        public void Description_ShouldBeSetAndGottenCorrectly(string testDescription)
+        {
+            //Arrange && Act
+            var project = new Models.Projects.Project { Description = testDescription };
+
+            //Assert
+            Assert.AreEqual(testDescription, project.Description);
+        }
+
+        [Test]
+        public void Description_ShouldHaveCorrectMinLength()
+        {
+            //Arrange
+            var descriptionProperty = typeof(Models.Projects.Project).GetProperty("Description");
+
+            //Act
+            var minLengthAttribute = descriptionProperty.GetCustomAttributes(typeof(MinLengthAttribute), false)
+                .Cast<MinLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.ProjectDescriptionMinLength, minLengthAttribute.Length);
+        }
+
+        [Test]
+        public void Description_ShouldHaveCorrectMaxLength()
+        {
+            //Arrange
+            var descriptionProperty = typeof(Models.Projects.Project).GetProperty("Description");
+
+            //Act
+            var maxLengthAttribute = descriptionProperty.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+                .Cast<MaxLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.ProjectDescriptionMaxLength, maxLengthAttribute.Length);
+        }
+
+        [Test]
+        public void User_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var user = new RegularUser() { Id = Guid.NewGuid().ToString() };
+
+            //Act
+            var project = new Models.Projects.Project() { User = user };
+
+            //Assert
+            Assert.AreSame(user, project.User);
+            Assert.AreEqual(user.Id, project.User.Id);
+        }
+
+        [Test]
+        public void UserId_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var testId = Guid.NewGuid().ToString();
+
+            //Act
+            var project = new Models.Projects.Project { UserId = testId };
+
+            //Assert
+            Assert.AreEqual(testId, project.UserId);
         }
 
         [Test]

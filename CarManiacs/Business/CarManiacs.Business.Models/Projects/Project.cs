@@ -1,5 +1,5 @@
 ﻿using CarManiacs.Business.Common;
-
+using CarManiacs.Business.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +22,14 @@ namespace CarManiacs.Business.Models.Projects
         [MinLength(Constants.TitleMinLength)]
         [MaxLength(Constants.TitleMaxLength)]
         public string Title { get; set; }
+        
+        [MinLength(Constants.ProjectDescriptionMinLength)]
+        [MaxLength(Constants.ProjectDescriptionMaxLength)]
+        public string Description { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual RegularUser User { get; set; }
 
         public virtual ICollection<ProjectStage> Stages
         {

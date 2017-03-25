@@ -56,6 +56,9 @@ namespace CarManiacs.Business.Services
             {
                 user.FirstName = updatedUser.FirstName;
                 user.LastName = updatedUser.LastName;
+                user.Age = updatedUser.Age;
+                user.CurrentCar = updatedUser.CurrentCar;
+                user.FavoriteCar = updatedUser.FavoriteCar;
 
                 this.usersRepo.Update(user);
             }

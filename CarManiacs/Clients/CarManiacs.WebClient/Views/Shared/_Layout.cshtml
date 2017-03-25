@@ -24,9 +24,10 @@
             <img class="logo logo-img" src="~/Content/Images/Logos/logo_header.png" />
             @Html.ActionLink("CarManiacs", "Index", "Home", new { area = "" }, new { @class = "logo" })
             <nav id="nav">
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" })
+                @Html.ActionLink("Home", "Index", "Home")
                 <a href="/#about">About</a>
                 <a href="/#contact">Contact</a>
+                @Html.ActionLink("Projects", "Index", "Projects")
                 @Html.Partial("_LoginPartial")
             </nav>
         </div>

@@ -31,7 +31,10 @@ namespace CarManiacs.WebClient.Controllers
                     AvatarUrl = user.AvatarUrl,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    IsAllowedToEdit = this.User.Identity.GetUserId() == user.Id
+                    Age = user.Age,
+                    CurrentCar = user.CurrentCar,
+                    FavoriteCar = user.FavoriteCar,
+                    IsUserAllowedToEdit = this.User.Identity.GetUserId() == user.Id
                 };
                 return View(viewModel);
             }
@@ -48,7 +51,10 @@ namespace CarManiacs.WebClient.Controllers
             var viewModel = new ProfileEditViewModel()
             {
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                Age = user.Age,
+                CurrentCar = user.CurrentCar,
+                FavoriteCar = user.FavoriteCar
             };
             return View(viewModel);
         }
@@ -58,11 +64,19 @@ namespace CarManiacs.WebClient.Controllers
         [Transaction]
         public ActionResult Edit(ProfileEditViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var updatedUser = new RegularUserDto()
             {
                 Id = this.User.Identity.GetUserId(),
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Age = model.Age,
+                CurrentCar = model.CurrentCar,
+                FavoriteCar = model.FavoriteCar
             };
             this.regularUserService.Update(updatedUser);
 

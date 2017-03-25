@@ -131,6 +131,115 @@ namespace CarManiacs.Business.Models.UnitTests.Users
             Assert.AreEqual(Constants.NameMaxLength, maxLengthAttribute.Length);
         }
 
+        [TestCase(39)]
+        [TestCase(19)]
+        public void Age_ShouldBeSetAndGottenCorrectly(int age)
+        {
+            //Arrange && Act
+            var user = new Models.Users.RegularUser { Age = age };
+
+            //Assert
+            Assert.AreEqual(age, user.Age);
+        }
+
+        [Test]
+        public void Age_ShouldHaveCorrectRange()
+        {
+            //Arrange
+            var nameProperty = typeof(Models.Users.RegularUser).GetProperty("Age");
+
+            //Act
+            var rangeAttribute = nameProperty.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.RangeAttribute), false)
+                .Cast<System.ComponentModel.DataAnnotations.RangeAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.MinAge, rangeAttribute.Minimum);
+            Assert.AreEqual(Constants.MaxAge, rangeAttribute.Maximum);
+        }
+
+        [TestCase("userTest321")]
+        [TestCase("uuseerTeestCuureeentCaar")]
+        public void CurrentCar_ShouldBeSetAndGottenCorrectly(string currentCar)
+        {
+            //Arrange && Act
+            var user = new Models.Users.RegularUser { CurrentCar = currentCar };
+
+            //Assert
+            Assert.AreEqual(currentCar, user.CurrentCar);
+        }
+
+        [Test]
+        public void CurrentCar_ShouldHaveCorrectMinLength()
+        {
+            //Arrange
+            var nameProperty = typeof(Models.Users.RegularUser).GetProperty("CurrentCar");
+
+            //Act
+            var minLengthAttribute = nameProperty.GetCustomAttributes(typeof(MinLengthAttribute), false)
+                .Cast<MinLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.NameMinLength, minLengthAttribute.Length);
+        }
+
+        [Test]
+        public void CurrentCar_ShouldHaveCorrectMaxLength()
+        {
+            //Arrange
+            var nameProperty = typeof(Models.Users.RegularUser).GetProperty("CurrentCar");
+
+            //Act
+            var maxLengthAttribute = nameProperty.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+                .Cast<MaxLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.NameMaxLength, maxLengthAttribute.Length);
+        }
+
+        [TestCase("userTest321")]
+        [TestCase("uuseerTeestFaavooriiteeCaar")]
+        public void FavoriteCar_ShouldBeSetAndGottenCorrectly(string favoriteCar)
+        {
+            //Arrange && Act
+            var user = new Models.Users.RegularUser { FavoriteCar = favoriteCar };
+
+            //Assert
+            Assert.AreEqual(favoriteCar, user.FavoriteCar);
+        }
+
+        [Test]
+        public void FavoriteCar_ShouldHaveCorrectMinLength()
+        {
+            //Arrange
+            var nameProperty = typeof(Models.Users.RegularUser).GetProperty("FavoriteCar");
+
+            //Act
+            var minLengthAttribute = nameProperty.GetCustomAttributes(typeof(MinLengthAttribute), false)
+                .Cast<MinLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.NameMinLength, minLengthAttribute.Length);
+        }
+
+        [Test]
+        public void FavoriteCar_ShouldHaveCorrectMaxLength()
+        {
+            //Arrange
+            var nameProperty = typeof(Models.Users.RegularUser).GetProperty("FavoriteCar");
+
+            //Act
+            var maxLengthAttribute = nameProperty.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+                .Cast<MaxLengthAttribute>()
+                .FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(Constants.NameMaxLength, maxLengthAttribute.Length);
+        }
+
         [TestCase("userTest321")]
         [TestCase("uuseerTeestEemaaiil")]
         public void Email_ShouldBeSetAndGottenCorrectly(string email)

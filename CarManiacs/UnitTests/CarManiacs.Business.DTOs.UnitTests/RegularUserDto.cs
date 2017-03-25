@@ -44,5 +44,44 @@ namespace CarManiacs.Business.DTOs.UnitTests
             //Assert
             Assert.AreEqual(lastName, user.LastName);
         }
+
+        [Test]
+        public void Age_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var age = 21;
+
+            //Act
+            var user = new DTOs.RegularUserDto() { Age = age };
+
+            //Assert
+            Assert.AreEqual(age, user.Age);
+        }
+
+        [Test]
+        public void CurrentCar_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var currentCar = "totallyRandomCuurreentCaar";
+
+            //Act
+            var user = new DTOs.RegularUserDto() { CurrentCar = currentCar };
+
+            //Assert
+            Assert.AreEqual(currentCar, user.CurrentCar);
+        }
+
+        [Test]
+        public void FavoriteCar_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var favoriteCar = "totallyRandomfaavooriiteeCaar";
+
+            //Act
+            var user = new DTOs.RegularUserDto() { FavoriteCar = favoriteCar };
+
+            //Assert
+            Assert.AreEqual(favoriteCar, user.FavoriteCar);
+        }
     }
 }
