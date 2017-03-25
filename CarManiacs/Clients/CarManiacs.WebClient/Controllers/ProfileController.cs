@@ -5,6 +5,8 @@ using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.Controllers
@@ -20,11 +22,39 @@ namespace CarManiacs.WebClient.Controllers
             this.regularUserService = userService;
         }
 
+        [Authorize]
+        public ActionResult Index()
+        {
+            return RedirectToAction("Details", new { id = this.User.Identity.GetUserId() });
+        }
+
         public ActionResult Details(string id)
         {
             var user = regularUserService.GetById(id);
             if (user != null)
             {
+                IEnumerable<ProjectCreateViewModel> projects = null;
+                if (user.Projects != null && user.Projects.Count > 0)
+                {
+                    projects = user.Projects.Select(
+                        p => new ProjectCreateViewModel()
+                        {
+                            Id = p.Id,
+                            Title = p.Title
+                        });
+                }
+
+                IEnumerable<StoryCreateViewModel> stories = null;
+                if (user.Stories != null && user.Stories.Count > 0)
+                {
+                    stories = user.Stories.Select(
+                        s => new StoryCreateViewModel()
+                        {
+                            Id = s.Id,
+                            Title = s.Title
+                        });
+                }
+
                 var viewModel = new ProfileDetailsViewModel()
                 {
                     CarManiacForDays = (int)(DateTime.Now - user.RegisterDate).TotalDays,
@@ -34,6 +64,8 @@ namespace CarManiacs.WebClient.Controllers
                     Age = user.Age,
                     CurrentCar = user.CurrentCar,
                     FavoriteCar = user.FavoriteCar,
+                    Projects = projects,
+                    Stories = stories,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == user.Id
                 };
                 return View(viewModel);

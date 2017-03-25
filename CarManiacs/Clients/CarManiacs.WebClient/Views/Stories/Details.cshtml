@@ -1,14 +1,14 @@
-﻿@model CarManiacs.WebClient.Models.ProjectDetailsViewModel
+﻿@model CarManiacs.WebClient.Models.StoryDetailsViewModel
 
 <div class="container body-content project-details">
     <h2 class="inline-block">@Model.Title</h2>
     @if (Model.IsUserAllowedToEdit)
     {
-        @Html.ActionLink("Edit", "Edit", "Projects", new { id = Model.Id }, new { @class = "button alt" })
+        @Html.ActionLink("Edit", "Edit", "Stories", new { id = Model.Id }, new { @class = "button alt" })
     }
     <br />
 
-    <img class="avatar" src="@Model.ImageUrl" />
+    <img class="avatar" src="@Model.MainImageUrl" />
 
     @if (Model.IsUserAllowedToEdit)
     {
@@ -24,11 +24,11 @@
         <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
 
         <div class="k-content upload">
-            <h4>You can change your project image</h4>
+            <h4>You can change your story's main image</h4>
             @(Html.Kendo().Upload()
                 .Name("image")
                 .Async(a => a
-                    .Save("Image", "Upload", new { uploadFor = "project", id = Model.Id })
+                    .Save("Image", "Upload", new { uploadFor = "story", id = Model.Id })
                     .AutoUpload(true)
                 )
                 .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
@@ -43,17 +43,12 @@
                 Maximum file size is 4MB.
             </div>
         </div>
-        <br />
     }
 
     <div class="project-info">
-        @if (Model.Description != null)
-        {
-            <div>
-                <h3>@Html.LabelFor(m => m.Description)</h3>
-                <p class="description">@Html.DisplayFor(m => m.Description)</p>
-            </div>
-        }
+        <div>
+            <p class="description">@Html.DisplayFor(m => m.Content)</p>
+        </div>
         <div>
             @Html.LabelFor(m => m.UserFullName, new { @class = "inline-block" })
             @Html.ActionLink(Model.UserFullName, "Details", "Profile", new { id = Model.UserId }, new { })

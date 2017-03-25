@@ -12,6 +12,10 @@ img.avatar {
     margin-top: 20px
 }
 
-div.upload {
-    display: inline-block;
+.project-title {
+    color: darkgrey
+}
+
+h3 {
+    margin-bottom: 10px
 }

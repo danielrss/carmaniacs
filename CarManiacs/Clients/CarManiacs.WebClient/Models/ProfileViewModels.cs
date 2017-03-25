@@ -1,5 +1,5 @@
 ﻿using CarManiacs.Business.Common;
-
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarManiacs.WebClient.Models
@@ -24,6 +24,10 @@ namespace CarManiacs.WebClient.Models
 
         [Display(Name = "Has been a CarManiac for")]
         public int CarManiacForDays { get; set; }
+
+        public IEnumerable<ProjectCreateViewModel> Projects { get; set; }
+
+        public IEnumerable<StoryCreateViewModel> Stories { get; set; }
     }
 
     public class ProfileEditViewModel

@@ -8,7 +8,7 @@ namespace CarManiacs.Business.Services.Contracts
 {
     public interface IProjectService
     {
-        void Create(ProjectDto newProject, string userId);
+        Guid Create(ProjectDto newProject, string userId);
 
         void Update(ProjectDto updatedProject);
 

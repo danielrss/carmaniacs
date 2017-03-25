@@ -27,36 +27,25 @@
         <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
 
         <div class="k-content upload">
-            <h4>Change your profile avatar</h4>
+            <h4>You can change your profile avatar</h4>
             @(Html.Kendo().Upload()
                 .Name("image")
                 .Async(a => a
-                    .Save("Image", "Upload", new { name = "avatar" })
+                    .Save("Image", "Upload", new { uploadFor = "avatar" })
                     .AutoUpload(true)
                 )
                 .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
                 .Validation(v => v.MaxFileSize(5 * 1024 * 1024))
                 .Multiple(false)
                 .Events(e => e
-                    .Success("onAvatarUploadSuccess")
-                    .Error("onAvatarUploadError")
+                    .Success("onImageUploadSuccess")
+                    .Error("onImageUploadError")
                 ))
             <div id="upload-hint">
                 You can only upload <strong>JPG</strong>, <strong>JPEG</strong>, <strong>PNG</strong> files.
                 Maximum file size is 4MB.
             </div>
         </div>
-
-        <script>
-            function onAvatarUploadSuccess(e) {
-                location.reload();
-            }
-
-            function onAvatarUploadError(e) {
-                var response = e.XMLHttpRequest.response;
-                $('#upload-hint').html('<strong>' + response + '</strong>');
-            }
-        </script>
     }
 
     <br />
@@ -87,6 +76,26 @@
             @Html.LabelFor(m => m.CarManiacForDays, new { @class = "inline-block" })
             @Html.DisplayFor(m => m.CarManiacForDays) days
         </div>
+        @if (Model.Projects != null)
+        {
+            <h3>@Model.FirstName @Model.LastName's Projects:</h3>
+            foreach (var project in Model.Projects)
+            {
+                <label class="inline-block">
+                    @Html.ActionLink(project.Title, "Details", "Projects", new { id = project.Id }, new { @class = "project-title" })
+                </label>
+            }
+        }
+        @if (Model.Stories != null)
+        {
+            <h3>@Model.FirstName @Model.LastName's Stories:</h3>
+            foreach (var story in Model.Stories)
+            {
+                <label class="inline-block">
+                    @Html.ActionLink(story.Title, "Details", "Stories", new { id = story.Id }, new { @class = "project-title" })
+                </label>
+            }
+        }
     </div>
 
     @if (Model.IsUserAllowedToEdit)
@@ -95,3 +104,5 @@
         @Html.ActionLink("Manage account settings", "Index", "Manage")
     }
 </div>
+
+<script src="~/Scripts/my-scripts/kendoUploadEvents.js"></script>

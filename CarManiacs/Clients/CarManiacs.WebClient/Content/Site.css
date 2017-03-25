@@ -54,3 +54,12 @@ textarea {
     display: inline-block;
     margin-right: 30px
 }
+
+div.upload {
+    display: inline-block;
+    margin-left: 20px
+}
+
+p.description {
+    margin-bottom: 10px
+}

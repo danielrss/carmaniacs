@@ -3,16 +3,19 @@ using CarManiacs.Business.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CarManiacs.Business.Models.Projects
+namespace CarManiacs.Business.Models.Stories
 {
-    public class Project
+    public class Story
     {
-        private ICollection<ProjectStage> stages;
+        private ICollection<StoryImageUrl> images;
 
-        public Project()
+        public Story()
         {
-            this.stages = new HashSet<ProjectStage>();
+            this.images = new HashSet<StoryImageUrl>();
         }
 
         [Key]
@@ -22,30 +25,31 @@ namespace CarManiacs.Business.Models.Projects
         [MinLength(Constants.TitleMinLength)]
         [MaxLength(Constants.TitleMaxLength)]
         public string Title { get; set; }
-        
-        [MinLength(Constants.ProjectDescriptionMinLength)]
-        [MaxLength(Constants.ProjectDescriptionMaxLength)]
-        public string Description { get; set; }
+
+        [Required]
+        [MinLength(Constants.StoryContentMinLength)]
+        [MaxLength(Constants.StoryContentMaxLength)]
+        public string Content { get; set; }
 
         [Required]
         [MinLength(Constants.UrlMinLength)]
         [MaxLength(Constants.UrlMaxLength)]
-        public string ImageUrl { get; set; }
+        public string MainImageUrl { get; set; }
 
         [Required]
         public string UserId { get; set; }
 
         public virtual RegularUser User { get; set; }
 
-        public virtual ICollection<ProjectStage> Stages
+        public virtual ICollection<StoryImageUrl> ImageUrls
         {
             get
             {
-                return this.stages;
+                return this.images;
             }
             set
             {
-                this.stages = value;
+                this.images = value;
             }
         }
     }

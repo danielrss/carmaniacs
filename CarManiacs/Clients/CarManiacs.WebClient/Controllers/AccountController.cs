@@ -46,7 +46,6 @@ namespace CarManiacs.WebClient.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
             if (this.User.Identity.IsAuthenticated)
@@ -76,7 +75,7 @@ namespace CarManiacs.WebClient.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return string.IsNullOrEmpty(returnUrl) ? RedirectToAction("Index", "Profile") : RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -121,7 +120,7 @@ namespace CarManiacs.WebClient.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
+                    return string.IsNullOrEmpty(model.ReturnUrl) ? RedirectToAction("Index", "Profile") : RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
@@ -134,7 +133,6 @@ namespace CarManiacs.WebClient.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        [HttpGet]
         public ActionResult Register()
         {
             if (this.User.Identity.IsAuthenticated)
@@ -169,7 +167,7 @@ namespace CarManiacs.WebClient.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Profile");
                 }
 
                 this.AddErrors(createResult.Errors);
@@ -340,7 +338,7 @@ namespace CarManiacs.WebClient.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return string.IsNullOrEmpty(returnUrl) ? RedirectToAction("Index", "Profile") : RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -387,7 +385,8 @@ namespace CarManiacs.WebClient.Controllers
                         await this.UserManager.AddToRoleAsync(user.Id, "User");
                         this.regularUserService.Create(user.Id, model.Email, model.FirstName, model.LastName);
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return this.RedirectToLocal(returnUrl);
+
+                        return string.IsNullOrEmpty(returnUrl) ? RedirectToAction("Index", "Profile") : RedirectToLocal(returnUrl);
                     }
                 }
 
@@ -405,7 +404,7 @@ namespace CarManiacs.WebClient.Controllers
         public ActionResult LogOff()
         {
             this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            this.HttpContext.Cache.Remove("AvatarUrl");
+            //this.HttpContext.Session.Remove("AvatarUrl");
 
             return RedirectToAction("Index", "Home");
         }

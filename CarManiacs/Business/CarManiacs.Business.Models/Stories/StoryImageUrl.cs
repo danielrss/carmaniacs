@@ -1,11 +1,14 @@
 ﻿using CarManiacs.Business.Common;
-
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CarManiacs.Business.Models.Projects
+namespace CarManiacs.Business.Models.Stories
 {
-    public class ProjectStageImageUrl
+    public class StoryImageUrl
     {
         [Key]
         public Guid Id { get; set; }
@@ -16,8 +19,8 @@ namespace CarManiacs.Business.Models.Projects
         public string Url { get; set; }
 
         [Required]
-        public Guid ProjectStageId { get; set; }
+        public Guid StoryId { get; set; }
 
-        public virtual ProjectStage ProjectStage { get; set; }
+        public virtual Story Story { get; set; }
     }
 }

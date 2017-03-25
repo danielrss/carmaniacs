@@ -9,20 +9,20 @@ namespace CarManiacs.WebClient.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (this.User.Identity.IsAuthenticated)
+            if (this.Request.HttpMethod == "GET" && this.User.Identity.IsAuthenticated)
             {
-                if (this.HttpContext.Cache["AvatarUrl"] == null)
+                if (this.HttpContext.Session["AvatarUrl"] == null)
                 {
                     IRegularUserService regularUserService = DependencyResolver.Current.GetService(typeof(IRegularUserService)) as IRegularUserService;
                     Guard.WhenArgument(regularUserService, "regularUserService").IsNull().Throw();
 
                     string avatarUrl = regularUserService.GetById(this.User.Identity.GetUserId()).AvatarUrl;
-                    this.HttpContext.Cache["AvatarUrl"] = avatarUrl;
+                    this.HttpContext.Session["AvatarUrl"] = avatarUrl;
                     this.ViewBag.AvatarUrl = avatarUrl;
                 }
                 else
                 {
-                    this.ViewBag.AvatarUrl = this.HttpContext.Cache["AvatarUrl"].ToString();
+                    this.ViewBag.AvatarUrl = this.HttpContext.Session["AvatarUrl"].ToString();
                 }
             }
 

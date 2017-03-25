@@ -36,18 +36,18 @@ namespace CarManiacs.WebClient.Controllers
         [Authorize]
         [HttpPost]
         [Transaction]
-        public ActionResult Image(HttpPostedFileBase image, string name, Guid? projectId = null)
+        public ActionResult Image(HttpPostedFileBase image, string uploadFor, Guid? id = null)
         {
             if (image != null)
             {
                 var fileSize = image.ContentLength;
                 var fileExtension = Path.GetExtension(image.FileName).ToLower();
                 string fileName = null;
-                if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                if (uploadFor == Business.Common.Constants.UploadForProfileAvatarName)
                 {
                     fileName = Business.Common.Constants.AvatarFileNameWithoutExtension + fileExtension;
                 }
-                else
+                else if(uploadFor == Business.Common.Constants.UploadForProjectName)
                 {
                     fileName = Business.Common.Constants.ProjectMainImageFileNameWithoutExtension + fileExtension;
                 }
@@ -65,24 +65,24 @@ namespace CarManiacs.WebClient.Controllers
                         // processing image
                         var processedImg = this.imageProcessorService.ProcessImage(
                             photoBytes,
-                            Business.Common.Constants.ProfileAvatarImageSize,
-                            Business.Common.Constants.ProfileAvatarImageSize,
+                            Business.Common.Constants.ThumbnailImageSize,
+                            Business.Common.Constants.ThumbnailImageSize,
                             fileExtension,
                             Business.Common.Constants.MaxImageQualityPercentage);
 
                         // saving image
                         string dirToSaveIn = null;
-                        if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                        if (uploadFor == Business.Common.Constants.UploadForProfileAvatarName)
                         {
                             dirToSaveIn = Path.Combine(
                                 Server.MapPath("~" + Business.Common.Constants.ContentUploadedProfilesRelPath),
                                 this.User.Identity.GetUserId());
                         }
-                        else
+                        else if (uploadFor == Business.Common.Constants.UploadForProjectName)
                         {
                             dirToSaveIn = Path.Combine(
                                 Server.MapPath("~" + Business.Common.Constants.ContentUploadedProjectsRelPath),
-                                projectId.ToString());
+                                id.ToString());
                         }
 
                         this.fileSaverService.SaveFile(processedImg, dirToSaveIn, fileName, true);
@@ -93,19 +93,19 @@ namespace CarManiacs.WebClient.Controllers
                     }
 
                     // saving uploaded image's url to db
-                    if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                    if (uploadFor == Business.Common.Constants.UploadForProfileAvatarName)
                     {
                         var uploaderId = this.User.Identity.GetUserId();
                         var avatarUrl = Business.Common.Constants.ContentUploadedProfilesRelPath + uploaderId + "/" + fileName;
                         this.regularUserService.UpdateAvatarUrl(uploaderId, avatarUrl);
 
                         // change img src in navbar
-                        this.HttpContext.Cache["AvatarUrl"] = avatarUrl;
+                        this.HttpContext.Session["AvatarUrl"] = avatarUrl;
                     }
-                    else
+                    else if (uploadFor == Business.Common.Constants.UploadForProjectName)
                     {
-                        var imageUrl = Business.Common.Constants.ContentUploadedProjectsRelPath + projectId.ToString() + "/" + fileName;
-                        this.projectService.UpdateImageUrl((Guid)projectId, imageUrl);
+                        var imageUrl = Business.Common.Constants.ContentUploadedProjectsRelPath + id.ToString() + "/" + fileName;
+                        this.projectService.UpdateImageUrl((Guid)id, imageUrl);
                     }
 
                     // Empty string signifies success

@@ -21,7 +21,7 @@ namespace CarManiacs.Business.Services
             this.projectsRepo = projectsRepo;
         }
 
-        public void Create(ProjectDto newProject, string userId)
+        public Guid Create(ProjectDto newProject, string userId)
         {
             Guard.WhenArgument(newProject, "projectDto").IsNull().Throw();
             Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
@@ -36,6 +36,7 @@ namespace CarManiacs.Business.Services
             };
 
             this.projectsRepo.Add(project);
+            return project.Id;
         }
 
         public void Update(ProjectDto updatedProject)

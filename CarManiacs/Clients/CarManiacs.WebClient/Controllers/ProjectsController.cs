@@ -44,6 +44,8 @@ namespace CarManiacs.WebClient.Controllers
                     Id = project.Id,
                     Title = project.Title,
                     Description = project.Description,
+                    UserFullName = project.User.FirstName + " " + project.User.LastName,
+                    UserId = project.UserId,
                     Stages = projectStages,
                     ImageUrl = project.ImageUrl,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == project.UserId
@@ -76,9 +78,9 @@ namespace CarManiacs.WebClient.Controllers
                 Title = project.Title,
                 Description = project.Description
             };
-            this.projectService.Create(projectDto, this.User.Identity.GetUserId());
+            var projectId = this.projectService.Create(projectDto, this.User.Identity.GetUserId());
 
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("Details", new { id = projectId });
         }
 
         [Authorize]

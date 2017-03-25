@@ -1,6 +1,6 @@
 ﻿using CarManiacs.Business.Common;
 using CarManiacs.Business.Models.Projects;
-
+using CarManiacs.Business.Models.Stories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,10 +11,12 @@ namespace CarManiacs.Business.Models.Users
     public class RegularUser
     {
         private ICollection<Project> projects;
+        private ICollection<Story> stories;
 
         public RegularUser()
         {
             this.projects = new HashSet<Project>();
+            this.stories = new HashSet<Story>();
         }
 
         [Key, ForeignKey("User")]
@@ -67,6 +69,18 @@ namespace CarManiacs.Business.Models.Users
             set
             {
                 this.projects = value;
+            }
+        }
+
+        public virtual ICollection<Story> Stories
+        {
+            get
+            {
+                return this.stories;
+            }
+            set
+            {
+                this.stories = value;
             }
         }
     }
