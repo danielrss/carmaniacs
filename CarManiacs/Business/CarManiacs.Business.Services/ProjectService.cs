@@ -1,4 +1,5 @@
 ﻿using Bytes2you.Validation;
+using CarManiacs.Business.Common;
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.DTOs;
 using CarManiacs.Business.Models.Projects;
@@ -30,7 +31,8 @@ namespace CarManiacs.Business.Services
                 Id = Guid.NewGuid(),
                 Title = newProject.Title,
                 Description = newProject.Description,
-                UserId = userId
+                UserId = userId,
+                ImageUrl = Constants.DefaultProjectImageUrl
             };
 
             this.projectsRepo.Add(project);
@@ -50,6 +52,18 @@ namespace CarManiacs.Business.Services
             }
         }
 
+        public void UpdateImageUrl(Guid projectId, string imageUrl)
+        {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+
+            var project = this.projectsRepo.GetById(projectId);
+            if (project != null)
+            {
+                project.ImageUrl = imageUrl;
+                this.projectsRepo.Update(project);
+            }
+        }
+
         public IEnumerable<Project> GetAll()
         {
             return projectsRepo.All.ToList();
@@ -57,6 +71,8 @@ namespace CarManiacs.Business.Services
 
         public Project GetById(Guid projectId)
         {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+
             return this.projectsRepo.GetById(projectId);
         }
     }

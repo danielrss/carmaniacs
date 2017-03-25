@@ -45,6 +45,7 @@ namespace CarManiacs.WebClient.Controllers
                     Title = project.Title,
                     Description = project.Description,
                     Stages = projectStages,
+                    ImageUrl = project.ImageUrl,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == project.UserId
                 };
                 return View(viewModel);

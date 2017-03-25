@@ -3,7 +3,7 @@
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s Profile";
 }
 
-<div class="container body-content">
+<div class="container body-content profile">
     <h2 class="inline-block">@ViewBag.Title</h2>
     @if (Model.IsUserAllowedToEdit)
     {
@@ -29,9 +29,9 @@
         <div class="k-content upload">
             <h4>Change your profile avatar</h4>
             @(Html.Kendo().Upload()
-                .Name("avatar")
+                .Name("image")
                 .Async(a => a
-                    .Save("Avatar", "Upload")
+                    .Save("Image", "Upload", new { name = "avatar" })
                     .AutoUpload(true)
                 )
                 .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))

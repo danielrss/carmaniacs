@@ -218,9 +218,11 @@
     <Content Include="Content\Images\Logos\logo_black.png" />
     <Content Include="Content\Images\Logos\logo_header.png" />
     <Content Include="Content\Images\Logos\logo_white.png" />
+    <Content Include="Content\Images\project.png" />
     <Content Include="Content\login.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\profile.css" />
+    <Content Include="Content\project.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

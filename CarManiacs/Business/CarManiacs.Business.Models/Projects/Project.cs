@@ -27,6 +27,11 @@ namespace CarManiacs.Business.Models.Projects
         [MaxLength(Constants.ProjectDescriptionMaxLength)]
         public string Description { get; set; }
 
+        [Required]
+        [MinLength(Constants.UrlMinLength)]
+        [MaxLength(Constants.UrlMaxLength)]
+        public string ImageUrl { get; set; }
+
         public string UserId { get; set; }
 
         public virtual RegularUser User { get; set; }

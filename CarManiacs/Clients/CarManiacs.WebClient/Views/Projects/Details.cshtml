@@ -1,6 +1,6 @@
 ﻿@model CarManiacs.WebClient.Models.ProjectDetailsViewModel
 
-<div class="container body-content">
+<div class="container body-content project-details">
     <h2 class="inline-block">@Model.Title</h2>
     @if (Model.IsUserAllowedToEdit)
     {
@@ -8,7 +8,62 @@
     }
     <br />
 
+    <img class="avatar" src="@Model.ImageUrl" />
+
+    @if (Model.IsUserAllowedToEdit)
+    {
+        @section Styles {
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
+            <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
+        }
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
+
+        <div class="k-content upload">
+            <h4>Change your project image</h4>
+            @(Html.Kendo().Upload()
+                .Name("image")
+                .Async(a => a
+                    .Save("Image", "Upload", new { name = Model.Title, projectId = Model.Id })
+                    .AutoUpload(true)
+                )
+                .Validation(v => v.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }))
+                .Validation(v => v.MaxFileSize(5 * 1024 * 1024))
+                .Multiple(false)
+                .Events(e => e
+                    .Success("onAvatarUploadSuccess")
+                    .Error("onAvatarUploadError")
+                ))
+            <div id="upload-hint">
+                You can only upload <strong>JPG</strong>, <strong>JPEG</strong>, <strong>PNG</strong> files.
+                Maximum file size is 4MB.
+            </div>
+        </div>
+
+        <script>
+            function onAvatarUploadSuccess(e) {
+                location.reload();
+            }
+
+            function onAvatarUploadError(e) {
+                var response = e.XMLHttpRequest.response;
+                $('#upload-hint').html('<strong>' + response + '</strong>');
+            }
+        </script>
+    }
+
     <div class="project-info">
+        @if (Model.Description != null)
+        {
+            <div>
+                @Html.LabelFor(m => m.Description, new { @class = "inline-block" })
+                @Html.DisplayFor(m => m.Description)
+            </div>
+        }
     </div>
 </div>
 

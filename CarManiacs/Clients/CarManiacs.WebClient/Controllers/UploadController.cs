@@ -14,40 +14,51 @@ namespace CarManiacs.WebClient.Controllers
         private IImageProcessorService imageProcessorService;
         private IFileSaverService fileSaverService;
         private IRegularUserService regularUserService;
+        private IProjectService projectService;
 
         public UploadController(
             IImageProcessorService imgProcessorService,
             IFileSaverService fileSaverService,
-            IRegularUserService userService)
+            IRegularUserService userService,
+            IProjectService projectService)
         {
             Guard.WhenArgument(imgProcessorService, "imageProcessorService").IsNull().Throw();
             Guard.WhenArgument(fileSaverService, "fileSaverService").IsNull().Throw();
             Guard.WhenArgument(userService, "regularUserService").IsNull().Throw();
+            Guard.WhenArgument(projectService, "projectService").IsNull().Throw();
 
             this.fileSaverService = fileSaverService;
             this.imageProcessorService = imgProcessorService;
             this.regularUserService = userService;
+            this.projectService = projectService;
         }
 
         [Authorize]
         [HttpPost]
         [Transaction]
-        public ActionResult Avatar(HttpPostedFileBase avatar)
+        public ActionResult Image(HttpPostedFileBase image, string name, Guid? projectId = null)
         {
-            if (avatar != null)
+            if (image != null)
             {
-                var fileSize = avatar.ContentLength;
-                var fileExtension = Path.GetExtension(avatar.FileName).ToLower();
-                var fileName = Business.Common.Constants.AvatarFileNameWithoutExtension + fileExtension;
+                var fileSize = image.ContentLength;
+                var fileExtension = Path.GetExtension(image.FileName).ToLower();
+                string fileName = null;
+                if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                {
+                    fileName = Business.Common.Constants.AvatarFileNameWithoutExtension + fileExtension;
+                }
+                else
+                {
+                    fileName = Business.Common.Constants.ProjectMainImageFileNameWithoutExtension + fileExtension;
+                }
 
                 bool isFileValid = (fileSize <= Business.Common.Constants.UploadFileMaxSizeInBytes) &&
-                    ((avatar.ContentType == "image/jpeg" && (fileExtension == ".jpg" || fileExtension == ".jpeg")) ||
-                    (avatar.ContentType == "image/png" && fileExtension == ".png"));
+                    ((image.ContentType == "image/jpeg" && (fileExtension == ".jpg" || fileExtension == ".jpeg")) ||
+                    (image.ContentType == "image/png" && fileExtension == ".png"));
                 if (isFileValid)
                 {
                     byte[] photoBytes = new byte[fileSize];
-                    avatar.InputStream.Read(photoBytes, 0, fileSize);
-                    string uploaderId = null;
+                    image.InputStream.Read(photoBytes, 0, fileSize);
 
                     try
                     {
@@ -58,12 +69,21 @@ namespace CarManiacs.WebClient.Controllers
                             Business.Common.Constants.ProfileAvatarImageSize,
                             fileExtension,
                             Business.Common.Constants.MaxImageQualityPercentage);
-                        uploaderId = this.User.Identity.GetUserId();
 
                         // saving image
-                        var dirToSaveIn = Path.Combine(
-                            Server.MapPath("~" + Business.Common.Constants.ContentUploadedProfilesRelPath),
-                            uploaderId);
+                        string dirToSaveIn = null;
+                        if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                        {
+                            dirToSaveIn = Path.Combine(
+                                Server.MapPath("~" + Business.Common.Constants.ContentUploadedProfilesRelPath),
+                                this.User.Identity.GetUserId());
+                        }
+                        else
+                        {
+                            dirToSaveIn = Path.Combine(
+                                Server.MapPath("~" + Business.Common.Constants.ContentUploadedProjectsRelPath),
+                                projectId.ToString());
+                        }
 
                         this.fileSaverService.SaveFile(processedImg, dirToSaveIn, fileName, true);
                     }
@@ -71,14 +91,22 @@ namespace CarManiacs.WebClient.Controllers
                     {
                         return Content("We are sorry, but the uploading of your image was unsuccessful.");
                     }
-                    
 
-                    // saving uploaded avatar's url to db
-                    var avatarUrl = Business.Common.Constants.ContentUploadedProfilesRelPath + uploaderId + "/" + fileName;
-                    this.regularUserService.UpdateAvatarUrl(uploaderId, avatarUrl);
+                    // saving uploaded image's url to db
+                    if (name == Business.Common.Constants.AvatarFileNameWithoutExtension)
+                    {
+                        var uploaderId = this.User.Identity.GetUserId();
+                        var avatarUrl = Business.Common.Constants.ContentUploadedProfilesRelPath + uploaderId + "/" + fileName;
+                        this.regularUserService.UpdateAvatarUrl(uploaderId, avatarUrl);
 
-                    // change img src in navbar
-                    this.HttpContext.Cache["AvatarUrl"] = avatarUrl;
+                        // change img src in navbar
+                        this.HttpContext.Cache["AvatarUrl"] = avatarUrl;
+                    }
+                    else
+                    {
+                        var imageUrl = Business.Common.Constants.ContentUploadedProjectsRelPath + projectId.ToString() + "/" + fileName;
+                        this.projectService.UpdateImageUrl((Guid)projectId, imageUrl);
+                    }
 
                     // Empty string signifies success
                     return Content("");

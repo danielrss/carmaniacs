@@ -32,7 +32,8 @@ namespace CarManiacs.WebClient
                       "~/Content/main.css",
                       "~/Content/site.css",
                       "~/Content/login.css",
-                      "~/Content/profile.css"));
+                      "~/Content/profile.css",
+                      "~/Content/project.css"));
         }
     }
 }

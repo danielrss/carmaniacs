@@ -12,6 +12,8 @@ namespace CarManiacs.Business.Services.Contracts
 
         void Update(ProjectDto updatedProject);
 
+        void UpdateImageUrl(Guid projectId, string imageUrl);
+
         IEnumerable<Project> GetAll();
 
         Project GetById(Guid projectId);

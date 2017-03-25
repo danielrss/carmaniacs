@@ -36,10 +36,13 @@
         public const string FailedUploadMessage = "Unfortunately, your uploading  has failed.\r\nPlease, try again later.";
 
         public const string AvatarFileNameWithoutExtension = "avatar";
+        public const string ProjectMainImageFileNameWithoutExtension = "main";
         public const string DefaultAvatarUrl = "/Content/Images/avatar.png";
+        public const string DefaultProjectImageUrl = "/Content/Images/project.png";
         //public const string ContentUploadedTakeABreakThumbnailsRelPath = "Content/Uploaded/TakeABreak/Thumbnails/";
         //public const string ContentUploadedTakeABreakOriginalsRelPath = "Content/Uploaded/TakeABreak/Originals/";
 
         public const string ContentUploadedProfilesRelPath = "/Content/Uploaded/Profiles/";
+        public const string ContentUploadedProjectsRelPath = "/Content/Uploaded/Projects/";
     }
 }
