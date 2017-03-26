@@ -20,7 +20,9 @@ namespace CarManiacs.Business.Services.Contracts
         
         void Comment(Guid projectId, string userId, string comment);
 
-        IEnumerable<Project> GetAll();
+        IEnumerable<Project> Get(int page, int numberOfProjects);
+
+        IEnumerable<Project> Search(string searchTerm);
 
         Project GetById(Guid projectId);
     }

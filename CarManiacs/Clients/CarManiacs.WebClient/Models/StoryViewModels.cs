@@ -49,4 +49,15 @@ namespace CarManiacs.WebClient.Models
         [StringLength(Constants.StoryContentMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.StoryContentMinLength)]
         public string Content { get; set; }
     }
+
+    public class StoryShortViewModel
+    {
+        public Guid Id { get; set; }
+
+        public string Title { get; set; }
+
+        public int NumberOfStars { get; set; }
+
+        public int NumberOfComments { get; set; }
+    }
 }

@@ -18,6 +18,8 @@ namespace CarManiacs.Business.Models.Projects
         [Required]
         public DateTime PublishDate { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Required]
         public Guid ProjectId { get; set; }
 

@@ -254,6 +254,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\my-scripts\ajaxCommentEvents.js" />
+    <Content Include="Scripts\my-scripts\ajaxLoadMoreEvents.js" />
     <Content Include="Scripts\my-scripts\ajaxStarEvents.js" />
     <Content Include="Scripts\my-scripts\kendoUploadEvents.js" />
     <Content Include="Scripts\respond.js" />
@@ -317,6 +318,8 @@
     <Content Include="Views\Stories\Edit.cshtml" />
     <Content Include="Views\Stories\Index.cshtml" />
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
+    <Content Include="Views\Projects\_ProjectsPartial.cshtml" />
+    <Content Include="Views\Stories\_StoriesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

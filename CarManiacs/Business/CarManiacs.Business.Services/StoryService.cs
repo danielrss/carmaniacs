@@ -115,9 +115,29 @@ namespace CarManiacs.Business.Services
             return false;
         }
 
-        public IEnumerable<Story> GetAll()
+        public IEnumerable<Story> Get(int page, int numberOfProjects)
         {
-            return storiesRepo.All.ToList();
+            return storiesRepo.All
+                .Where(s => s.IsDeleted == false)
+                .OrderByDescending(s => s.PublishDate)
+                .Skip(page * numberOfProjects)
+                .Take(numberOfProjects)
+                .ToList();
+        }
+
+        public IEnumerable<Story> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return null;
+            }
+
+            return storiesRepo.All
+                .Where(s => s.IsDeleted == false &&
+                    (s.Title.Contains(searchTerm) ||
+                    (s.Content.Contains(searchTerm))))
+                .OrderByDescending(s => s.PublishDate)
+                .ToList();
         }
 
         public Story GetById(Guid storyId)

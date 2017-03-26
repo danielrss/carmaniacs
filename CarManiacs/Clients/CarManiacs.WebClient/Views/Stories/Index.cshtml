@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CarManiacs.WebClient.Models.StoryShortViewModel>
+@{
     ViewBag.Title = "Stories";
 }
 
@@ -7,4 +8,45 @@
     @Html.ActionLink("Share your story", "Create", "Stories", new { }, new { @class = "button alt" })
     <br />
 
+    <div class="form-group">
+        @using (Ajax.BeginForm("Search", new { },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "stories",
+                            InsertionMode = InsertionMode.Replace
+                        },
+                        new { id = "ajaxSearchForm" }))
+        {
+            <input type="text" class="form-control search-input" name="searchTerm" placeholder="Search..." onkeyup="onKeyUp()" />
+        }
+    </div>
+
+    <div id="stories">
+        @Html.Partial("_StoriesPartial", Model)
+    </div>
+
+    @Ajax.ActionLink("Load more", "LoadPage", new { id = 1 },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.InsertAfter,
+                UpdateTargetId = "stories",
+                OnComplete = "onAjaxComplete"
+            },
+            new { @class = "button alt", id = "load-more" })
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/my-scripts/ajaxLoadMoreEvents.js"></script>
+    <script>
+        function onKeyUp() {
+            $('#ajaxSearchForm').submit();
+            if ($('.search-input').val() != '') {
+                $('#load-more').hide();
+            } else {
+                $('#load-more').show();
+            }
+        }
+    </script>
+}

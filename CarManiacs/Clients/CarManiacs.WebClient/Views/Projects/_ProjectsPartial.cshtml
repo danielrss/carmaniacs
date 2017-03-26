@@ -1,0 +1,8 @@
+﻿@model IEnumerable<CarManiacs.WebClient.Models.ProjectShortViewModel>
+
+@foreach (var project in Model)
+{
+    <div>
+        @Html.ActionLink(project.Title, "Details", "Projects", new { id = project.Id }, new { })
+    </div>
+}

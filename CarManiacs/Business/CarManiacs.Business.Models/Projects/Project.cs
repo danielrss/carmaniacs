@@ -40,6 +40,8 @@ namespace CarManiacs.Business.Models.Projects
         [Required]
         public DateTime StartDate { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Required]
         public string UserId { get; set; }
 

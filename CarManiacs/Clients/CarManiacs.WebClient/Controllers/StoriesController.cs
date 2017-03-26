@@ -29,7 +29,53 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var stories = this.storyService.Get(0, 2).Select(
+                   s => new StoryShortViewModel()
+                   {
+                       Id = s.Id,
+                       Title = s.Title,
+                       NumberOfStars = s.Stars.Count,
+                       NumberOfComments = s.Comments.Count
+                   });
+
+            return View(stories);
+        }
+
+        public ActionResult LoadPage(int id)
+        {
+            var stories = this.storyService.Get(id, 2).Select(
+                s => new StoryShortViewModel()
+                {
+                    Id = s.Id,
+                    Title = s.Title,
+                    NumberOfStars = s.Stars.Count,
+                    NumberOfComments = s.Comments.Count
+                });
+
+            if (stories.Count() == 0)
+            {
+                return Json(new { success = false, responseText = "No more stories." }, JsonRequestBehavior.AllowGet);
+            }
+
+            return this.PartialView("_StoriesPartial", stories);
+        }
+
+        public ActionResult Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return this.LoadPage(0);
+            }
+
+            var stories = this.storyService.Search(searchTerm).Select(
+                s => new StoryShortViewModel()
+                {
+                    Id = s.Id,
+                    Title = s.Title,
+                    NumberOfStars = s.Stars.Count,
+                    NumberOfComments = s.Comments.Count
+                });
+            return this.PartialView("_StoriesPartial", stories);
         }
 
         public ActionResult Details(Guid id)
@@ -44,7 +90,7 @@ namespace CarManiacs.WebClient.Controllers
             IEnumerable<CommentViewModel> storyComments = null;
             if (story.Comments != null && story.Comments.Count > 0)
             {
-                storyComments = story.Comments.Select(
+                storyComments = story.Comments.Where(c => c.IsDeleted == false).Select(
                     c => new CommentViewModel()
                     {
                         UserFullName = c.UserId == null ? null : c.User.FirstName + " " + c.User.LastName,

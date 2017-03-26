@@ -18,6 +18,8 @@ namespace CarManiacs.Business.Models.Stories
         [Required]
         public DateTime PublishDate { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Required]
         public Guid StoryId { get; set; }
 

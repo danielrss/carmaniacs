@@ -29,7 +29,53 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var projects = this.projectService.Get(0, 2).Select(
+                p => new ProjectShortViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    NumberOfStars = p.Stars.Count,
+                    NumberOfComments = p.Comments.Count
+                });
+
+            return View(projects);
+        }
+        
+        public ActionResult LoadPage(int id)
+        {
+            var projects = this.projectService.Get(id, 2).Select(
+                p => new ProjectShortViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    NumberOfStars = p.Stars.Count,
+                    NumberOfComments = p.Comments.Count
+                });
+
+            if (projects.Count() == 0)
+            {
+                return Json(new { success = false, responseText = "No more projects." }, JsonRequestBehavior.AllowGet);
+            }
+
+            return this.PartialView("_ProjectsPartial", projects);
+        }
+
+        public ActionResult Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return this.LoadPage(0);
+            }
+
+            var projects = this.projectService.Search(searchTerm).Select(
+                p => new ProjectShortViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    NumberOfStars = p.Stars.Count,
+                    NumberOfComments = p.Comments.Count
+                });
+            return this.PartialView("_ProjectsPartial", projects);
         }
 
         public ActionResult Details(Guid id)
@@ -39,15 +85,15 @@ namespace CarManiacs.WebClient.Controllers
             if (project != null)
             {
                 IEnumerable<ProjectStageViewModel> projectStages = null;
-                if (project.Stages != null && project.Stages.Count > 0)
-                {
-                    projectStages = project.Stages.Select(s => new ProjectStageViewModel() { });
-                }
+                //if (project.Stages != null && project.Stages.Count > 0)
+                //{
+                //    projectStages = project.Stages.Select(s => new ProjectStageViewModel() { });
+                //}
 
                 IEnumerable<CommentViewModel> projectComments = null;
                 if (project.Comments != null && project.Comments.Count > 0)
                 {
-                    projectComments = project.Comments.Select(
+                    projectComments = project.Comments.Where(c => c.IsDeleted == false).Select(
                         c => new CommentViewModel()
                         {
                             UserFullName = c.UserId == null ? null : c.User.FirstName + " " + c.User.LastName,
