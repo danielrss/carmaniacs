@@ -159,5 +159,18 @@ namespace CarManiacs.Business.Models.UnitTests.Stories
             //Assert
             Assert.AreSame(imageUrls[0], story.ImageUrls.First());
         }
+
+        [Test]
+        public void Stars_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var stars = new List<Models.Stories.StoryStar> { new Models.Stories.StoryStar() };
+
+            //Act
+            var story = new Models.Stories.Story { Stars = stars };
+
+            //Assert
+            Assert.AreSame(stars[0], story.Stars.First());
+        }
     }
 }

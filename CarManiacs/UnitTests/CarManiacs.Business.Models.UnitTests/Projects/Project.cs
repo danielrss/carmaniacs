@@ -159,5 +159,18 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
             //Assert
             Assert.AreSame(stages[0], project.Stages.First());
         }
+
+        [Test]
+        public void Stars_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var stars = new List<Models.Projects.ProjectStar> { new Models.Projects.ProjectStar() };
+
+            //Act
+            var project = new Models.Projects.Project { Stars = stars };
+
+            //Assert
+            Assert.AreSame(stars[0], project.Stars.First());
+        }
     }
 }

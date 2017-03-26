@@ -28,7 +28,7 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
         public void Id_ShouldBeSetAndGottenCorrectly(string testId)
         {
             //Arrange && Act
-            var projectStage = new Models.Projects.Project { Id = Guid.Parse(testId) };
+            var projectStage = new Models.Projects.ProjectStage { Id = Guid.Parse(testId) };
 
             //Assert
             Assert.AreEqual(testId, projectStage.Id.ToString());
