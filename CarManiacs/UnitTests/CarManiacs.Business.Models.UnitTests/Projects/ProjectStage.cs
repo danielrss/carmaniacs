@@ -126,7 +126,6 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
 
             //Assert
             Assert.AreSame(imageUrls[0], projectStage.ImageUrls.First());
-            Assert.AreEqual(imageUrls[0].Id, projectStage.ImageUrls.First().Id);
         }
 
         [Test]
@@ -140,7 +139,6 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
 
             //Assert
             Assert.AreSame(project, projectStage.Project);
-            Assert.AreEqual(project.Id, projectStage.Project.Id);
         }
 
         [Test]

@@ -1,6 +1,6 @@
 ﻿using CarManiacs.Business.Common;
 using CarManiacs.Business.Models.Projects;
-
+using CarManiacs.Business.Models.Stories;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -360,6 +360,20 @@ namespace CarManiacs.Business.Models.UnitTests.Users
             //Assert
             Assert.AreSame(projects[0], user.Projects.First());
             Assert.AreEqual(projects[0].Id, user.Projects.First().Id);
+        }
+
+        [Test]
+        public void Stories_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var stories = new List<Story> { new Story() };
+
+            //Act
+            var user = new Models.Users.RegularUser() { Stories = stories };
+
+            //Assert
+            Assert.AreSame(stories[0], user.Stories.First());
+            Assert.AreEqual(stories[0].Id, user.Stories.First().Id);
         }
     }
 }
