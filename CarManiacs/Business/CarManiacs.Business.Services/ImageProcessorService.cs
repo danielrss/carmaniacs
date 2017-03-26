@@ -1,6 +1,5 @@
-﻿using CarManiacs.Business.Services.Contracts;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Services.Contracts;
 using ImageProcessor;
 using ImageProcessor.Imaging.Formats;
 using System.Drawing;

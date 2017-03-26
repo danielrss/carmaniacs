@@ -1,10 +1,9 @@
-﻿using CarManiacs.Business.Common;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Common;
 using CarManiacs.Business.Data.Contracts;
 using CarManiacs.Business.DTOs;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
-
-using Bytes2you.Validation;
 using System;
 using System.Linq;
 

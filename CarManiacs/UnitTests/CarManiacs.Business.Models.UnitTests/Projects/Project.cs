@@ -25,6 +25,9 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
             Assert.That(
                 project.Stars,
                 Is.Not.Null.And.InstanceOf<ICollection<Models.Projects.ProjectStar>>());
+            Assert.That(
+                project.Comments,
+                Is.Not.Null.And.InstanceOf<ICollection<Models.Projects.ProjectComment>>());
         }
 
         [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]
@@ -171,6 +174,19 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
 
             //Assert
             Assert.AreSame(stars[0], project.Stars.First());
+        }
+
+        [Test]
+        public void Comments_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var comments = new List<Models.Projects.ProjectComment> { new Models.Projects.ProjectComment() };
+
+            //Act
+            var project = new Models.Projects.Project { Comments = comments };
+
+            //Assert
+            Assert.AreSame(comments[0], project.Comments.First());
         }
     }
 }

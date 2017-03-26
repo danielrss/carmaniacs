@@ -1,6 +1,5 @@
-﻿using CarManiacs.Business.Data.Contracts;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Data.Contracts;
 using System.Web.Mvc;
 
 namespace CarManiacs.WebClient.ActionFilters

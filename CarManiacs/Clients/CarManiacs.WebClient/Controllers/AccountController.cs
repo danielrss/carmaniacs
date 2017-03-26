@@ -1,10 +1,9 @@
-﻿using CarManiacs.Business.Identity;
+﻿using Bytes2you.Validation;
+using CarManiacs.Business.Identity;
 using CarManiacs.Business.Models.Users;
 using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
 using CarManiacs.WebClient.Models;
-
-using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
