@@ -14,8 +14,7 @@ namespace CarManiacs.Business.Models.Projects
         public Guid ProjectId { get; set; }
 
         public virtual Project Project { get; set; }
-
-        [Required]
+        
         public string UserId { get; set; }
 
         public virtual RegularUser User { get; set; }

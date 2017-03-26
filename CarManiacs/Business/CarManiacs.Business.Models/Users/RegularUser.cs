@@ -13,11 +13,15 @@ namespace CarManiacs.Business.Models.Users
     {
         private ICollection<Project> projects;
         private ICollection<Story> stories;
+        private ICollection<ProjectStar> projectStars;
+        private ICollection<StoryStar> storyStars;
 
         public RegularUser()
         {
             this.projects = new HashSet<Project>();
             this.stories = new HashSet<Story>();
+            this.projectStars = new HashSet<ProjectStar>();
+            this.storyStars = new HashSet<StoryStar>();
         }
 
         [Key, ForeignKey("User")]
@@ -82,6 +86,30 @@ namespace CarManiacs.Business.Models.Users
             set
             {
                 this.stories = value;
+            }
+        }
+
+        public virtual ICollection<ProjectStar> ProjectStars
+        {
+            get
+            {
+                return this.projectStars;
+            }
+            set
+            {
+                this.projectStars = value;
+            }
+        }
+
+        public virtual ICollection<StoryStar> StoryStars
+        {
+            get
+            {
+                return this.storyStars;
+            }
+            set
+            {
+                this.storyStars = value;
             }
         }
     }

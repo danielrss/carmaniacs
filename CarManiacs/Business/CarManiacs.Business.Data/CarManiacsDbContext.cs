@@ -41,11 +41,15 @@ namespace CarManiacs.Business.Data
 
         public virtual IDbSet<Project> Projects { get; set; }
 
+        public virtual IDbSet<ProjectStar> ProjectStars { get; set; }
+
         public virtual IDbSet<ProjectStage> ProjectStages { get; set; }
 
         public virtual IDbSet<ProjectStageImageUrl> ProjectStageImageUrls { get; set; }
 
         public virtual IDbSet<Story> Stories { get; set; }
+
+        public virtual IDbSet<StoryStar> StoryStars { get; set; }
 
         public virtual IDbSet<StoryImageUrl> StoryImageUrls { get; set; }
     }

@@ -22,6 +22,8 @@ namespace CarManiacs.Business.Models.UnitTests.Users
             //Assert
             Assert.That(user.Projects, Is.Not.Null.And.InstanceOf<ICollection<Project>>());
             Assert.That(user.Stories, Is.Not.Null.And.InstanceOf<ICollection<Story>>());
+            Assert.That(user.ProjectStars, Is.Not.Null.And.InstanceOf<ICollection<ProjectStar>>());
+            Assert.That(user.StoryStars, Is.Not.Null.And.InstanceOf<ICollection<StoryStar>>());
         }
 
         [Test]
@@ -361,7 +363,6 @@ namespace CarManiacs.Business.Models.UnitTests.Users
 
             //Assert
             Assert.AreSame(projects[0], user.Projects.First());
-            Assert.AreEqual(projects[0].Id, user.Projects.First().Id);
         }
 
         [Test]
@@ -375,7 +376,32 @@ namespace CarManiacs.Business.Models.UnitTests.Users
 
             //Assert
             Assert.AreSame(stories[0], user.Stories.First());
-            Assert.AreEqual(stories[0].Id, user.Stories.First().Id);
+        }
+
+        [Test]
+        public void ProjectStars_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var projectStars = new List<ProjectStar> { new ProjectStar() };
+
+            //Act
+            var user = new Models.Users.RegularUser() { ProjectStars = projectStars };
+
+            //Assert
+            Assert.AreSame(projectStars[0], user.ProjectStars.First());
+        }
+
+        [Test]
+        public void StoryStars_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var storyStars = new List<StoryStar> { new StoryStar() };
+
+            //Act
+            var user = new Models.Users.RegularUser() { StoryStars = storyStars };
+
+            //Assert
+            Assert.AreSame(storyStars[0], user.StoryStars.First());
         }
     }
 }

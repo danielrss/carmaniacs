@@ -14,8 +14,7 @@ namespace CarManiacs.Business.Models.Stories
         public Guid StoryId { get; set; }
 
         public virtual Story Story { get; set; }
-
-        [Required]
+        
         public string UserId { get; set; }
 
         public virtual RegularUser User { get; set; }

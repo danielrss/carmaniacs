@@ -38,6 +38,7 @@ namespace CarManiacs.WebClient.Models
         [StringLength(Constants.TitleMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.TitleMinLength)]
         public string Title { get; set; }
 
+        [Required]
         [StringLength(Constants.StoryContentMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.StoryContentMinLength)]
         public string Content { get; set; }
     }
