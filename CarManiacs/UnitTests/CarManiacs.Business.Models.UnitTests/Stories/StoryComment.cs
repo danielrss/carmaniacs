@@ -42,6 +42,19 @@ namespace CarManiacs.Business.Models.UnitTests.Stories
         }
 
         [Test]
+        public void IsDeleted_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var isDeleted = true;
+
+            //Act
+            var storyComment = new Models.Stories.StoryComment { IsDeleted = isDeleted };
+
+            //Assert
+            Assert.AreEqual(isDeleted, storyComment.IsDeleted);
+        }
+
+        [Test]
         public void Story_ShouldBeSetAndGottenCorrectly()
         {
             //Arrange

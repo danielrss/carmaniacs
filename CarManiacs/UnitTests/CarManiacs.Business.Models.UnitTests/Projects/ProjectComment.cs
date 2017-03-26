@@ -42,6 +42,19 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
         }
 
         [Test]
+        public void IsDeleted_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var isDeleted = true;
+
+            //Act
+            var projectComment = new Models.Projects.ProjectComment { IsDeleted = isDeleted };
+
+            //Assert
+            Assert.AreEqual(isDeleted, projectComment.IsDeleted);
+        }
+
+        [Test]
         public void Project_ShouldBeSetAndGottenCorrectly()
         {
             //Arrange

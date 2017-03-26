@@ -69,7 +69,9 @@
     <Compile Include="ProjectService\Constructor_Should.cs" />
     <Compile Include="ProjectService\Create_Should.cs" />
     <Compile Include="ProjectService\GetById_Should.cs" />
+    <Compile Include="ProjectService\Get_Should.cs" />
     <Compile Include="ProjectService\HasUserStarred_Should.cs" />
+    <Compile Include="ProjectService\Search_Should.cs" />
     <Compile Include="ProjectService\StarOrUnstar_Should.cs" />
     <Compile Include="ProjectService\UpdateImageUrl_Should.cs" />
     <Compile Include="ProjectService\Update_Should.cs" />
@@ -84,7 +86,9 @@
     <Compile Include="StoryService\Constructor_Should.cs" />
     <Compile Include="StoryService\Create_Should.cs" />
     <Compile Include="StoryService\GetById_Should.cs" />
+    <Compile Include="StoryService\Get_Should.cs" />
     <Compile Include="StoryService\HasUserStarred_Should.cs" />
+    <Compile Include="StoryService\Search_Should.cs" />
     <Compile Include="StoryService\StarOrUnstar_Should.cs" />
     <Compile Include="StoryService\UpdateImageUrl_Should.cs" />
     <Compile Include="StoryService\Update_Should.cs" />

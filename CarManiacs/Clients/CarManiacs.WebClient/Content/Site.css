@@ -89,3 +89,11 @@ p.description {
 .search-input {
     max-width: 375px
 }
+
+#projects, #stories {
+    margin-bottom:20px;
+}
+
+#load-more {
+    margin-bottom:20px
+}

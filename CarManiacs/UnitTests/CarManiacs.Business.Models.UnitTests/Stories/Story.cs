@@ -137,6 +137,19 @@ namespace CarManiacs.Business.Models.UnitTests.Stories
         }
 
         [Test]
+        public void IsDeleted_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var isDeleted = true;
+
+            //Act
+            var story = new Models.Stories.Story { IsDeleted = isDeleted };
+
+            //Assert
+            Assert.AreEqual(isDeleted, story.IsDeleted);
+        }
+
+        [Test]
         public void User_ShouldBeSetAndGottenCorrectly()
         {
             //Arrange
