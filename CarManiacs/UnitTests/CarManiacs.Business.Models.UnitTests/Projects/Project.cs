@@ -124,6 +124,19 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
         }
 
         [Test]
+        public void StartDate_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var testDate = DateTime.Now;
+
+            //Act
+            var project = new Models.Projects.Project() { StartDate = testDate };
+
+            //Assert
+            Assert.AreEqual(testDate, project.StartDate);
+        }
+
+        [Test]
         public void User_ShouldBeSetAndGottenCorrectly()
         {
             //Arrange

@@ -29,6 +29,19 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
         }
 
         [Test]
+        public void PublishDate_ShouldBeSetAndGottenCorrectly()
+        {
+            //Arrange
+            var testDate = DateTime.Now;
+
+            //Act
+            var projectComment = new Models.Projects.ProjectComment() { PublishDate = testDate };
+
+            //Assert
+            Assert.AreEqual(testDate, projectComment.PublishDate);
+        }
+
+        [Test]
         public void Project_ShouldBeSetAndGottenCorrectly()
         {
             //Arrange
