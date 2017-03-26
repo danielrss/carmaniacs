@@ -1,4 +1,8 @@
-﻿<div class="container body-content">
+﻿@{
+    ViewBag.Title = "Projects";
+}
+
+<div class="container body-content">
     <h2 class="inline-block">Projects</h2>
     @Html.ActionLink("Share your project", "Create", "Projects", new { }, new { @class = "button alt" })
     <br />

@@ -19,9 +19,14 @@ namespace CarManiacs.WebClient.Models
 
         public string UserId { get; set; }
 
+        [Display(Name = "Published on")]
+        public DateTime PublishDate { get; set; }
+
         public string MainImageUrl { get; set; }
 
         public IEnumerable<string> ImageUrls { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public int NumberOfStars { get; set; }
 

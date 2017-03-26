@@ -37,6 +37,7 @@ namespace CarManiacs.Business.Services
                 Id = Guid.NewGuid(),
                 Title = newProject.Title,
                 Description = newProject.Description,
+                StartDate = DateTime.Now,
                 UserId = userId,
                 ImageUrl = Constants.DefaultProjectImageUrl
             };
@@ -71,7 +72,7 @@ namespace CarManiacs.Business.Services
             }
         }
 
-        public int Star(Guid projectId, string userId)
+        public int StarOrUnstar(Guid projectId, string userId)
         {
             Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
             Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
@@ -125,6 +126,25 @@ namespace CarManiacs.Business.Services
             Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
 
             return this.projectsRepo.GetById(projectId);
+        }
+
+        public void Comment(Guid projectId, string userId, string comment)
+        {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(comment, "comment").IsNullOrEmpty().Throw();
+            
+            var project = this.projectsRepo.GetById(projectId);
+            if (project != null)
+            {
+                project.Comments.Add(new ProjectComment()
+                {
+                    Id = Guid.NewGuid(),
+                    Content = comment,
+                    PublishDate = DateTime.Now,
+                    ProjectId = projectId,
+                    UserId = userId
+                });
+            }
         }
     }
 }

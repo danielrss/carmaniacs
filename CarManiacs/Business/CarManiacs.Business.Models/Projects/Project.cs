@@ -11,11 +11,13 @@ namespace CarManiacs.Business.Models.Projects
     {
         private ICollection<ProjectStage> stages;
         private ICollection<ProjectStar> stars;
+        private ICollection<ProjectComment> comments;
 
         public Project()
         {
             this.stages = new HashSet<ProjectStage>();
             this.stars = new HashSet<ProjectStar>();
+            this.comments = new HashSet<ProjectComment>();
         }
 
         [Key]
@@ -34,6 +36,9 @@ namespace CarManiacs.Business.Models.Projects
         [MinLength(Constants.UrlMinLength)]
         [MaxLength(Constants.UrlMaxLength)]
         public string ImageUrl { get; set; }
+
+        [Required]
+        public DateTime StartDate { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -61,6 +66,18 @@ namespace CarManiacs.Business.Models.Projects
             set
             {
                 this.stars = value;
+            }
+        }
+
+        public virtual ICollection<ProjectComment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
             }
         }
     }

@@ -11,11 +11,13 @@ namespace CarManiacs.Business.Models.Stories
     {
         private ICollection<StoryImageUrl> images;
         private ICollection<StoryStar> stars;
+        private ICollection<StoryComment> comments;
 
         public Story()
         {
             this.images = new HashSet<StoryImageUrl>();
             this.stars = new HashSet<StoryStar>();
+            this.comments = new HashSet<StoryComment>();
         }
 
         [Key]
@@ -35,6 +37,9 @@ namespace CarManiacs.Business.Models.Stories
         [MinLength(Constants.UrlMinLength)]
         [MaxLength(Constants.UrlMaxLength)]
         public string MainImageUrl { get; set; }
+
+        [Required]
+        public DateTime PublishDate { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -62,6 +67,18 @@ namespace CarManiacs.Business.Models.Stories
             set
             {
                 this.stars = value;
+            }
+        }
+
+        public virtual ICollection<StoryComment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
             }
         }
     }

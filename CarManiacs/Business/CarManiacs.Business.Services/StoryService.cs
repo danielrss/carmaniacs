@@ -38,6 +38,7 @@ namespace CarManiacs.Business.Services
                 Title = newStory.Title,
                 Content = newStory.Content,
                 MainImageUrl = Constants.DefaultStoryImageUrl,
+                PublishDate = DateTime.Now,
                 UserId = userId
             };
 
@@ -71,7 +72,7 @@ namespace CarManiacs.Business.Services
             }
         }
 
-        public int Star(Guid storyId, string userId)
+        public int StarOrUnstar(Guid storyId, string userId)
         {
             Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
             Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
@@ -125,6 +126,25 @@ namespace CarManiacs.Business.Services
             Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
 
             return this.storiesRepo.GetById(storyId);
+        }
+
+        public void Comment(Guid storyId, string userId, string comment)
+        {
+            Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(comment, "comment").IsNullOrEmpty().Throw();
+
+            var story = this.storiesRepo.GetById(storyId);
+            if (story != null)
+            {
+                story.Comments.Add(new StoryComment()
+                {
+                    Id = Guid.NewGuid(),
+                    Content = comment,
+                    PublishDate = DateTime.Now,
+                    StoryId = storyId,
+                    UserId = userId
+                });
+            }
         }
     }
 }

@@ -14,9 +14,11 @@ namespace CarManiacs.Business.Services.Contracts
 
         void UpdateImageUrl(Guid projectId, string imageUrl);
 
-        int Star(Guid projectId, string userId);
+        int StarOrUnstar(Guid projectId, string userId);
         
         bool HasUserStarred(Guid projectId, string userId);
+        
+        void Comment(Guid projectId, string userId, string comment);
 
         IEnumerable<Project> GetAll();
 

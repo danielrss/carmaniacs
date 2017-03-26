@@ -21,7 +21,12 @@ namespace CarManiacs.WebClient.Models
 
         public string ImageUrl { get; set; }
 
+        [Display(Name = "Start date")]
+        public DateTime? StartDate { get; set; }
+
         public IEnumerable<ProjectStageViewModel> Stages { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public int NumberOfStars { get; set; }
 

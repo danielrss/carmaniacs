@@ -15,12 +15,17 @@ namespace CarManiacs.WebClient.Controllers
     public class StoriesController : BaseController
     {
         private IStoryService storyService;
+        private IRegularUserService regularUserService;
 
-        public StoriesController(IStoryService storyService)
+        public StoriesController(
+            IStoryService storyService,
+            IRegularUserService regularUserService)
         {
             Guard.WhenArgument(storyService, "storyService").IsNull().Throw();
+            Guard.WhenArgument(regularUserService, "regularUserService").IsNull().Throw();
 
             this.storyService = storyService;
+            this.regularUserService = regularUserService;
         }
 
         public ActionResult Index()
@@ -37,8 +42,25 @@ namespace CarManiacs.WebClient.Controllers
                 imageUrls = story.ImageUrls.Select(i => i.Url);
             }
 
-            string starLinkClass = this.storyService.HasUserStarred(id, this.User.Identity.GetUserId()) ?
-                "fa-star" : "fa-star-o";
+            IEnumerable<CommentViewModel> storyComments = null;
+            if (story.Comments != null && story.Comments.Count > 0)
+            {
+                storyComments = story.Comments.Select(
+                    c => new CommentViewModel()
+                    {
+                        UserFullName = c.UserId == null ? null : c.User.FirstName + " " + c.User.LastName,
+                        UserId = c.UserId,
+                        Comment = c.Content,
+                        PublishDate = c.PublishDate
+                    });
+            }
+
+            string starLinkClass = "fa-star-o";
+            if (this.User.Identity.IsAuthenticated && this.storyService.HasUserStarred(id, this.User.Identity.GetUserId()))
+            {
+                starLinkClass = "fa-star";
+            }
+
             if (story != null)
             {
                 var viewModel = new StoryDetailsViewModel()
@@ -49,9 +71,11 @@ namespace CarManiacs.WebClient.Controllers
                     UserFullName = story.User.FirstName + " " + story.User.LastName,
                     UserId = story.UserId,
                     MainImageUrl = story.MainImageUrl,
+                    PublishDate = story.PublishDate,
                     ImageUrls = imageUrls,
                     NumberOfStars = story.Stars.Count,
                     StarLinkClass = starLinkClass,
+                    Comments = storyComments,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == story.UserId
                 };
                 return View(viewModel);
@@ -130,15 +154,39 @@ namespace CarManiacs.WebClient.Controllers
 
         [HttpPost]
         [Transaction]
-        public ActionResult Star(Guid id)
+        public ActionResult StarOrUnstar(Guid id)
         {
             if (!this.User.Identity.IsAuthenticated)
             {
                 return Json(new { success = false, responseText = "Not authorized." }, JsonRequestBehavior.AllowGet);
             }
 
-            int numberOfStars = this.storyService.Star(id, this.User.Identity.GetUserId());
+            int numberOfStars = this.storyService.StarOrUnstar(id, this.User.Identity.GetUserId());
             return this.Content(" " + numberOfStars.ToString());
+        }
+
+        [HttpPost]
+        [Transaction]
+        public ActionResult Comment(Guid id, string commentContent)
+        {
+            Guard.WhenArgument(commentContent, "commentContent").IsNullOrEmpty().Throw();
+            string userId = this.User.Identity.GetUserId();
+            string userFullName = null;
+            if (userId != null)
+            {
+                var user = this.regularUserService.GetById(userId);
+                userFullName = user.FirstName + " " + user.LastName;
+            }
+
+            this.storyService.Comment(id, userId, commentContent);
+
+            return this.PartialView("_CommentPartial", new CommentViewModel()
+            {
+                Comment = commentContent,
+                UserFullName = userFullName,
+                UserId = userId,
+                PublishDate = DateTime.Now
+            });
         }
     }
 }

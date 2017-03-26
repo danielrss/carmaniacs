@@ -1,4 +1,7 @@
 ﻿@model CarManiacs.WebClient.Models.StoryDetailsViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
 
 <div class="container body-content project-details">
     <h2 class="inline-block">@Model.Title</h2>
@@ -9,14 +12,13 @@
     }
     else
     {
-        @Ajax.ActionLink(" " + Model.NumberOfStars.ToString(), "Star", new { id = Model.Id },
+        @Ajax.ActionLink(" " + Model.NumberOfStars.ToString(), "StarOrUnstar", new { id = Model.Id },
             new AjaxOptions
             {
                 HttpMethod = "POST",
                 InsertionMode = InsertionMode.Replace,
                 UpdateTargetId = "star-link",
-                OnComplete = "onAjaxComplete",
-                OnSuccess = "onAjaxSuccess"
+                OnComplete = "onAjaxComplete"
             },
             new { @class = "icon " + Model.StarLinkClass, id = "star-link" })
     }
@@ -67,8 +69,52 @@
             @Html.LabelFor(m => m.UserFullName, new { @class = "inline-block" })
             @Html.ActionLink(Model.UserFullName, "Details", "Profile", new { id = Model.UserId }, new { })
         </div>
+        <div>
+            @Html.LabelFor(m => m.PublishDate, new { @class = "inline-block" })
+            @Html.DisplayFor(m => m.PublishDate)
+        </div>
+    </div>
+
+    <div id="comments">
+        @if (Model.Comments != null)
+        {
+            <h3 class="comments-heading">Comments</h3>
+            foreach (var comment in Model.Comments)
+            {
+                Html.RenderPartial("_CommentPartial", comment);
+            }
+        }
+        else
+        {
+            <h3 class="comments-heading">No comments</h3>
+        }
+    </div>
+
+    <div class="add-comment form-horizontal">
+        @using (Ajax.BeginForm("Comment", new { id = Model.Id },
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "comments",
+                InsertionMode = InsertionMode.InsertAfter,
+                OnSuccess = "onSuccess"
+            }))
+        {
+        <div class="form-group">
+            <div class="col-md-10">
+                <textarea data-val="true" data-val-length="The comment must be at least 5 characters long." data-val-length-max="500" data-val-length-min="5" data-val-required="Type in your comment."
+                          class="form-control text-area inline-block" name="commentContent" id="comment-input" placeholder="Add a comment..."></textarea>
+                <button class="icon fa-arrow-circle-right inline-block comment-submit"></button>
+            </div> <br />
+        </div>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        }
     </div>
 </div>
 
-<script src="~/Scripts/my-scripts/kendoUploadEvents.js"></script>
-<script src="~/Scripts/my-scripts/ajaxStarEvents.js"></script>
+@section Scripts {
+    <script src="~/Scripts/my-scripts/kendoUploadEvents.js"></script>
+    <script src="~/Scripts/my-scripts/ajaxStarEvents.js"></script>
+    <script src="~/Scripts/my-scripts/ajaxCommentEvents.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

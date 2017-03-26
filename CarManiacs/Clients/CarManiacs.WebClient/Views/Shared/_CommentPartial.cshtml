@@ -1,0 +1,13 @@
+﻿@model CarManiacs.WebClient.Models.CommentViewModel
+
+<div class="comment">
+    <h5 class="comment-content">@Model.Comment</h5>
+    @if (Model.UserId == null)
+    {
+        @:Commented by: Anonymous, on @Model.PublishDate
+    }
+    else
+    {
+        @:Commented by: @Html.ActionLink(Model.UserFullName, "Details", "Profile", new { id = Model.UserId }, new { }), on @Model.PublishDate
+    }
+</div>

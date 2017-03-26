@@ -43,6 +43,8 @@ namespace CarManiacs.Business.Data
 
         public virtual IDbSet<ProjectStar> ProjectStars { get; set; }
 
+        public virtual IDbSet<ProjectComment> ProjectComments { get; set; }
+
         public virtual IDbSet<ProjectStage> ProjectStages { get; set; }
 
         public virtual IDbSet<ProjectStageImageUrl> ProjectStageImageUrls { get; set; }
@@ -50,6 +52,8 @@ namespace CarManiacs.Business.Data
         public virtual IDbSet<Story> Stories { get; set; }
 
         public virtual IDbSet<StoryStar> StoryStars { get; set; }
+
+        public virtual IDbSet<StoryComment> StoryComments { get; set; }
 
         public virtual IDbSet<StoryImageUrl> StoryImageUrls { get; set; }
     }
