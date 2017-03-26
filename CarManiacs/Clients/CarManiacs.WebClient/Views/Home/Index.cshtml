@@ -35,7 +35,9 @@
                     </header>
                     <p>See what cool car projects people are building or share your own.</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Projects</a></li>
+                        <li>
+                            @Html.ActionLink("Projects", "Index", "Projects", new { }, new { @class = "button alt" })
+                        </li>
                     </ul>
                 </div>
             </article>
@@ -47,7 +49,9 @@
                     </header>
                     <p>Share your last exciting car experience or just see what other people have shared.</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Stories</a></li>
+                        <li>
+                            @Html.ActionLink("Stories", "Index", "Stories", new { }, new { @class = "button alt" })
+                        </li>
                     </ul>
                 </div>
             </article>

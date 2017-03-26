@@ -7,7 +7,7 @@
     <h2 class="inline-block">@ViewBag.Title</h2>
     @if (Model.IsUserAllowedToEdit)
     {
-        <a href="/profile/edit" class="button alt">Edit</a>
+        @Html.ActionLink("Edit", "Edit", "Profile", new { }, new { @class = "button alt" })
     }
     <br />
 
