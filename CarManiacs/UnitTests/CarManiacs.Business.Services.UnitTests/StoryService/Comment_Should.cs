@@ -8,44 +8,8 @@ using System;
 namespace CarManiacs.Business.Services.UnitTests.StoryService
 {
     [TestFixture]
-    public class UpdateImageUrl_Should
+    public class Comment_Should
     {
-        [Test]
-        public void CallStoryRepoUpdateOnce_WhenStoryIsExistent()
-        {
-            //Arrange
-            var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
-            var storyFromRepo = new Mock<Story>();
-            var storyId = Guid.NewGuid();
-            storiesRepoMock.Setup(m => m.GetById(storyId)).Returns(storyFromRepo.Object);
-
-            //Act
-            storyService.UpdateMainImageUrl(storyId, "tootaallyyRandomImageUrl");
-
-            //Assert
-            storiesRepoMock.Verify(m => m.Update(storyFromRepo.Object), Times.Once);
-        }
-
-        [Test]
-        public void NotCallStoryRepoUpdate_WhenStoryIsNonExistent()
-        {
-            //Arrange
-            var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyId = Guid.NewGuid();
-            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
-            Story storyFromRepo = null;
-            storiesRepoMock.Setup(m => m.GetById(storyId)).Returns(storyFromRepo);
-
-            //Act
-            storyService.UpdateMainImageUrl(storyId, "tootaallyyRandomImageUrl2");
-
-            //Assert
-            storiesRepoMock.Verify(m => m.Update(storyFromRepo), Times.Never);
-        }
-
         [Test]
         public void ThrowArgumentException_WhenStoryIdIsEmpty()
         {
@@ -55,7 +19,31 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
             var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
 
             //Act && Assert
-            Assert.Throws<ArgumentException>(() => storyService.UpdateMainImageUrl(Guid.Empty, "raandoomStriing2"));
+            Assert.Throws<ArgumentException>(() => storyService.Comment(Guid.Empty, "raandoomStriing1", "raandoomStriing2"));
+        }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenCommentIsNull()
+        {
+            //Arrange
+            var storiesRepoMock = new Mock<IEfRepository<Story>>();
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
+
+            //Act && Assert
+            Assert.Throws<ArgumentNullException>(() => storyService.Comment(Guid.NewGuid(), "raandoomStriing1", null));
+        }
+
+        [Test]
+        public void ThrowArgumentException_WhenUserIdIsEmpty()
+        {
+            //Arrange
+            var storiesRepoMock = new Mock<IEfRepository<Story>>();
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
+
+            //Act && Assert
+            Assert.Throws<ArgumentException>(() => storyService.Comment(Guid.NewGuid(), "raandoomStriing1", string.Empty));
         }
     }
 }

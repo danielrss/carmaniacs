@@ -65,9 +65,12 @@
     <Compile Include="FileSaverService\SaveFile_Should.cs" />
     <Compile Include="ImageProcessorService\Constructor_Should.cs" />
     <Compile Include="ImageProcessorService\ProcessImage_Should.cs" />
+    <Compile Include="ProjectService\Comment_Should.cs" />
     <Compile Include="ProjectService\Constructor_Should.cs" />
     <Compile Include="ProjectService\Create_Should.cs" />
     <Compile Include="ProjectService\GetById_Should.cs" />
+    <Compile Include="ProjectService\HasUserStarred_Should.cs" />
+    <Compile Include="ProjectService\StarOrUnstar_Should.cs" />
     <Compile Include="ProjectService\UpdateImageUrl_Should.cs" />
     <Compile Include="ProjectService\Update_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,9 +80,12 @@
     <Compile Include="RegularUserService\GetById_Should.cs" />
     <Compile Include="RegularUserService\UpdateAvatarUrl_Should.cs" />
     <Compile Include="RegularUserService\Update_Should.cs" />
+    <Compile Include="StoryService\Comment_Should.cs" />
     <Compile Include="StoryService\Constructor_Should.cs" />
     <Compile Include="StoryService\Create_Should.cs" />
     <Compile Include="StoryService\GetById_Should.cs" />
+    <Compile Include="StoryService\HasUserStarred_Should.cs" />
+    <Compile Include="StoryService\StarOrUnstar_Should.cs" />
     <Compile Include="StoryService\UpdateImageUrl_Should.cs" />
     <Compile Include="StoryService\Update_Should.cs" />
   </ItemGroup>
