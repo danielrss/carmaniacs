@@ -1,11 +1,9 @@
 ﻿using CarManiacs.Business.Common;
 using CarManiacs.Business.Models.Users;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarManiacs.Business.Models.Stories
 {

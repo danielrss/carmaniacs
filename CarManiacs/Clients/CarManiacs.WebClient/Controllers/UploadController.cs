@@ -1,6 +1,7 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Services.Contracts;
+﻿using CarManiacs.Business.Services.Contracts;
 using CarManiacs.WebClient.ActionFilters;
+
+using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using System;
 using System.IO;

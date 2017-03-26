@@ -12,6 +12,7 @@ namespace CarManiacs.WebClient.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind(x => x.From("CarManiacs.Business.Models").SelectAllClasses().BindToSelf());
+            this.Bind(x => x.From("CarManiacs.Business.DTOs").SelectAllClasses().BindToSelf());
 
             this.Bind<ICarManiacsDbContext>().To<CarManiacsDbContext>().InRequestScope();
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));

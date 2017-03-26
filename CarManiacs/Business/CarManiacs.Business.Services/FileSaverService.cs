@@ -1,6 +1,6 @@
-﻿using Bytes2you.Validation;
-using CarManiacs.Business.Services.Contracts;
+﻿using CarManiacs.Business.Services.Contracts;
 
+using Bytes2you.Validation;
 using System;
 using System.IO;
 

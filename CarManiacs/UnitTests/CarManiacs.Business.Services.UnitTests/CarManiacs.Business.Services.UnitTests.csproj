@@ -77,6 +77,11 @@
     <Compile Include="RegularUserService\GetById_Should.cs" />
     <Compile Include="RegularUserService\UpdateAvatarUrl_Should.cs" />
     <Compile Include="RegularUserService\Update_Should.cs" />
+    <Compile Include="StoryService\Constructor_Should.cs" />
+    <Compile Include="StoryService\Create_Should.cs" />
+    <Compile Include="StoryService\GetById_Should.cs" />
+    <Compile Include="StoryService\UpdateImageUrl_Should.cs" />
+    <Compile Include="StoryService\Update_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
