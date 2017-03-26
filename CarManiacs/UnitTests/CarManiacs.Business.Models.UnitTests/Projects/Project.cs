@@ -13,7 +13,7 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
     public class Project
     {
         [Test]
-        public void Constructor_ShouldInitializeStagesCollection()
+        public void Constructor_ShouldInitializeCollections()
         {
             //Arrange && Act
             var project = new Models.Projects.Project();
@@ -22,6 +22,9 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
             Assert.That(
                 project.Stages,
                 Is.Not.Null.And.InstanceOf<ICollection<Models.Projects.ProjectStage>>());
+            Assert.That(
+                project.Stars,
+                Is.Not.Null.And.InstanceOf<ICollection<Models.Projects.ProjectStar>>());
         }
 
         [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]

@@ -10,10 +10,12 @@ namespace CarManiacs.Business.Models.Projects
     public class Project
     {
         private ICollection<ProjectStage> stages;
+        private ICollection<ProjectStar> stars;
 
         public Project()
         {
             this.stages = new HashSet<ProjectStage>();
+            this.stars = new HashSet<ProjectStar>();
         }
 
         [Key]
@@ -47,6 +49,18 @@ namespace CarManiacs.Business.Models.Projects
             set
             {
                 this.stages = value;
+            }
+        }
+
+        public virtual ICollection<ProjectStar> Stars
+        {
+            get
+            {
+                return this.stars;
+            }
+            set
+            {
+                this.stars = value;
             }
         }
     }

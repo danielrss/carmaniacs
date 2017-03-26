@@ -13,7 +13,7 @@ namespace CarManiacs.Business.Models.UnitTests.Stories
     public class Story
     {
         [Test]
-        public void Constructor_ShouldInitializeImageUrlsCollection()
+        public void Constructor_ShouldInitializeCollections()
         {
             //Arrange && Act
             var story = new Models.Stories.Story();
@@ -22,6 +22,9 @@ namespace CarManiacs.Business.Models.UnitTests.Stories
             Assert.That(
                 story.ImageUrls,
                 Is.Not.Null.And.InstanceOf<ICollection<Models.Stories.StoryImageUrl>>());
+            Assert.That(
+                story.Stars,
+                Is.Not.Null.And.InstanceOf<ICollection<Models.Stories.StoryStar>>());
         }
 
         [TestCase("f238acd3-7fed-4563-9c58-17653de7de55")]

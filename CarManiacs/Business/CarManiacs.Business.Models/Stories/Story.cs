@@ -10,10 +10,12 @@ namespace CarManiacs.Business.Models.Stories
     public class Story
     {
         private ICollection<StoryImageUrl> images;
+        private ICollection<StoryStar> stars;
 
         public Story()
         {
             this.images = new HashSet<StoryImageUrl>();
+            this.stars = new HashSet<StoryStar>();
         }
 
         [Key]
@@ -48,6 +50,18 @@ namespace CarManiacs.Business.Models.Stories
             set
             {
                 this.images = value;
+            }
+        }
+
+        public virtual ICollection<StoryStar> Stars
+        {
+            get
+            {
+                return this.stars;
+            }
+            set
+            {
+                this.stars = value;
             }
         }
     }

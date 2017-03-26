@@ -74,7 +74,6 @@ namespace CarManiacs.Business.Models.UnitTests.Projects
 
             //Assert
             Assert.AreSame(projectStage, imageUrl.ProjectStage);
-            Assert.AreEqual(projectStage.Id, imageUrl.ProjectStage.Id);
         }
 
         [Test]

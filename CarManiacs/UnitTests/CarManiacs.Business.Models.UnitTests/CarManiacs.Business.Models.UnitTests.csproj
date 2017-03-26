@@ -72,9 +72,11 @@
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\ProjectStage.cs" />
     <Compile Include="Projects\ProjectStageImageUrl.cs" />
+    <Compile Include="Projects\ProjectStar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stories\Story.cs" />
     <Compile Include="Stories\StoryImageUrl.cs" />
+    <Compile Include="Stories\StoryStar.cs" />
     <Compile Include="Users\Admin.cs" />
     <Compile Include="Users\RegularUser.cs" />
     <Compile Include="Users\Role.cs" />

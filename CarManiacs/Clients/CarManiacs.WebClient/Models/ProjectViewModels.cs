@@ -23,7 +23,11 @@ namespace CarManiacs.WebClient.Models
 
         public IEnumerable<ProjectStageViewModel> Stages { get; set; }
 
+        public int NumberOfStars { get; set; }
+
         public bool IsUserAllowedToEdit { get; set; }
+
+        public bool HasUserStarred { get; set; }
     }
 
     public class ProjectCreateViewModel

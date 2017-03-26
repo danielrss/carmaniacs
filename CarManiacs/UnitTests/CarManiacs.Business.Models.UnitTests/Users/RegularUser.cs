@@ -14,13 +14,14 @@ namespace CarManiacs.Business.Models.UnitTests.Users
     public class RegularUser
     {
         [Test]
-        public void Constructor_ShouldInitializeProjectsCollection()
+        public void Constructor_ShouldInitializeCollections()
         {
             //Arrange && Act
             var user = new Models.Users.RegularUser();
 
             //Assert
             Assert.That(user.Projects, Is.Not.Null.And.InstanceOf<ICollection<Project>>());
+            Assert.That(user.Stories, Is.Not.Null.And.InstanceOf<ICollection<Story>>());
         }
 
         [Test]

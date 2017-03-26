@@ -23,7 +23,11 @@ namespace CarManiacs.WebClient.Models
 
         public IEnumerable<string> ImageUrls { get; set; }
 
+        public int NumberOfStars { get; set; }
+
         public bool IsUserAllowedToEdit { get; set; }
+
+        public bool HasUserStarred { get; set; }
     }
 
     public class StoryCreateViewModel

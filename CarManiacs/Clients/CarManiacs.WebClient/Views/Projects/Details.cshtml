@@ -6,6 +6,10 @@
     {
         @Html.ActionLink("Edit", "Edit", "Projects", new { id = Model.Id }, new { @class = "button alt" })
     }
+    else
+    {
+        @*@Html.AjaxLink(" ", "Star", "Projects", new { id = Model.Id }, new { @class = "icon fa-star-o"})*@
+    }
     <br />
 
     <img class="avatar" src="@Model.ImageUrl" />
