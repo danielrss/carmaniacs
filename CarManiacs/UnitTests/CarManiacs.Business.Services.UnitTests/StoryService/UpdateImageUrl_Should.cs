@@ -15,7 +15,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var storyFromRepo = new Mock<Story>();
             var storyId = Guid.NewGuid();
             storiesRepoMock.Setup(m => m.GetById(storyId)).Returns(storyFromRepo.Object);
@@ -33,7 +34,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
             var storyId = Guid.NewGuid();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             Story storyFromRepo = null;
             storiesRepoMock.Setup(m => m.GetById(storyId)).Returns(storyFromRepo);
 
@@ -49,7 +51,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
 
             //Act && Assert
             Assert.Throws<ArgumentException>(() => storyService.UpdateMainImageUrl(Guid.Empty, "raandoomStriing2"));

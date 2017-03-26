@@ -15,7 +15,8 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         {
             //Arrange
             var projectsRepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsRepoMock.Object);
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var id = Guid.NewGuid();
 
             //Act

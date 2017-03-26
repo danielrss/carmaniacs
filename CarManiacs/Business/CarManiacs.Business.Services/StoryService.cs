@@ -14,11 +14,16 @@ namespace CarManiacs.Business.Services
     public class StoryService : IStoryService
     {
         private IEfRepository<Story> storiesRepo;
+        private IEfRepository<StoryStar> storyStarsRepo;
 
-        public StoryService(IEfRepository<Story> storiesRepo)
+        public StoryService(
+            IEfRepository<Story> storiesRepo,
+            IEfRepository<StoryStar> storyStarsRepo)
         {
             Guard.WhenArgument(storiesRepo, "Story repository").IsNull().Throw();
+            Guard.WhenArgument(storyStarsRepo, "StoryStar repository").IsNull().Throw();
 
+            this.storyStarsRepo = storyStarsRepo;
             this.storiesRepo = storiesRepo;
         }
 
@@ -64,6 +69,50 @@ namespace CarManiacs.Business.Services
                 story.MainImageUrl = imageUrl;
                 this.storiesRepo.Update(story);
             }
+        }
+
+        public int Star(Guid storyId, string userId)
+        {
+            Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+
+            var story = this.storiesRepo.GetById(storyId);
+            if (story != null)
+            {
+                var storyStar = story.Stars.FirstOrDefault(s => s.UserId == userId);
+                if (storyStar != null)
+                {
+                    story.Stars.Remove(storyStar);
+                    this.storyStarsRepo.Delete(storyStar);
+                    return story.Stars.Count;
+                }
+                else
+                {
+                    storyStar = new StoryStar() { Id = Guid.NewGuid(), StoryId = storyId, UserId = userId };
+                    story.Stars.Add(storyStar);
+                    return story.Stars.Count;
+                }
+            }
+
+            return -1;
+        }
+
+        public bool HasUserStarred(Guid storyId, string userId)
+        {
+            Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+
+            var story = this.storiesRepo.GetById(storyId);
+            if (story != null)
+            {
+                var storyStar = story.Stars.FirstOrDefault(s => s.UserId == userId);
+                if (storyStar != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public IEnumerable<Story> GetAll()

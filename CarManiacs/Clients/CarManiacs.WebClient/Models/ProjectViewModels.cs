@@ -25,6 +25,8 @@ namespace CarManiacs.WebClient.Models
 
         public int NumberOfStars { get; set; }
 
+        public string StarLinkClass { get; set; }
+
         public bool IsUserAllowedToEdit { get; set; }
 
         public bool HasUserStarred { get; set; }

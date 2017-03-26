@@ -17,7 +17,8 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
             //Arrange
             var projectsRepoMock = new Mock<IEfRepository<Project>>();
             var projectDto = new ProjectDto() { Id = Guid.NewGuid() };
-            var projectService = new Services.ProjectService(projectsRepoMock.Object);
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var projectFromRepo = new Mock<Project>();
             projectsRepoMock.Setup(m => m.GetById(projectDto.Id)).Returns(projectFromRepo.Object);
 
@@ -34,7 +35,8 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
             //Arrange
             var projectsRepoMock = new Mock<IEfRepository<Project>>();
             var projectDto = new ProjectDto() { Id = Guid.NewGuid() };
-            var projectService = new Services.ProjectService(projectsRepoMock.Object);
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             Project projectFromRepo = null;
             projectsRepoMock.Setup(m => m.GetById(projectDto.Id)).Returns(projectFromRepo);
 
@@ -50,7 +52,8 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         {
             //Arrange
             var projectsRepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsRepoMock.Object);
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
 
             //Act && Assert
             Assert.Throws<ArgumentNullException>(() => projectService.Update(null));

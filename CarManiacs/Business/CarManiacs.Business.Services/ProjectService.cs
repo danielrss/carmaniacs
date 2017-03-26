@@ -14,12 +14,17 @@ namespace CarManiacs.Business.Services
     public class ProjectService : IProjectService
     {
         private IEfRepository<Project> projectsRepo;
+        private IEfRepository<ProjectStar> projectStarsRepo;
 
-        public ProjectService(IEfRepository<Project> projectsRepo)
+        public ProjectService(
+            IEfRepository<Project> projectsRepo, 
+            IEfRepository<ProjectStar> projectStarsRepo)
         {
             Guard.WhenArgument(projectsRepo, "Project repository").IsNull().Throw();
+            Guard.WhenArgument(projectStarsRepo, "ProjectStar repository").IsNull().Throw();
 
             this.projectsRepo = projectsRepo;
+            this.projectStarsRepo = projectStarsRepo;
         }
 
         public Guid Create(ProjectDto newProject, string userId)
@@ -64,6 +69,50 @@ namespace CarManiacs.Business.Services
                 project.ImageUrl = imageUrl;
                 this.projectsRepo.Update(project);
             }
+        }
+
+        public int Star(Guid projectId, string userId)
+        {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+
+            var project = this.projectsRepo.GetById(projectId);
+            if (project != null)
+            {
+                var projectStar = project.Stars.FirstOrDefault(s => s.UserId == userId);
+                if (projectStar != null)
+                {
+                    project.Stars.Remove(projectStar);
+                    this.projectStarsRepo.Delete(projectStar);
+                    return project.Stars.Count;
+                }
+                else
+                {
+                    projectStar = new ProjectStar() { Id = Guid.NewGuid(), ProjectId = projectId, UserId = userId };
+                    project.Stars.Add(projectStar);
+                    return project.Stars.Count;
+                }
+            }
+
+            return -1;
+        }
+
+        public bool HasUserStarred(Guid projectId, string userId)
+        {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(userId, "userId").IsNullOrEmpty().Throw();
+
+            var project = this.projectsRepo.GetById(projectId);
+            if (project != null)
+            {
+                var projectStar = project.Stars.FirstOrDefault(s => s.UserId == userId);
+                if (projectStar != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public IEnumerable<Project> GetAll()

@@ -17,7 +17,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
             var storyDto = new StoryDto() { Id = Guid.NewGuid() };
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var storyFromRepo = new Mock<Story>();
             storiesRepoMock.Setup(m => m.GetById(storyDto.Id)).Returns(storyFromRepo.Object);
 
@@ -34,7 +35,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
             var storyDto = new StoryDto() { Id = Guid.NewGuid() };
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             Story storyFromRepo = null;
             storiesRepoMock.Setup(m => m.GetById(storyDto.Id)).Returns(storyFromRepo);
 
@@ -50,7 +52,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
 
             //Act && Assert
             Assert.Throws<ArgumentNullException>(() => storyService.Update(null));

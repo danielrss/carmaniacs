@@ -5,10 +5,20 @@
     @if (Model.IsUserAllowedToEdit)
     {
         @Html.ActionLink("Edit", "Edit", "Projects", new { id = Model.Id }, new { @class = "button alt" })
+        @:&nbsp;<label class="icon fa-star inline-block"> @Model.NumberOfStars</label>
     }
     else
     {
-        @*@Html.AjaxLink(" ", "Star", "Projects", new { id = Model.Id }, new { @class = "icon fa-star-o"})*@
+        @Ajax.ActionLink(" " + Model.NumberOfStars.ToString(), "Star", new { id = Model.Id },
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "star-link",
+                OnComplete = "onAjaxComplete",
+                OnSuccess = "onAjaxSuccess"
+            },
+            new { @class = "icon " + Model.StarLinkClass, id = "star-link" })
     }
     <br />
 
@@ -66,3 +76,4 @@
 </div>
 
 <script src="~/Scripts/my-scripts/kendoUploadEvents.js"></script>
+<script src="~/Scripts/my-scripts/ajaxStarEvents.js"></script>

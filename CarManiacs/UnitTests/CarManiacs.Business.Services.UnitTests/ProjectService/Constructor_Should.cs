@@ -16,9 +16,10 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         {
             //Arrange
             var projectsRepoMock = new Mock<IEfRepository<Project>>();
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
 
             //Act
-            var projectService = new Services.ProjectService(projectsRepoMock.Object);
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
 
             //Assert
             Assert.IsInstanceOf<IProjectService>(projectService);
@@ -27,8 +28,21 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         [Test]
         public void ThrowArgumentNullException_WhenProjectRepositoryIsNull()
         {
-            //Arrange && Act && Assert
-            Assert.Throws<ArgumentNullException>(() => new Services.ProjectService(null));
+            //Arrange
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+
+            //Act && Assert
+            Assert.Throws<ArgumentNullException>(() => new Services.ProjectService(null, projectStarsRepoMock.Object));
+        }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenProjectStarRepositoryIsNull()
+        {
+            //Arrange
+            var projectsRepoMock = new Mock<IEfRepository<Project>>();
+
+            //Act && Assert
+            Assert.Throws<ArgumentNullException>(() => new Services.ProjectService(projectsRepoMock.Object, null));
         }
     }
 }

@@ -15,8 +15,9 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         public void CallProjectRepoAddOnce_WhenIdIsValid()
         {
             //Arrange
-            var projectsrepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsrepoMock.Object);
+            var projectsRepoMock = new Mock<IEfRepository<Project>>();
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var userId = Guid.NewGuid().ToString();
             var projectDto = new Mock<ProjectDto>();
 
@@ -24,15 +25,16 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
             projectService.Create(projectDto.Object, userId);
 
             //Assert
-            projectsrepoMock.Verify(m => m.Add(It.IsAny<Project>()), Times.Once);
+            projectsRepoMock.Verify(m => m.Add(It.IsAny<Project>()), Times.Once);
         }
 
         [Test]
         public void ThrowArgumentNullException_WhenProjectDtoIsNull()
         {
             //Arrange
-            var projectsrepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsrepoMock.Object);
+            var projectsRepoMock = new Mock<IEfRepository<Project>>();
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var userId = Guid.NewGuid().ToString();
 
             //Act && Assert
@@ -43,8 +45,9 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         public void ThrowArgumentNullException_WhenUserIdIsNull()
         {
             //Arrange
-            var projectsrepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsrepoMock.Object);
+            var projectsRepoMock = new Mock<IEfRepository<Project>>();
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var projectDto = new Mock<ProjectDto>();
 
             //Act && Assert
@@ -55,8 +58,9 @@ namespace CarManiacs.Business.Services.UnitTests.ProjectService
         public void ThrowArgumentException_WhenUserIdIEmpty()
         {
             //Arrange
-            var projectsrepoMock = new Mock<IEfRepository<Project>>();
-            var projectService = new Services.ProjectService(projectsrepoMock.Object);
+            var projectsRepoMock = new Mock<IEfRepository<Project>>();
+            var projectStarsRepoMock = new Mock<IEfRepository<ProjectStar>>();
+            var projectService = new Services.ProjectService(projectsRepoMock.Object, projectStarsRepoMock.Object);
             var projectDto = new Mock<ProjectDto>();
 
             //Act && Assert

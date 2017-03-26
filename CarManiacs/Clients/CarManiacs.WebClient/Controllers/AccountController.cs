@@ -405,7 +405,7 @@ namespace CarManiacs.WebClient.Controllers
         public ActionResult LogOff()
         {
             this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            //this.HttpContext.Session.Remove("AvatarUrl");
+            this.HttpContext.Session.Remove("AvatarUrl");
 
             return RedirectToAction("Index", "Home");
         }

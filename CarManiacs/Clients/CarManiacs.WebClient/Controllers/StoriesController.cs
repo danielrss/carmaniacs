@@ -37,6 +37,8 @@ namespace CarManiacs.WebClient.Controllers
                 imageUrls = story.ImageUrls.Select(i => i.Url);
             }
 
+            string starLinkClass = this.storyService.HasUserStarred(id, this.User.Identity.GetUserId()) ?
+                "fa-star" : "fa-star-o";
             if (story != null)
             {
                 var viewModel = new StoryDetailsViewModel()
@@ -48,6 +50,8 @@ namespace CarManiacs.WebClient.Controllers
                     UserId = story.UserId,
                     MainImageUrl = story.MainImageUrl,
                     ImageUrls = imageUrls,
+                    NumberOfStars = story.Stars.Count,
+                    StarLinkClass = starLinkClass,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == story.UserId
                 };
                 return View(viewModel);
@@ -122,6 +126,19 @@ namespace CarManiacs.WebClient.Controllers
             this.storyService.Update(storyDto);
 
             return this.RedirectToAction("Details", new { id = story.Id });
+        }
+
+        [HttpPost]
+        [Transaction]
+        public ActionResult Star(Guid id)
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return Json(new { success = false, responseText = "Not authorized." }, JsonRequestBehavior.AllowGet);
+            }
+
+            int numberOfStars = this.storyService.Star(id, this.User.Identity.GetUserId());
+            return this.Content(" " + numberOfStars.ToString());
         }
     }
 }

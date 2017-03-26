@@ -40,6 +40,8 @@ namespace CarManiacs.WebClient.Controllers
                     projectStages = project.Stages.Select(s => new ProjectStageViewModel() { });
                 }
 
+                string starLinkClass = this.projectService.HasUserStarred(id, this.User.Identity.GetUserId()) ?
+                    "fa-star" : "fa-star-o";
                 var viewModel = new ProjectDetailsViewModel()
                 {
                     Id = project.Id,
@@ -49,6 +51,8 @@ namespace CarManiacs.WebClient.Controllers
                     UserId = project.UserId,
                     Stages = projectStages,
                     ImageUrl = project.ImageUrl,
+                    NumberOfStars = project.Stars.Count,
+                    StarLinkClass = starLinkClass,
                     IsUserAllowedToEdit = this.User.Identity.GetUserId() == project.UserId
                 };
                 return View(viewModel);
@@ -123,6 +127,19 @@ namespace CarManiacs.WebClient.Controllers
             this.projectService.Update(projectDto);
             
             return this.RedirectToAction("Details", new { id = project.Id });
+        }
+        
+        [HttpPost]
+        [Transaction]
+        public ActionResult Star(Guid id)
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return Json(new { success = false, responseText = "Not authorized." }, JsonRequestBehavior.AllowGet);
+            }
+            
+            int numberOfStars = this.projectService.Star(id, this.User.Identity.GetUserId());
+            return this.Content(" " + numberOfStars.ToString());
         }
     }
 }

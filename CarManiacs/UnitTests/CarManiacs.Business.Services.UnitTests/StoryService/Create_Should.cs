@@ -16,7 +16,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var userId = Guid.NewGuid().ToString();
             var storyDto = new Mock<StoryDto>();
 
@@ -32,7 +33,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var userId = Guid.NewGuid().ToString();
 
             //Act && Assert
@@ -44,7 +46,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var storyDto = new Mock<StoryDto>();
 
             //Act && Assert
@@ -56,7 +59,8 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
             var storyDto = new Mock<StoryDto>();
 
             //Act && Assert

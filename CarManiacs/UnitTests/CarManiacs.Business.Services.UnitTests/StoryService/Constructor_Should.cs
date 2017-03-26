@@ -16,9 +16,10 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         {
             //Arrange
             var storiesRepoMock = new Mock<IEfRepository<Story>>();
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
 
             //Act
-            var storyService = new Services.StoryService(storiesRepoMock.Object);
+            var storyService = new Services.StoryService(storiesRepoMock.Object, storyStarsRepoMock.Object);
 
             //Assert
             Assert.IsInstanceOf<IStoryService>(storyService);
@@ -27,8 +28,21 @@ namespace CarManiacs.Business.Services.UnitTests.StoryService
         [Test]
         public void ThrowArgumentNullException_WhenStoryRepositoryIsNull()
         {
-            //Arrange && Act && Assert
-            Assert.Throws<ArgumentNullException>(() => new Services.StoryService(null));
+            //Arrange
+            var storyStarsRepoMock = new Mock<IEfRepository<StoryStar>>();
+
+            //Act && Assert
+            Assert.Throws<ArgumentNullException>(() => new Services.StoryService(null, storyStarsRepoMock.Object));
+        }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenStoryStarRepositoryIsNull()
+        {
+            //Arrange
+            var storyRepoMock = new Mock<IEfRepository<Story>>();
+
+            //Act && Assert
+            Assert.Throws<ArgumentNullException>(() => new Services.StoryService(storyRepoMock.Object, null));
         }
     }
 }
