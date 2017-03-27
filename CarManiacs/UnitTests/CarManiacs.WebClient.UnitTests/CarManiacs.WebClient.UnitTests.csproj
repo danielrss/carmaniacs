@@ -104,6 +104,8 @@
     <Compile Include="ProfileController\Edit_Should.cs" />
     <Compile Include="ProjectsController\Constructor_Should.cs" />
     <Compile Include="ProjectsController\Details_Should.cs" />
+    <Compile Include="ProjectsController\Index_Should.cs" />
+    <Compile Include="ProjectsController\LoadPage_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +113,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Common\CarManiacs.Business.Common.csproj">
+      <Project>{1096FECE-514D-42AD-8906-12995CB212E7}</Project>
+      <Name>CarManiacs.Business.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Business\CarManiacs.Business.Data\CarManiacs.Business.Data.csproj">
       <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>
