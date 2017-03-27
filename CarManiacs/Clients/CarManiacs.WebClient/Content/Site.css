@@ -122,3 +122,7 @@ p.description {
     width: auto;
     text-align: center
 }
+
+.high-textarea {
+    height: 100px !important
+}
