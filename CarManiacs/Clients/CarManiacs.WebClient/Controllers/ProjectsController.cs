@@ -29,7 +29,7 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult Index()
         {
-            var projects = this.projectService.Get(0, 4).Select(
+            var projects = this.projectService.Get(0, Business.Common.Constants.EntitiesPerPage).Select(
                 p => new ProjectShortViewModel()
                 {
                     Id = p.Id,
@@ -44,7 +44,7 @@ namespace CarManiacs.WebClient.Controllers
         
         public ActionResult LoadPage(int id)
         {
-            var projects = this.projectService.Get(id, 4).Select(
+            var projects = this.projectService.Get(id, Business.Common.Constants.EntitiesPerPage).Select(
                 p => new ProjectShortViewModel()
                 {
                     Id = p.Id,

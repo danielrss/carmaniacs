@@ -29,7 +29,7 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult Index()
         {
-            var stories = this.storyService.Get(0, 2).Select(
+            var stories = this.storyService.Get(0, Business.Common.Constants.EntitiesPerPage).Select(
                    s => new StoryShortViewModel()
                    {
                        Id = s.Id,
@@ -44,7 +44,7 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult LoadPage(int id)
         {
-            var stories = this.storyService.Get(id, 2).Select(
+            var stories = this.storyService.Get(id, Business.Common.Constants.EntitiesPerPage).Select(
                 s => new StoryShortViewModel()
                 {
                     Id = s.Id,

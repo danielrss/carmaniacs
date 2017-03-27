@@ -2,6 +2,8 @@
 {
     public class Constants
     {
+        public const int EntitiesPerPage = 8;
+
         public const int NameMinLength = 2;
         public const int NameMaxLength = 30;
         

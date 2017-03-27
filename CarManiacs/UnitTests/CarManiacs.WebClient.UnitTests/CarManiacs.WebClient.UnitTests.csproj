@@ -39,6 +39,7 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -52,6 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +78,10 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -86,9 +92,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AccountController\Constructor_Should.cs" />
+    <Compile Include="AccountController\Login_Should.cs" />
     <Compile Include="ActionFilters\TransactionAttribute\OnActionExecuted_Should.cs" />
     <Compile Include="ActionFilters\TransactionAttribute\OnActionExecuting_Should.cs" />
+    <Compile Include="HomeController\Index_Should.cs" />
+    <Compile Include="AccountController\Register_Should.cs" />
     <Compile Include="Mocks\TransactionAttributeMock.cs" />
+    <Compile Include="ProfileController\Constructor_Should.cs" />
+    <Compile Include="ProfileController\Details_Should.cs" />
+    <Compile Include="ProfileController\Edit_Should.cs" />
+    <Compile Include="ProjectsController\Constructor_Should.cs" />
+    <Compile Include="ProjectsController\Details_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,11 +115,20 @@
       <Project>{27955618-1205-427F-BA56-228C84105298}</Project>
       <Name>CarManiacs.Business.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Models\CarManiacs.Business.Models.csproj">
+      <Project>{B3BBDCFC-36DA-45A4-981F-505DC23FCEC1}</Project>
+      <Name>CarManiacs.Business.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\CarManiacs.Business.Services\CarManiacs.Business.Services.csproj">
+      <Project>{012C9CAE-A304-4AB4-8EEE-F52539A96995}</Project>
+      <Name>CarManiacs.Business.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Clients\CarManiacs.WebClient\CarManiacs.WebClient.csproj">
       <Project>{9cefe230-9524-4db1-bf10-2fd63e7bdd27}</Project>
       <Name>CarManiacs.WebClient</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
