@@ -68,6 +68,8 @@
     <Compile Include="ProjectService\Comment_Should.cs" />
     <Compile Include="ProjectService\Constructor_Should.cs" />
     <Compile Include="ProjectService\Create_Should.cs" />
+    <Compile Include="ProjectService\Delete_Should.cs" />
+    <Compile Include="ProjectService\GetAll_Should.cs" />
     <Compile Include="ProjectService\GetById_Should.cs" />
     <Compile Include="ProjectService\Get_Should.cs" />
     <Compile Include="ProjectService\HasUserStarred_Should.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="StoryService\Comment_Should.cs" />
     <Compile Include="StoryService\Constructor_Should.cs" />
     <Compile Include="StoryService\Create_Should.cs" />
+    <Compile Include="StoryService\Delete_Should.cs" />
+    <Compile Include="StoryService\GetAll_Should.cs" />
     <Compile Include="StoryService\GetById_Should.cs" />
     <Compile Include="StoryService\Get_Should.cs" />
     <Compile Include="StoryService\HasUserStarred_Should.cs" />
