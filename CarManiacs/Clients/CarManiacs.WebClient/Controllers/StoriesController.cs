@@ -34,6 +34,7 @@ namespace CarManiacs.WebClient.Controllers
                    {
                        Id = s.Id,
                        Title = s.Title,
+                       ImageUrl = s.MainImageUrl,
                        NumberOfStars = s.Stars.Count,
                        NumberOfComments = s.Comments.Count
                    });
@@ -48,6 +49,7 @@ namespace CarManiacs.WebClient.Controllers
                 {
                     Id = s.Id,
                     Title = s.Title,
+                    ImageUrl = s.MainImageUrl,
                     NumberOfStars = s.Stars.Count,
                     NumberOfComments = s.Comments.Count
                 });
@@ -72,6 +74,7 @@ namespace CarManiacs.WebClient.Controllers
                 {
                     Id = s.Id,
                     Title = s.Title,
+                    ImageUrl = s.MainImageUrl,
                     NumberOfStars = s.Stars.Count,
                     NumberOfComments = s.Comments.Count
                 });

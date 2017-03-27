@@ -2,7 +2,13 @@
 
 @foreach (var story in Model)
 {
-    <div>
-        @Html.ActionLink(story.Title, "Details", "Projects", new { id = story.Id }, new { })
+    <div class="project-short inline-block">
+        <header>
+            <h3>@Html.ActionLink(story.Title, "Details", "Stories", new { id = story.Id }, new { })</h3>
+        </header>
+        <div>
+            <img class="project-image" src="@story.ImageUrl" alt="" />
+        </div>
+        <p></p>
     </div>
 }

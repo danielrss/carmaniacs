@@ -29,11 +29,12 @@ namespace CarManiacs.WebClient.Controllers
 
         public ActionResult Index()
         {
-            var projects = this.projectService.Get(0, 2).Select(
+            var projects = this.projectService.Get(0, 4).Select(
                 p => new ProjectShortViewModel()
                 {
                     Id = p.Id,
                     Title = p.Title,
+                    ImageUrl = p.ImageUrl,
                     NumberOfStars = p.Stars.Count,
                     NumberOfComments = p.Comments.Count
                 });
@@ -43,11 +44,12 @@ namespace CarManiacs.WebClient.Controllers
         
         public ActionResult LoadPage(int id)
         {
-            var projects = this.projectService.Get(id, 2).Select(
+            var projects = this.projectService.Get(id, 4).Select(
                 p => new ProjectShortViewModel()
                 {
                     Id = p.Id,
                     Title = p.Title,
+                    ImageUrl = p.ImageUrl,
                     NumberOfStars = p.Stars.Count,
                     NumberOfComments = p.Comments.Count
                 });
@@ -72,6 +74,7 @@ namespace CarManiacs.WebClient.Controllers
                 {
                     Id = p.Id,
                     Title = p.Title,
+                    ImageUrl = p.ImageUrl,
                     NumberOfStars = p.Stars.Count,
                     NumberOfComments = p.Comments.Count
                 });

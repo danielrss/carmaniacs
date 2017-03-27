@@ -54,7 +54,9 @@ namespace CarManiacs.WebClient.Models
         public Guid Id { get; set; }
         
         public string Title { get; set; }
-        
+
+        public string ImageUrl { get; set; }
+
         public int NumberOfStars { get; set; }
 
         public int NumberOfComments { get; set; }

@@ -26,7 +26,8 @@
         @Html.Partial("_ProjectsPartial", Model)
     </div>
 
-    @Ajax.ActionLink("Load more", "LoadPage", new { id = 1 },
+    <div class="container-load-more">
+        @Ajax.ActionLink("Load more", "LoadPage", new { id = 1 },
             new AjaxOptions
             {
                 HttpMethod = "GET",
@@ -35,6 +36,7 @@
                 OnComplete = "onAjaxComplete"
             },
             new { @class = "button alt", id = "load-more" })
+    </div>
 </div>
 
 @section Scripts {
