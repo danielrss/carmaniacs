@@ -1,1 +1,44 @@
-﻿
+﻿@section Styles {
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-nova.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.nova.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.dataviz.nova.min.css" rel="stylesheet" type="text/css" />
+}
+<script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
+
+<div class="container body-content">
+    @(Html.Kendo()
+        .Grid<CarManiacs.WebClient.Areas.Admin.Models.ProjectViewModel>()
+        .Name("ProjectsGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.Id).Hidden();
+            columns.Bound(m => m.UserId).Hidden();
+            columns.Bound(m => m.Title);
+            columns.Bound(m => m.Description);
+            columns.Bound(m => m.ImageUrl).ClientTemplate("<img src='#= ImageUrl #'/>");
+            columns.Bound(m => m.IsDeleted).ClientTemplate("#= IsDeleted ? 'Yes' : 'No' #");
+            columns.Command(c => c.Edit());
+            columns.Command(c => c.Destroy());
+        })
+        .Editable(edit => edit.Mode(GridEditMode.PopUp).Window(w => w.Width(500)))
+        .ToolBar(tool => tool.Create())
+        .ColumnMenu()
+        .Pageable()
+        .Sortable(sort => sort.SortMode(GridSortMode.SingleColumn))
+        .Filterable()
+        .DataSource(data =>
+        {
+            data
+                .Ajax()
+                .PageSize(10)
+                .Model(model => model.Id(m => m.Id))
+                .Read(read => read.Action("ReadProjects", "Projects"))
+                .Create(create => create.Action("CreateProject", "Projects"))
+                .Update(update => update.Action("UpdateProject", "Projects"))
+                .Destroy(destroy => destroy.Action("DestroyProject", "Projects"));
+        }))
+</div>

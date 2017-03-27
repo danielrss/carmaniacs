@@ -6,6 +6,11 @@
 <div class="container body-content">
     <h2 class="inline-block">Stories</h2>
     @Html.ActionLink("Share your story", "Create", "Stories", new { }, new { @class = "button alt" })
+
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Manage stories", "Index", "Stories", new { area = "Admin" }, new { @class = "button alt" })
+    }
     <br />
 
     <div class="form-group">

@@ -71,6 +71,18 @@ namespace CarManiacs.Business.Services
             }
         }
 
+        public void Delete(Guid projectId)
+        {
+            Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
+
+            var project = this.projectsRepo.GetById(projectId);
+            if (project != null)
+            {
+                project.IsDeleted = true;
+                this.projectsRepo.Update(project);
+            }
+        }
+
         public int StarOrUnstar(Guid projectId, string userId)
         {
             Guard.WhenArgument(projectId, "projectId").IsEmptyGuid().Throw();
@@ -117,7 +129,7 @@ namespace CarManiacs.Business.Services
 
         public IEnumerable<Project> Get(int page, int numberOfProjects)
         {
-            return projectsRepo.All
+            return this.projectsRepo.All
                 .Where(p => p.IsDeleted == false)
                 .OrderByDescending(p => p.StartDate)
                 .Skip(page * numberOfProjects)
@@ -132,12 +144,17 @@ namespace CarManiacs.Business.Services
                 return null;
             }
 
-            return projectsRepo.All
+            return this.projectsRepo.All
                 .Where(p => p.IsDeleted == false &&
                     (p.Title.Contains(searchTerm) ||
                     (p.Description.Contains(searchTerm))))
                 .OrderByDescending(p => p.StartDate)
                 .ToList();
+        }
+
+        public IQueryable<Project> GetAll()
+        {
+            return this.projectsRepo.All;
         }
 
         public Project GetById(Guid projectId)

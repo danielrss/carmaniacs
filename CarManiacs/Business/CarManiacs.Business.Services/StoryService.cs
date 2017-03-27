@@ -71,6 +71,18 @@ namespace CarManiacs.Business.Services
             }
         }
 
+        public void Delete(Guid storyId)
+        {
+            Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
+
+            var story = this.storiesRepo.GetById(storyId);
+            if (story != null)
+            {
+                story.IsDeleted = true;
+                this.storiesRepo.Update(story);
+            }
+        }
+
         public int StarOrUnstar(Guid storyId, string userId)
         {
             Guard.WhenArgument(storyId, "storyId").IsEmptyGuid().Throw();
@@ -117,7 +129,7 @@ namespace CarManiacs.Business.Services
 
         public IEnumerable<Story> Get(int page, int numberOfProjects)
         {
-            return storiesRepo.All
+            return this.storiesRepo.All
                 .Where(s => s.IsDeleted == false)
                 .OrderByDescending(s => s.PublishDate)
                 .Skip(page * numberOfProjects)
@@ -132,12 +144,17 @@ namespace CarManiacs.Business.Services
                 return null;
             }
 
-            return storiesRepo.All
+            return this.storiesRepo.All
                 .Where(s => s.IsDeleted == false &&
                     (s.Title.Contains(searchTerm) ||
                     (s.Content.Contains(searchTerm))))
                 .OrderByDescending(s => s.PublishDate)
                 .ToList();
+        }
+
+        public IQueryable<Story> GetAll()
+        {
+            return this.storiesRepo.All;
         }
 
         public Story GetById(Guid storyId)
