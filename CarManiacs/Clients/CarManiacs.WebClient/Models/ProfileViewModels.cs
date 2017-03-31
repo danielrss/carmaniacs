@@ -33,10 +33,12 @@ namespace CarManiacs.WebClient.Models
 
     public class ProfileEditViewModel
     {
+        [Required]
         [Display(Name = "First name")]
         [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "Last name")]
         [StringLength(Constants.NameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.NameMinLength)]
         public string LastName { get; set; }

@@ -11,3 +11,7 @@
 [Description](https://github.com/TelerikAcademy/ASP.NET-MVC/blob/master/resources/Final%20Project/2017/README.md)
 
 # Car Maniacs
+
+### This project is a Web Application built with ASP.NET MVC using DI (Ninject).
+
+### The project's purpose is for people who have a passion for cars to be able to share and discuss their experiences.

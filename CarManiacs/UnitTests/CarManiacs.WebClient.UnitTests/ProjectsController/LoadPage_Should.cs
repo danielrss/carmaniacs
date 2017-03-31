@@ -23,7 +23,7 @@ namespace CarManiacs.WebClient.UnitTests.ProjectsController
                 .WithCallTo(c => c.LoadPage(3))
                 .ShouldReturnJson();
 
-            projectServiceMock.Verify(m => m.Get(3, Constants.EntitiesPerPage), Times.Once);
+            projectServiceMock.Verify(m => m.Get(3, Constants.InitialEntitiesPerPage), Times.Once);
         }
     }
 }

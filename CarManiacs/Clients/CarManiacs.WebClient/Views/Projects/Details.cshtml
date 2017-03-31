@@ -76,7 +76,7 @@
         </div>
         <div>
             @Html.LabelFor(m => m.StartDate, new { @class = "inline-block" })
-            @Html.DisplayFor(m => m.StartDate)
+            @Model.StartDate.ToShortDateString()
         </div>
     </div>
 

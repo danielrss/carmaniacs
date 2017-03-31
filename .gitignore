@@ -251,3 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 /CarManiacs/Clients/CarManiacs.WebClient/Content/Uploaded
+/screenshots

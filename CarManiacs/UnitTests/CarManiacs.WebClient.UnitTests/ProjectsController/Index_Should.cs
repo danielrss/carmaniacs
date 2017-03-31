@@ -25,7 +25,7 @@ namespace CarManiacs.WebClient.UnitTests.ProjectsController
                 .ShouldRenderDefaultView()
                 .WithModel<IEnumerable<ProjectShortViewModel>>();
 
-            projectServiceMock.Verify(m => m.Get(0, Constants.EntitiesPerPage), Times.Once);
+            projectServiceMock.Verify(m => m.Get(0, Constants.InitialEntitiesPerPage), Times.Once);
         }
     }
 }
