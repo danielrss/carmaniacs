@@ -15,14 +15,15 @@
 
     <div class="form-group">
         @using (Ajax.BeginForm("Search", new { },
-                        new AjaxOptions
-                        {
-                            HttpMethod = "GET",
-                            UpdateTargetId = "stories",
-                            InsertionMode = InsertionMode.Replace
-                        },
-                        new { id = "ajaxSearchForm" }))
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                UpdateTargetId = "stories",
+                                InsertionMode = InsertionMode.Replace
+                            },
+                            new { id = "ajaxSearchForm" }))
         {
+            @Html.AntiForgeryToken()
             <input type="text" class="form-control search-input" name="searchTerm" placeholder="Search..." onkeyup="onKeyUp()" />
         }
     </div>

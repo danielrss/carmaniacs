@@ -93,6 +93,7 @@ namespace CarManiacs.WebClient.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Transaction]
         public ActionResult Edit(ProfileEditViewModel model)
         {

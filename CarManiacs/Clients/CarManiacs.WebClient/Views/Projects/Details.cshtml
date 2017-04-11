@@ -97,14 +97,15 @@
 
     <div class="add-comment form-horizontal">
         @using (Ajax.BeginForm("Comment", new { id = Model.Id },
-                new AjaxOptions
-                {
-                    HttpMethod = "POST",
-                    UpdateTargetId = "comments",
-                    InsertionMode = InsertionMode.InsertAfter,
-                    OnSuccess = "onSuccess"
-                }))
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "comments",
+                        InsertionMode = InsertionMode.InsertAfter,
+                        OnSuccess = "onSuccess"
+                    }))
         {
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <div class="col-md-10">
                     <textarea data-val="true" data-val-length="The comment must be at least 5 characters long." data-val-length-max="500" data-val-length-min="5" data-val-required="Type in your comment."

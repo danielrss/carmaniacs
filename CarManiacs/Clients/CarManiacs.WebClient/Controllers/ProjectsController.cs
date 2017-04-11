@@ -62,6 +62,8 @@ namespace CarManiacs.WebClient.Controllers
             return this.PartialView("_ProjectsPartial", projects);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Search(string searchTerm)
         {
             if (string.IsNullOrEmpty(searchTerm))
@@ -96,7 +98,10 @@ namespace CarManiacs.WebClient.Controllers
                 IEnumerable<CommentViewModel> projectComments = null;
                 if (project.Comments != null && project.Comments.Count > 0)
                 {
-                    projectComments = project.Comments.Where(c => c.IsDeleted == false).Select(
+                    projectComments = project.Comments
+                        .Where(c => c.IsDeleted == false)
+                        .OrderBy(c => c.PublishDate)
+                        .Select(
                         c => new CommentViewModel()
                         {
                             UserFullName = c.UserId == null ? null : c.User.FirstName + " " + c.User.LastName,
@@ -142,6 +147,7 @@ namespace CarManiacs.WebClient.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Transaction]
         public ActionResult Create(ProjectCreateViewModel project)
         {
@@ -182,6 +188,7 @@ namespace CarManiacs.WebClient.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Transaction]
         public ActionResult Edit(ProjectCreateViewModel project)
         {
@@ -215,6 +222,7 @@ namespace CarManiacs.WebClient.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Transaction]
         public ActionResult Comment(Guid id, string commentContent)
         {

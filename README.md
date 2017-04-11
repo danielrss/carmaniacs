@@ -8,7 +8,9 @@
 
 <h1 align="center">ASP.NET MVC</h1>
 
-[Description](https://github.com/TelerikAcademy/ASP.NET-MVC/blob/master/resources/Final%20Project/2017/README.md)
+[Project Description](https://github.com/TelerikAcademy/ASP.NET-MVC/blob/master/resources/Final%20Project/2017/README.md)
+
+[Demo](https://www.youtube.com/watch?v=0LeBved-2vc)
 
 # Car Maniacs
 
